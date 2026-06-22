@@ -4,6 +4,7 @@ import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth
 import { GetDb } from "../db";
 import { users } from "../db/schema";
 import { eq } from "drizzle-orm";
+import { GetUsernameForUserId } from "../controllers/login";
 
 export const loginRouter = Router();
 
@@ -65,14 +66,14 @@ loginRouter.post("/login", HasUndauntedMetagameAuth, async (req: any, res) => {
 loginRouter.get("/accountinfo", HasUndauntedMetagameAuth, async (req: any, res) => {
     logger.info("Account info")
 
-    let UserFromDb = await GetDb().query.users.findFirst({where: eq(users.userId, req.AuthData.userId)});
+    const Username = await GetUsernameForUserId(req.AuthData.userId);
 
     res.json({
         "accountId" : req.AuthData.userId,
         "creationDate" : "2000-01-01 00:00:00",
         "email" : null,
         "preferredLanguage" : null,
-        "username" : UserFromDb?.name,
+        "username" : Username,
         "verified" : true
     });
 });
@@ -106,4 +107,36 @@ loginRouter.put("/gamesession/epic", HasUndauntedMetagameAuth, (req: any, res) =
             "sessionToken": Token 
         }
     })
+});
+
+loginRouter.post("/accountinfo/public", HasUndauntedMetagameAuth, async (req: any, res) => {
+    const AccountIdToLookupFromRequest = req.body.accountId;
+    const RequestorAccountId = req.AuthData.userId;
+
+    const Username = await GetUsernameForUserId(req.AuthData.userId);
+
+    // TODO: I *think* the idea here was I'm-authenticated-let-me-look-up-anybody
+    // Not super comfy with that right now, so for rn I'm just using the requestor's accId and looking that up.
+    // Might need to change in the future with party functionality
+
+    if(AccountIdToLookupFromRequest !== RequestorAccountId){
+        logger.error(`Looked up ${AccountIdToLookupFromRequest} from requestor ${RequestorAccountId} this will break things!`);
+    }
+    else{
+        logger.info(`Looked up account info for ${RequestorAccountId}`);
+    }
+
+    res.status(200);
+    res.json({
+        accountId: RequestorAccountId,
+        isSubscribed: true,
+        language: null,
+        linkedAccounts: [
+            {
+                accountId: RequestorAccountId,
+                accountType: "epic"
+            }
+        ],
+        username: Username
+    });
 });

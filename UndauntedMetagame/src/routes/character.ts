@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { logger } from "../logger";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
-import { CreateCharacterForUid, GetCharactersForUid } from "../controllers/character";
+import { CreateCharacterForUid, GetCharactersForUid, UpdateCharacterForUid } from "../controllers/character";
 
 export const characterRouter = Router();
 
 characterRouter.get("/character", HasUndauntedMetagameAuth, async (req: any, res) => {
-    let CharactersForUid = await GetCharactersForUid(req.AuthData.userId);
+    const CharactersForUid = await GetCharactersForUid(req.AuthData.userId);
 
     logger.info(`Retrieved ${CharactersForUid.length} characters for ${req.AuthData.userId}`);
 
@@ -15,7 +15,7 @@ characterRouter.get("/character", HasUndauntedMetagameAuth, async (req: any, res
 });
 
 characterRouter.put("/character", HasUndauntedMetagameAuth, async (req: any, res) => {
-    let CharacterNameToCreate = req.body.name;
+    const CharacterNameToCreate = req.body.name;
 
     logger.info(`Creating a character named ${CharacterNameToCreate} for user ${req.AuthData.userId}`);
 
@@ -24,3 +24,17 @@ characterRouter.put("/character", HasUndauntedMetagameAuth, async (req: any, res
     res.status(200);
     res.json(NewCharacter);
 })
+
+characterRouter.post("/character", HasUndauntedMetagameAuth, async (req: any, res) => {
+    const CharacterIdToUpdate = req.body.characterId;
+    const UserId = req.AuthData.userId;
+    const DataToUpdateWith = req.body.data;
+    const UpdateVersion = req.body.updateVersion;
+
+    logger.info(`Updating characterId ${CharacterIdToUpdate} for userId ${UserId} with updateVersion ${UpdateVersion}`);
+
+    const UpdatedCharacter = await UpdateCharacterForUid(CharacterIdToUpdate, UserId, DataToUpdateWith, UpdateVersion);
+
+    res.status(200);
+    res.json(UpdatedCharacter);
+});

@@ -19,3 +19,14 @@ storeRouter.post("/reconcile", HasUndauntedMetagameAuth, async (req: any, res) =
         refreshInventory: true
     });
 });
+
+storeRouter.get("/creator", HasUndauntedMetagameAuth, async (req: any, res) => {
+    logger.info("SupportACreator (stubbed)");
+
+    res.status(200);
+    res.json({
+        "expirationDate": "2099-01-01T01:00:00.041Z",
+        "slug": "MROWMROW",
+        "success": true
+    });
+})

@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { logger } from "../logger";
 import { SignMetagameJWTForUid } from "../controllers/auth";
+import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
+import { GetUsernameForUserId } from "../controllers/login";
 
 export const eosRouter = Router();
 
@@ -76,3 +78,31 @@ eosRouter.delete("/account/api/oauth/sessions/kill/:AuthToken", (req, res) => {
 
     res.json({});
 })
+
+eosRouter.get("/account/api/public/account", HasUndauntedMetagameAuth, (req: any, res) => {
+    const UserId = req.AuthData.userId;
+    const Username = GetUsernameForUserId(UserId);
+
+    logger.info(`Account info for userId ${UserId}`);
+
+    res.json({
+        "id": UserId,
+        "displayName": Username,
+        "name": "",
+        "lastName": "",
+        "email": "",
+        "failedLoginAttempts": 0,
+        "lastLogin": new Date().toISOString(),
+        "numberOfDisplayNameChanges": 0,
+        "ageGroup": "ADULT",
+        "headless": false,
+        "country": "US",
+        "lastNameChange": new Date().toISOString(),
+        "preferredLanguage": "en",
+        "canUpdateDisplayName": false,
+        "tfaEnabled": false,
+        "emailVerified": true,
+        "minorVerified": false,
+        "minorStatus": "NOT_MINOR"
+    });
+});

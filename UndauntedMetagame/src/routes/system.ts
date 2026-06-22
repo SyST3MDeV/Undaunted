@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { logger } from "../logger";
+import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
 
 export const systemRouter = Router();
 
@@ -30,7 +31,7 @@ systemRouter.post("/event", (req, res) => {
     res.json({});
 });
 
-systemRouter.post("/account/migrate", (req, res) => {
+systemRouter.post("/account/migrate", HasUndauntedMetagameAuth, (req, res) => {
 	logger.info("Account migration (stubbed)");
 
 	res.status(200);
@@ -38,4 +39,25 @@ systemRouter.post("/account/migrate", (req, res) => {
 		migration_failed: false,
 		migration_finished: true
 	});
+});
+
+systemRouter.post("/profile/update", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Leaderboard update profile (stubbed)");
+
+	res.status(200);
+	res.send();
+});
+
+systemRouter.get("/vivox/login", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Vivox login (stubbed)");
+
+	res.status(404);
+	res.send();
+});
+
+systemRouter.post("/motd/", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("MOTD (stubbed)");
+
+	res.status(204);
+	res.send();
 });

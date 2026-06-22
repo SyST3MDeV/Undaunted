@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { GetDb } from "../db";
 import { characters } from "../db/schema";
 
@@ -89,4 +89,13 @@ export async function CreateCharacterForUid(userId: string, characterName: strin
     }).returning();
 
     return TransformDbCharacterToWireCharacter(NewCharacter[0]);
+}
+
+export async function UpdateCharacterForUid(CharacterId: string, UserId: string, CharacterDataToUpdateWith: string, UpdateVersion: number){
+    const UpdatedCharacter = await GetDb().update(characters).set({
+        data: CharacterDataToUpdateWith,
+        updateVersion: UpdateVersion
+    }).where(and(eq(characters.userId, UserId), eq(characters.characterId, CharacterId))).returning();
+
+    return TransformDbCharacterToWireCharacter(UpdatedCharacter);
 }
