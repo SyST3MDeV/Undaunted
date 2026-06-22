@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "c2ffd5b8-a54c-48f8-b619-98403eb41602",
+  "id": "7c74b5d5-c2a6-41ae-9a06-4aa0527a430c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "characters": {
@@ -63,6 +63,37 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "inventories": {
+      "name": "inventories",
+      "columns": {
+        "characterId": {
+          "name": "characterId",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "instancedItems": {
+          "name": "instancedItems",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "stackedItems": {
+          "name": "stackedItems",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "users": {
       "name": "users",
       "columns": {
@@ -77,7 +108,14 @@
           "name": "name",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
           "autoincrement": false
         }
       },

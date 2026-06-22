@@ -29,3 +29,13 @@ systemRouter.post("/event", (req, res) => {
     res.status(200);
     res.json({});
 });
+
+systemRouter.post("/account/migrate", (req, res) => {
+	logger.info("Account migration (stubbed)");
+
+	res.status(200);
+	res.json({
+		migration_failed: false,
+		migration_finished: true
+	});
+});

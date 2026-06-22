@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { logger } from "../logger";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
+import { GetDb } from "../db";
+import { users } from "../db/schema";
+import { eq } from "drizzle-orm";
 
 export const loginRouter = Router();
 
@@ -29,11 +32,21 @@ loginRouter.get("/account/link/epic/:AccId", (req, res) => {
     });
 });
 
-loginRouter.post("/login", HasUndauntedMetagameAuth, (req: any, res) => {
+loginRouter.post("/login", HasUndauntedMetagameAuth, async (req: any, res) => {
     if(req.AuthData.userId !== req.body.email){
         res.status(400);
 
         logger.error(`UserID from Undaunted Auth ${req.AuthData.userId} didn't match UserID from token ${req.AuthData.email}`);
+
+        return;
+    }
+
+    let UserRecord = await GetDb().query.users.findFirst({where: eq(users.userId, req.AuthData.userId)});
+
+    if(UserRecord == undefined){
+        res.status(400);
+
+        logger.error(`UserID from Undaunted Auth ${req.AuthData.userId} had no database entry!`);
 
         return;
     }
@@ -49,15 +62,17 @@ loginRouter.post("/login", HasUndauntedMetagameAuth, (req: any, res) => {
     });
 });
 
-loginRouter.get("/accountinfo", HasUndauntedMetagameAuth, (req: any, res) => {
+loginRouter.get("/accountinfo", HasUndauntedMetagameAuth, async (req: any, res) => {
     logger.info("Account info")
+
+    let UserFromDb = await GetDb().query.users.findFirst({where: eq(users.userId, req.AuthData.userId)});
 
     res.json({
         "accountId" : req.AuthData.userId,
         "creationDate" : "2000-01-01 00:00:00",
         "email" : null,
         "preferredLanguage" : null,
-        "username" : null,
+        "username" : UserFromDb?.name,
         "verified" : true
     });
 });
@@ -87,8 +102,8 @@ loginRouter.put("/gamesession/epic", HasUndauntedMetagameAuth, (req: any, res) =
         "message": "OK",
         "payload": {
             "error_code": null,
-            "sessionid": Token,
-            "sessionToken": Token
+            "sessionid": "SESSION_ID_LOL", // TODO: This is surfaced in the UI, but I don't think it matters for anything else
+            "sessionToken": Token 
         }
     })
 });

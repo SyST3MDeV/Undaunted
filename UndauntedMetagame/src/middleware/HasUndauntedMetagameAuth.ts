@@ -8,10 +8,6 @@ export function HasUndauntedMetagameAuth(req: Request, res: Response, next: Next
     if(AuthHeader == undefined || (!AuthHeader?.startsWith("bearer ") && !AuthHeader?.startsWith("Bearer ") && !AuthHeader?.startsWith("BEARER "))){
         res.status(401);
 
-        console.log(AuthHeader);
-
-        console.log(req.path);
-
         logger.error("Unauthenticated req to something that needed Undaunted Metagame auth, make sure this isn't a dedicated server!");
 
         return;
