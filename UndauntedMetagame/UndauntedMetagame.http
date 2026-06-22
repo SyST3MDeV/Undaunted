@@ -1,6 +1,0 @@
-@UndauntedMetagame_HostAddress = http://localhost:5165
-
-GET {{UndauntedMetagame_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
