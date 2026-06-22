@@ -1,7 +1,8 @@
 import { Router } from "express";
 import { logger } from "../logger";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
-import { CreateCharacterForUid, GetCharactersForUid, UpdateCharacterForUid } from "../controllers/character";
+import { CreateCharacterForUid, GetCharactersForUid, GetCharacterWithUid, UpdateCharacterForUid } from "../controllers/character";
+import express from "express";
 
 export const characterRouter = Router();
 
@@ -33,7 +34,9 @@ characterRouter.post("/character", HasUndauntedMetagameAuth, async (req: any, re
 
     logger.info(`Updating characterId ${CharacterIdToUpdate} for userId ${UserId} with updateVersion ${UpdateVersion}`);
 
-    const UpdatedCharacter = await UpdateCharacterForUid(CharacterIdToUpdate, UserId, DataToUpdateWith, UpdateVersion);
+    await UpdateCharacterForUid(CharacterIdToUpdate, UserId, DataToUpdateWith, UpdateVersion);
+
+    const UpdatedCharacter = await GetCharacterWithUid(CharacterIdToUpdate, UserId);
 
     res.status(200);
     res.json(UpdatedCharacter);

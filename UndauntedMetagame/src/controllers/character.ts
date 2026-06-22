@@ -92,10 +92,14 @@ export async function CreateCharacterForUid(userId: string, characterName: strin
 }
 
 export async function UpdateCharacterForUid(CharacterId: string, UserId: string, CharacterDataToUpdateWith: string, UpdateVersion: number){
-    const UpdatedCharacter = await GetDb().update(characters).set({
+    await GetDb().update(characters).set({
         data: CharacterDataToUpdateWith,
         updateVersion: UpdateVersion
-    }).where(and(eq(characters.userId, UserId), eq(characters.characterId, CharacterId))).returning();
+    }).where(and(eq(characters.userId, UserId), eq(characters.characterId, CharacterId)));
+}
 
-    return TransformDbCharacterToWireCharacter(UpdatedCharacter);
+export async function GetCharacterWithUid(CharacterId: string, UserId: string){
+    const Character = await GetDb().query.characters.findFirst({where: and(eq(characters.characterId, CharacterId), eq(characters.userId, UserId))});
+
+    return TransformDbCharacterToWireCharacter(Character);
 }
