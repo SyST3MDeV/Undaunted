@@ -61,3 +61,62 @@ systemRouter.post("/motd/", HasUndauntedMetagameAuth, (req, res) => {
 	res.status(204);
 	res.send();
 });
+
+systemRouter.get("/entitlementsv2", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Entitlements (stubbed)");
+
+	res.status(200);
+	res.json({
+		entitlements: []
+	});
+});
+
+systemRouter.get("/playertreatments/:userId", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Cohorts (stubbed)");
+
+	res.status(200);
+	res.json({
+		treatments: []
+	});
+});
+
+systemRouter.get("/escalation/:escalationSeason/:userId", HasUndauntedMetagameAuth, (req, res) => {
+	const EscalationSeason = req.params.escalationSeason;
+
+	logger.info(`Escalation Configuration for season ${EscalationSeason} (stubbed)`);
+
+	res.status(200);
+	res.json({
+		code: null,
+		message: "OK",
+		payload: {
+        	escalation_level: 0,
+        	next_level_xp: 0,
+        	talents_progress: [],
+        	unlock_progress: [],
+        	update_version: 0,
+      	}
+	});
+});
+
+systemRouter.get("/eventstats/", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Event stats (stubbed)");
+
+	res.status(200);
+	res.json({
+		stats: []
+	});
+});
+
+systemRouter.get("/progression/config", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Progression Config (stubbed)");
+
+	res.status(200);
+	res.json({
+		code: null,
+		message: "OK",
+		payload: {
+			
+		}
+	})
+});

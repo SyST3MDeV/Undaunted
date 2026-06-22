@@ -9,6 +9,7 @@ import { storeRouter } from "./routes/store.js";
 import { guildRouter } from "./routes/guild.js";
 import { tuningRouter } from "./routes/tuning.js";
 import { matchmakingRouter } from "./routes/matchmaking.js";
+import { partyRouter } from "./routes/party.js";
 
 export const app = express();
 
@@ -25,6 +26,7 @@ app.use("/", storeRouter);
 app.use("/", guildRouter);
 app.use("/", tuningRouter);
 app.use("/", matchmakingRouter);
+app.use("/", partyRouter);
 
 app.use((req, res) => {
     logger.warn(`Unstubbed route ${req.method} ${req.path}`)
