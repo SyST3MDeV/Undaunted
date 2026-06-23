@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { logger } from "../logger";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
+import progressionconfig from "../vendor/progression_config.json";
 
 export const systemRouter = Router();
 
@@ -112,11 +113,109 @@ systemRouter.get("/progression/config", HasUndauntedMetagameAuth, (req, res) => 
 	logger.info("Progression Config (stubbed)");
 
 	res.status(200);
+	res.json(progressionconfig);
+});
+
+systemRouter.get("/huntpass/:userId", HasUndauntedMetagameAuth, (req: any, res) => {
+	logger.info("Huntpass (stubbed)");
+
+	res.status(200);
+	res.json({
+        code: null,
+        message: "OK",
+        payload: "season09b"
+    });
+});
+
+// TODO: Cooldowns might be gameplay-important, impl if so
+
+systemRouter.get("/cooldown/:userId", HasUndauntedMetagameAuth, (req: any, res) => {
+	logger.info("Cooldowns (stubbed)");
+
+	res.status(200);
 	res.json({
 		code: null,
 		message: "OK",
 		payload: {
-			
+
+		}
+	});
+});
+
+systemRouter.put("/cooldown/batch/:userId", HasUndauntedMetagameAuth, (req: any, res) => {
+	logger.info("Add Cooldowns (stubbed)");
+
+	res.status(200);
+	res.json({
+		code: null,
+		message: "OK",
+		payload: {
+
+		}
+	});
+});
+
+systemRouter.get("/bounty/game-data", HasUndauntedMetagameAuth, (req: any, res) => {
+	logger.info("Bounty game data (stubbed)");
+
+	res.status(200);
+	res.json({
+    code: null,
+    message: "OK",
+    payload: {
+      max_slots: 4,
+      num_draft_options: 3,
+      num_spicy_options: 1,
+      bounty_token_id: "TOKEN_BOUNTY_DRAFT",
+      premium_bounty_token_id: "TOKEN_BOUNTY_DRAFT_PREMIUM",
+      num_tokens_hp_start: 4,
+      num_tokens_per_day: 0,
+      bounty_token_grant_hour: 0,
+      history_length: 10,
+      bronze_count: 9,
+      silver_count: 3,
+      gold_count: 1,
+      new_season_reset_bounties: false,
+      bounty_data: [],
+      item_grant_data: [],
+      token_rollover_warning_days: 1000,
+      automatic_draft: false,
+      automatic_claim: false,
+      delete_claimed_bounties: false,
+    },
+  });
+});
+
+systemRouter.get("/bounty/:userId", HasUndauntedMetagameAuth, (req: any, res) => { // TODO: This masks /bounty/game-data Right now they seem to have compatible schema, but I could be wrong about that.
+	logger.info("Bounties (stubbed)");
+
+	res.status(200);
+	res.json({
+		code: null,
+		message: "OK",
+		payload: {
+			bounties: [],
+			draft_data: {
+				current_draft_choices: [],
+    			previous_draft_selections: [],
+    			bronze_count: 0,
+    			silver_count: 0,
+    			gold_count: 0,
+			},
+			draft_data_daily: {
+				current_draft_choices: [],
+    			previous_draft_selections: [],
+    			bronze_count: 0,
+    			silver_count: 0,
+    			gold_count: 0,
+			},
+			draft_data_weekly: {
+				current_draft_choices: [],
+    			previous_draft_selections: [],
+    			bronze_count: 0,
+    			silver_count: 0,
+    			gold_count: 0,
+			}
 		}
 	})
 });

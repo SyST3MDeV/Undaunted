@@ -20,4 +20,10 @@ export const inventory = sqliteTable("inventories", {
     characterId: text("characterId").notNull().primaryKey(),
     instancedItems: text("instancedItems").notNull(),
     stackedItems: text("stackedItems").notNull()
-})
+});
+
+export const loadouts = sqliteTable("loadouts", {
+    characterId: text("characterId").notNull().primaryKey(),
+    userId: text("userId").notNull(),
+    loadouts: text("loadouts").notNull()
+});

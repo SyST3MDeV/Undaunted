@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
 import { logger } from "../logger";
-import { GetInventoryForUserIdAndCharacterId } from "../controllers/inventory";
+import { GetInventoryForUserIdAndCharacterId, RunInventoryTransaction } from "../controllers/inventory";
 
 export const inventoryRouter = Router();
 
@@ -15,13 +15,13 @@ inventoryRouter.post("/inventory/:characterId/:changeList", HasUndauntedMetagame
     });
 });
 
-inventoryRouter.get("/inventory/:userId/:characterId", HasUndauntedMetagameAuth, (req: any, res) => {
+inventoryRouter.get("/inventory/:userId/:characterId", HasUndauntedMetagameAuth, async (req: any, res) => {
     const UserId = req.AuthData.userId;
     const CharacterId = req.params.characterId;
 
     logger.info(`UserId ${UserId} requested inventory for CharacterId ${CharacterId}`);
 
-    const Inventory = GetInventoryForUserIdAndCharacterId(UserId, CharacterId);
+    const Inventory = await GetInventoryForUserIdAndCharacterId(UserId, CharacterId);
 
     if(Inventory != undefined){
         res.status(200);
@@ -33,7 +33,7 @@ inventoryRouter.get("/inventory/:userId/:characterId", HasUndauntedMetagameAuth,
     }
 });
 
-inventoryRouter.post("/inventory", HasUndauntedMetagameAuth, (req: any, res) => {
+inventoryRouter.post("/inventory", HasUndauntedMetagameAuth, async (req: any, res) => {
     const UserId = req.AuthData.userId;
     const CharacterId = req.body.characterId;
     const TransactionId = req.body.transactionId;
@@ -42,4 +42,21 @@ inventoryRouter.post("/inventory", HasUndauntedMetagameAuth, (req: any, res) => 
     const InstancedItemsToRemove = req.body.removeInstancedItems;
     const StackedItemsToRemove = req.body.removeStackedItems;
     const InstancedItemsToSave = req.body.saveInstancedItems;
+
+    if(await RunInventoryTransaction(UserId, CharacterId, TransactionId, InstancedItemsToAdd, StackedItemsToAdd, InstancedItemsToRemove, StackedItemsToRemove, InstancedItemsToSave)){
+        logger.info(`Ran transactionId ${TransactionId} for userId ${UserId} and characterId ${CharacterId}`);
+
+        const Inventory = await GetInventoryForUserIdAndCharacterId(UserId, CharacterId);
+
+        res.status(200);
+        res.json(Inventory); // TODO: This response shape is kinda a guess, ground this in real RE
+        return;
+    }
+    else{
+        logger.error(`transactionId ${TransactionId} for userId ${UserId} and characterId ${CharacterId} FAILED!`);
+
+        res.status(400);
+        res.send();
+        return;
+    }
 });
