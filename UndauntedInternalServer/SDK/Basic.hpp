@@ -381,8 +381,8 @@ public:
 	
 	std::string GetRawString() const
 	{
-		wchar_t buffer[1024];
-	    FString TempString(buffer, 0, 1024);
+		//wchar_t buffer[1024];
+	    FString TempString;
 	
 		if (!AppendString)
 			InitInternal();

@@ -219,3 +219,49 @@ systemRouter.get("/bounty/:userId", HasUndauntedMetagameAuth, (req: any, res) =>
 		}
 	})
 });
+
+systemRouter.post("/bounty/:userId", HasUndauntedMetagameAuth, (req: any, res) => { // TODO: This masks /bounty/game-data Right now they seem to have compatible schema, but I could be wrong about that.
+	logger.info("Set Bounties (stubbed)");
+
+	res.status(200);
+	res.json({
+		code: null,
+		message: "OK",
+		payload: {
+			bounties: [],
+			draft_data: {
+				current_draft_choices: [],
+    			previous_draft_selections: [],
+    			bronze_count: 0,
+    			silver_count: 0,
+    			gold_count: 0,
+			},
+			draft_data_daily: {
+				current_draft_choices: [],
+    			previous_draft_selections: [],
+    			bronze_count: 0,
+    			silver_count: 0,
+    			gold_count: 0,
+			},
+			draft_data_weekly: {
+				current_draft_choices: [],
+    			previous_draft_selections: [],
+    			bronze_count: 0,
+    			silver_count: 0,
+    			gold_count: 0,
+			}
+		}
+	})
+});
+
+systemRouter.get("/all/", HasUndauntedMetagameAuth, (req: any, res) => {
+	logger.info("Mailbox (stubbed)");
+
+	res.json({
+		code: null,
+		message: "OK",
+		payload: {
+			messages: []
+		}
+	});
+});

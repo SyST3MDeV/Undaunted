@@ -7274,7 +7274,7 @@ DUMPER7_ASSERTS_UMaterialExpressionArcsine;
 class UWorld final : public UObject
 {
 public:
-	uint8                                         Pad_28[0x8];                                       // 0x0028(0x0008)(Fixing Size After Last Property [ Dumper-7 ])
+	void*                                         NetworkNotify;                                       // 0x0028(0x0008)(Fixing Size After Last Property [ Dumper-7 ])
 	class ULevel*                                 PersistentLevel;                                   // 0x0030(0x0008)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	class UNetDriver*                             NetDriver;                                         // 0x0038(0x0008)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)
 	class ULineBatchComponent*                    LineBatcher;                                       // 0x0040(0x0008)(ExportObject, ZeroConstructor, Transient, InstancedReference, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPublic)

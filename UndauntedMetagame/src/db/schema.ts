@@ -27,3 +27,12 @@ export const loadouts = sqliteTable("loadouts", {
     userId: text("userId").notNull(),
     loadouts: text("loadouts").notNull()
 });
+
+export const gameserverapikeys = sqliteTable("gameserverapikeys", {
+    id: integer("id").notNull().primaryKey({autoIncrement: true}),
+    keyHash: text("keyHash")
+});
+
+export const gameserverapikeystoregister = sqliteTable("gameserverapikeystoregister", {
+    key: text("key").primaryKey()
+});

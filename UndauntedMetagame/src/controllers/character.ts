@@ -101,5 +101,9 @@ export async function UpdateCharacterForUid(CharacterId: string, UserId: string,
 export async function GetCharacterWithUid(CharacterId: string, UserId: string){
     const Character = await GetDb().query.characters.findFirst({where: and(eq(characters.characterId, CharacterId), eq(characters.userId, UserId))});
 
+    if(Character == undefined){
+        return undefined;
+    }
+
     return TransformDbCharacterToWireCharacter(Character);
 }

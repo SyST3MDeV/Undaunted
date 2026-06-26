@@ -6,7 +6,7 @@ import { logger } from "../logger";
 export const loadoutRouter = Router();
 
 loadoutRouter.get("/loadout/:userId/:characterId/all", HasUndauntedMetagameAuth, async (req: any, res) => {
-    const RequestorAccountId = req.AuthData.userId;
+    const RequestorAccountId = req.AuthData.IsGameserver ? req.params.userId : req.AuthData.userId;
     const CharacterId = req.params.characterId;
 
     const Loadouts: any[] = await GetAllLoadoutsForUserIdAndCharacterId(RequestorAccountId, CharacterId);

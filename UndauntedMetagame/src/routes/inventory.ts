@@ -16,7 +16,9 @@ inventoryRouter.post("/inventory/:characterId/:changeList", HasUndauntedMetagame
 });
 
 inventoryRouter.get("/inventory/:userId/:characterId", HasUndauntedMetagameAuth, async (req: any, res) => {
-    const UserId = req.AuthData.userId;
+    const UserId = req.AuthData.IsGameserver ? req.params.userId : req.AuthData.userId;
+    
+    req.AuthData.userId;
     const CharacterId = req.params.characterId;
 
     logger.info(`UserId ${UserId} requested inventory for CharacterId ${CharacterId}`);
@@ -34,7 +36,7 @@ inventoryRouter.get("/inventory/:userId/:characterId", HasUndauntedMetagameAuth,
 });
 
 inventoryRouter.post("/inventory", HasUndauntedMetagameAuth, async (req: any, res) => {
-    const UserId = req.AuthData.userId;
+    const UserId = req.AuthData.IsGameserver ? req.body.accountId : req.AuthData.userId;
     const CharacterId = req.body.characterId;
     const TransactionId = req.body.transactionId;
     const InstancedItemsToAdd = req.body.addInstancedItems;

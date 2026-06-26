@@ -1,10 +1,15 @@
 import { app } from "./app";
+import { DrainAndRegisterAPIKeys } from "./controllers/apikeys";
 import { GetDb } from "./db";
+import { logger } from "./logger";
 
 const PORT = process.env.PORT;
 
 GetDb(); // This runs migrations TODO make this more explicit
 
-app.listen(PORT, () => {
-  console.log(`Undaunted on http://localhost:${PORT}\nClear Skies, Slayer.`);
+DrainAndRegisterAPIKeys().then(() => {
+  app.listen(PORT, () => {
+    logger.info(`Undaunted on http://localhost:${PORT}`);
+    logger.info(`Clear Skies, Slayer.`);
+  });
 });

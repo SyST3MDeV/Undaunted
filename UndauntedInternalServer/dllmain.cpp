@@ -1,17 +1,30 @@
+#include <windows.h>
+#include <shellapi.h>
 #include <string>
 #include <vector>
 #include <thread>
 #include <iostream>
+#include <ranges>
 
 #include "framework.h"
 #include "SDK.hpp"
 #include "MinHook/MinHook.h"
 #include "constants.h"
+#include "Networking.h"
+
+#include "SDK/GameplayAbilities_parameters.hpp"
+#include "SDK/Archon_parameters.hpp"
+
+#include <cwchar>
 
 using namespace SDK;
 
 namespace Globals {
     static bool AmServer = false;
+    static uintptr_t BaseAddress = 0x0;
+    bool Listening = false;
+    bool DoListen = false;
+    const wchar_t* ServerAPIKey = nullptr;
 }
 
 __declspec(dllexport) const char* DummyLinkFunc() {
@@ -20,7 +33,13 @@ __declspec(dllexport) const char* DummyLinkFunc() {
 
 void MainThread() {
     while (!UWorld::GetWorld()) {
-
+        if (Globals::AmServer) {
+            *(uint8_t*)(Globals::BaseAddress + 0x5E4BC3A) = 0x1; // GIsServer
+            *(uint8_t*)(Globals::BaseAddress + 0x5E4BC39) = 0x0; // GIsClient
+        }
+        else {
+            Sleep(1);
+        }
     }
 
     Sleep(3 * 1000);
@@ -36,6 +55,385 @@ void MainThread() {
 
         std::cout << "Spawned UConsole!" << std::endl;
     }
+    else {
+        std::cout << "UWorld is live!" << std::endl;
+
+        Globals::DoListen = true;
+    }
+}
+
+void* OrigGetDefaultMap = nullptr;
+
+FString* GetGameDefaultMap(FString* a1) {
+    FString* Ret = reinterpret_cast<FString*(*)(FString*)>(OrigGetDefaultMap)(a1);
+
+    //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
+    //*Ret = L"/Game/Maps/islands/1705/dia_snow_big?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
+    //*Ret = L"/Game/Maps/ramsgate/ramsgate_01_persistent";
+    *Ret = L"/Game/Maps/islands/dojo/training_dojo_persistent";
+    //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
+
+    return Ret;
+}
+
+void* OrigGetCommandLine = nullptr;
+
+const wchar_t* GetCommandLineHook() {
+    return L"Dauntless-Win64-Shipping.exe -server -unattended -nosound -nullrhi -EpicPortal -RepDriverDisable";
+}
+
+void* OrigServerBootCrash = nullptr;
+
+void ServerBootCrash() {
+    return;
+}
+
+void* OrigEncounterableSetup = nullptr;
+
+void EncounterableSetupHook() {
+    return;
+}
+
+void* OrigGameEngineTick = nullptr;
+
+void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender) {
+    reinterpret_cast<void(*)(UGameEngine*, float, char)>(OrigGameEngineTick)(GameEngine, DeltaTime, CanRender);
+
+    if (Globals::Listening) {
+        Networking::TickNetworking();
+    }
+
+    if (Globals::DoListen) {
+        Globals::DoListen = false;
+        Networking::Listen(UEngine::GetEngine());
+
+        Globals::Listening = true;
+    }
+
+    if (GetAsyncKeyState(VK_F7)) {
+        for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
+        {
+            SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
+
+            if (!Obj)
+                continue;
+
+            if (Obj->IsDefaultObject())
+                continue;
+
+            if (Obj->IsA(SDK::Aisland_arrival_cinematic_trigger_bp_C::StaticClass()))
+            {
+                Aisland_arrival_cinematic_trigger_bp_C* Actor = (Aisland_arrival_cinematic_trigger_bp_C*)Obj;
+
+                Actor->SkipCinematic();
+            }
+        }
+
+        while (GetAsyncKeyState(VK_F7)) {
+
+        }
+    }
+}
+
+void* OrigFixupNetworkNotify = nullptr;
+
+void* FixupNetworkNotifyHook(void* a1) {
+    if(UWorld::GetWorld())
+        *(void**)((uintptr_t)a1 + 0x208) = &UWorld::GetWorld()->NetworkNotify;
+
+    return reinterpret_cast<void* (*)(void*)>(OrigFixupNetworkNotify)(a1);
+}
+
+void* OrigProcessRequest = nullptr;
+
+char ProcessRequest(void* Request) {
+    FString APIHeader(L"x-undaunted-gameserver-apikey");
+    FString APIKey(Globals::ServerAPIKey);
+
+    reinterpret_cast<void(*)(void*, FString*, FString*)>(Globals::BaseAddress + 0x28AAAA0)(Request, &APIHeader, &APIKey);
+
+    return reinterpret_cast<char(*)(void*)>(OrigProcessRequest)(Request);
+}
+
+enum EFunctionCallspace : uint32_t
+{
+    /** This function call should be absorbed (ie client side with no authority) */
+    Absorbed = 0x0,
+    /** This function call should be called remotely via its net driver */
+    Remote = 0x1,
+    /** This function call should be called locally */
+    Local = 0x2
+};
+
+void* OrigGetActorCallspace = nullptr;
+
+EFunctionCallspace GetActorCallspace(AActor* Actor, UFunction* Function, void* Stack) {
+    return (EFunctionCallspace)3;
+
+    if ((Function->FunctionFlags & (uint32_t)EFunctionFlags::NetMulticast) == (uint32_t)EFunctionFlags::NetMulticast) {
+        return (EFunctionCallspace)3;
+        //return EFunctionCallspace::Remote;
+    }
+
+    if ((Function->FunctionFlags & (uint32_t)EFunctionFlags::NetClient) == (uint32_t)EFunctionFlags::NetClient) {
+        return (EFunctionCallspace)1;
+        //return EFunctionCallspace::Remote;
+    }
+
+    return reinterpret_cast<EFunctionCallspace(*)(AActor*, UFunction*, void*)>(OrigGetActorCallspace)(Actor, Function, Stack);
+}
+
+void* OrigPostLogin = nullptr;
+
+void PostLoginHook(void* a1, AArchonPlayerController* a2) {
+    reinterpret_cast<void(*)(void*, void*)>(OrigPostLogin)(a1, a2);
+}
+
+void* OrigHasFinishedLoading = nullptr;
+
+bool HasFinishedLoadingHook(UObject* a1) {
+    bool Ret = reinterpret_cast<bool(*)(UObject*)>(OrigHasFinishedLoading)(a1);
+
+    if (!Ret) {
+        std::cout << "[FORCEREADY] " << a1->GetFullName() << std::endl;
+        return true;
+    }
+
+    return Ret;
+}
+
+void* OrigIsNetReady = nullptr;
+
+bool IsNetReadyHook() {
+    return true;
+}
+
+void* OrigSetReplicationDriver = nullptr;
+
+void SetReplicationDriverHook(UNetDriver* NetDriver, UReplicationDriver* RepDriver) {
+    return reinterpret_cast<void(*)(UNetDriver*, UReplicationDriver*)>(OrigSetReplicationDriver)(NetDriver, nullptr);
+}
+
+void* OrigGetNetDriverInternal = nullptr;
+
+UNetDriver* GetNetDriverInternalHook(void* a1, void* a2) {
+    UNetDriver* NetDriver = reinterpret_cast<UNetDriver* (*)(void*, void*)>(OrigGetNetDriverInternal)(a1, a2);
+
+    if (!NetDriver) {
+        NetDriver = Networking::NetDriver;
+    }
+
+    return NetDriver;
+}
+
+void* OrigIsLevelInitForActor = nullptr;
+
+bool IsLevelInitForActorHook(void* a1, char a2) {
+    bool NetDriver = reinterpret_cast<bool (*)(void*, char)>(OrigIsLevelInitForActor)(a1, a2);
+
+    if (!NetDriver) {
+        return true;
+    }
+
+    return NetDriver;
+}
+
+void* OrigGetStartSpot = nullptr;
+
+APlayerStart* GetStartSpotHook(void* a1, void* a2, void* a3) {
+    for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
+    {
+        SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
+
+        if (!Obj)
+            continue;
+
+        if (Obj->IsDefaultObject())
+            continue;
+
+        if (Obj->IsA(SDK::APlayerStart::StaticClass()))
+        {
+            return (APlayerStart*)Obj;
+        }
+    }
+
+    std::cout << "No startspot found!" << std::endl;
+
+    return nullptr;
+}
+
+bool ServerTryActivateAbilityInternal(UAbilitySystemComponent* Component, FGameplayAbilitySpecHandle& AbilityHandle, bool InputPressed, FPredictionKey& PredictionKey, FGameplayEventData* TriggerEventData) {
+    std::cout << "Activated ability!" << std::endl;
+
+    if(InputPressed)
+        Component->ServerSetInputPressed(AbilityHandle);
+
+    void* InstancedAbility = nullptr;
+
+    bool Activated = reinterpret_cast<bool(*)(UAbilitySystemComponent*, uint32_t, FPredictionKey*, void**, void*, FGameplayEventData*)>(Globals::BaseAddress + 0x10C8C80)(Component, AbilityHandle.Handle, &PredictionKey, &InstancedAbility, nullptr, TriggerEventData);
+
+    if (!Activated && InputPressed)
+        Component->ServerSetInputReleased(AbilityHandle);
+
+    return Activated;
+}
+
+void* OrigMakeDoDamage = nullptr;
+
+bool MakeDoDamageHook(void* a1, void* a2, void* a3) {
+    return true;
+}
+
+void* OrigProcessEvent = nullptr;
+
+void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
+    if (Function->GetFullName().contains("ServerTryActivateAbilityWithEventData")) {
+        Params::AbilitySystemComponent_ServerTryActivateAbilityWithEventData* ActivateAbilityParams = (Params::AbilitySystemComponent_ServerTryActivateAbilityWithEventData*)Parms;
+
+        ServerTryActivateAbilityInternal((UAbilitySystemComponent*)Object, ActivateAbilityParams->AbilityToActivate, ActivateAbilityParams->InputPressed, ActivateAbilityParams->PredictionKey, &ActivateAbilityParams->TriggerEventData);
+    }
+    else if (Function->GetFullName().contains("ServerTryActivateAbility")) {
+        Params::AbilitySystemComponent_ServerTryActivateAbility* ActivateAbilityParams = (Params::AbilitySystemComponent_ServerTryActivateAbility*)Parms;
+
+        ServerTryActivateAbilityInternal((UAbilitySystemComponent*)Object, ActivateAbilityParams->AbilityToActivate, ActivateAbilityParams->InputPressed, ActivateAbilityParams->PredictionKey, nullptr);
+    }
+
+    if (Function->GetFullName().contains("Sprint")) {
+        std::cout << Function->GetFullName() << std::endl;
+    }
+
+    reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEvent)(Object, Function, Parms);
+}
+
+void InitClientHooks() {
+    MH_Initialize();
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1528000), HasFinishedLoadingHook, &OrigHasFinishedLoading);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1528000));
+
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x347E110), IsNetReadyHook, &OrigIsNetReady);
+
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
+}
+
+void* OrigSprint = nullptr;
+
+char SprintHook(void* a1, bool a2, bool a3) {
+    char Ret = reinterpret_cast<char(*)(void*, bool, bool)>(OrigSprint)(a1, a2, a3);
+
+    std::cout << "[Sprint] Ret: " << (int)Ret << " a2: " << (int)a2 << " a3: " << (int)a3 << std::endl;
+
+    return Ret;
+}
+
+void InitServerHooks() {
+    MH_Initialize();
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x25A37C0), GetGameDefaultMap, &OrigGetDefaultMap);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x25A37C0));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1D06D40), GetCommandLineHook, &OrigGetCommandLine);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1D06D40));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x2E4D7F0), ServerBootCrash, &OrigServerBootCrash);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x2E4D7F0));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1658f90), EncounterableSetupHook, &OrigEncounterableSetup);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1658f90));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x3307100), GameEngineTickHook, &OrigGameEngineTick);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x3307100));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x820120), FixupNetworkNotifyHook, &OrigFixupNetworkNotify);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x820120));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x28A76C0), ProcessRequest, &OrigProcessRequest);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x28A76C0));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1390300), EncounterableSetupHook, &OrigEncounterableSetup); // TODO: Rename to combat text
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1390300));
+
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x3077710), GetActorCallspace, &OrigGetActorCallspace);
+
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x3077710));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x14B7460), PostLoginHook, &OrigPostLogin);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x14B7460));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1528000), HasFinishedLoadingHook, &OrigHasFinishedLoading);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1528000));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x347E110), IsNetReadyHook, &OrigIsNetReady);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x3491720), SetReplicationDriverHook, &OrigSetReplicationDriver);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x3491720));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x3078AF0), GetNetDriverInternalHook, &OrigGetNetDriverInternal);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x3078AF0));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x3458780), IsLevelInitForActorHook, &OrigIsLevelInitForActor);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x3458780));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1368660), GetStartSpotHook, &OrigGetStartSpot);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1368660));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventHook, &OrigProcessEvent);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x11107D0), MakeDoDamageHook, &OrigMakeDoDamage);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x11107D0));
+
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x13CA280), SprintHook, &OrigSprint);
+
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x13CA280));
+
+    //13CA280
+
+    //GetStartSpotHook
+
+    // Fixup Listen failure
+    DWORD oldProtect;
+    VirtualProtect((void*)(Globals::BaseAddress + 0x372E746), 0x5, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x372E746 + 0x0) = 0xB0;
+    *(uint8_t*)(Globals::BaseAddress + 0x372E746 + 0x1) = 0x01;
+    *(uint8_t*)(Globals::BaseAddress + 0x372E746 + 0x2) = 0x90;
+    *(uint8_t*)(Globals::BaseAddress + 0x372E746 + 0x3) = 0x90;
+    *(uint8_t*)(Globals::BaseAddress + 0x372E746 + 0x4) = 0x90;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x372E746), 0x5, oldProtect, &oldProtect);
+
+    // Fixup Ramsgate Crash
+    VirtualProtect((void*)(Globals::BaseAddress + 0x1346A98), 0x7, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x0) = 0x33;
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x1) = 0xF6;
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x2) = 0x33;
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x3) = 0xC0;
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x4) = 0x90;
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x5) = 0x90;
+    *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x6) = 0x90;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x1346A98), 0x7, oldProtect, &oldProtect);
 }
 
 void Init() {
@@ -49,12 +447,33 @@ void Init() {
     std::cout << "thanks to all who contributed in any way, you know who you are, dm me on discord if you want a named shoutout here :3" << std::endl;
 
     Globals::AmServer = std::string(GetCommandLineA()).contains("-server");
+    Globals::BaseAddress = (uintptr_t)GetModuleHandleA(nullptr);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x5E4BC3A) = 0x1; // GIsServer
+    *(uint8_t*)(Globals::BaseAddress + 0x5E4BC39) = 0x0; // GIsClient
+
+    UC::FMemory::Init((void*)(Globals::BaseAddress + 0x1C8EE00));
 
     if (Globals::AmServer) {
         std::cout << "Running as a server!" << std::endl;
+
+        int NumArgs = 0;
+
+        wchar_t** Args = CommandLineToArgvW(GetCommandLineW(), &NumArgs);
+
+        if (NumArgs > 1) {
+            Globals::ServerAPIKey = Args[1];
+        }
+        else {
+            Globals::ServerAPIKey = L"IFORGOTTOSETMYAPIKEY";
+        }
+
+        InitServerHooks();
     }
     else {
         std::cout << "Running as a debug-enabled client!" << std::endl;
+
+        InitClientHooks();
     }
 
     std::thread t(MainThread);
