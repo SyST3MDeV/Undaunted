@@ -113,18 +113,9 @@ loginRouter.post("/accountinfo/public", HasUndauntedMetagameAuth, async (req: an
     const AccountIdToLookupFromRequest = req.body.accountId;
     const RequestorAccountId = req.AuthData.userId;
 
-    const Username = await GetUsernameForUserId(req.AuthData.userId);
+    const Username = await GetUsernameForUserId(AccountIdToLookupFromRequest);
 
-    // TODO: I *think* the idea here was I'm-authenticated-let-me-look-up-anybody
-    // Not super comfy with that right now, so for rn I'm just using the requestor's accId and looking that up.
-    // Might need to change in the future with party functionality
-
-    if(AccountIdToLookupFromRequest !== RequestorAccountId){
-        logger.error(`Looked up ${AccountIdToLookupFromRequest} from requestor ${RequestorAccountId} this will break things!`);
-    }
-    else{
-        logger.info(`Looked up account info for ${RequestorAccountId}`);
-    }
+    // We allow anybody to look up anybody's username from account id
 
     res.status(200);
     res.json({
