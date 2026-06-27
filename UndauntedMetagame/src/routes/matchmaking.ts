@@ -39,6 +39,14 @@ matchmakingRouter.get("/candidate/regions", HasUndauntedMetagameAuth, (req: any,
     });
 });
 
+matchmakingRouter.post("/key/generate", HasUndauntedMetagameAuth, async (req: any, res) => {
+    // FIXME: Impl
+});
+
+matchmakingRouter.get("/candidate/status", HasUndauntedMetagameAuth, async (req: any, res) => {
+    // FIXME: Impl
+});
+
 matchmakingRouter.post("/candidate/join", HasUndauntedMetagameAuth, async (req: any, res) => {
     const UserId = req.AuthData.userId;
     const GameMode = req.body.gameMode;
@@ -50,11 +58,11 @@ matchmakingRouter.post("/candidate/join", HasUndauntedMetagameAuth, async (req: 
     // TODO: We put a LOT of faith in our authenticated users not abusing the matchmaking system right now
     // A reasonable addition would be checks on frequency of MM/server spinup
     // Best scenario is 1-1 for server session<->player and a new server cooldown
-    
+
     const MatchmakingResult = await HandlePlayerMatchmaking(GameMode, GameArgs, HuntId);
 
     if(!MatchmakingResult.succeeded){
-        res.status(404);
+        res.status(400);
         res.send();
         return;
     }

@@ -50,8 +50,9 @@ namespace Networking {
                 if (Actor->bActorIsBeingDestroyed)
                     continue;
 
-                if (!reinterpret_cast<UWorld * (*)(AActor*)>(*(void**)((uintptr_t)Actor->VTable + 0x150))(Actor))
+                if (!reinterpret_cast<UWorld * (*)(AActor*)>(*(void**)((uintptr_t)Actor->VTable + 0x150))(Actor)) {
                     continue;
+                }
                 
                 reinterpret_cast<void(*)(AActor*, UNetDriver*)>(BaseAddress + 0x306B150)(Actor, Driver);
 

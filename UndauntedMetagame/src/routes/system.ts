@@ -72,6 +72,15 @@ systemRouter.get("/entitlementsv2", HasUndauntedMetagameAuth, (req, res) => {
 	});
 });
 
+systemRouter.get("/entitlementsv2/:userId", HasUndauntedMetagameAuth, (req, res) => {
+	logger.info("Entitlements (stubbed)");
+
+	res.status(200);
+	res.json({
+		entitlements: []
+	});
+});
+
 systemRouter.get("/playertreatments/:userId", HasUndauntedMetagameAuth, (req, res) => {
 	logger.info("Cohorts (stubbed)");
 

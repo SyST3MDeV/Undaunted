@@ -1321,6 +1321,48 @@
           { "rank_id": 50, "xp_required": 100 }
         ],
         "start_date": "2020-04-30T17:00:00+00:00"
+      },
+      {
+          "progression_id": "MasteryTrack_Weapon_Axe",
+          "premium_gating_entitlement": "",
+          "progression_multiplier": 1,
+          "requirements": [
+            { "rank_id": 0, "xp_required": 0 },
+            { "rank_id": 1, "xp_required": 100 },
+            { "rank_id": 2, "xp_required": 250 }
+          ],
+          "free_rewards": [],
+          "premium_rewards": [],
+          "start_date": "2020-01-01T00:00:00+00:00",
+          "end_date": "2085-06-11T16:59:59+00:00"
+      },
+      {
+          "progression_id": "MasteryTrack_Weapon_Sword",
+          "premium_gating_entitlement": "",
+          "progression_multiplier": 1,
+          "requirements": [
+            { "rank_id": 0, "xp_required": 0 },
+            { "rank_id": 1, "xp_required": 100 },
+            { "rank_id": 2, "xp_required": 250 }
+          ],
+          "free_rewards": [],
+          "premium_rewards": [],
+          "start_date": "2020-01-01T00:00:00+00:00",
+          "end_date": "2085-06-11T16:59:59+00:00"
+      },
+      {
+          "progression_id": "ExperienceTrack_Weapon_Sword",
+          "premium_gating_entitlement": "",
+          "progression_multiplier": 1,
+          "requirements": [
+            { "rank_id": 0, "xp_required": 0 },
+            { "rank_id": 1, "xp_required": 100 },
+            { "rank_id": 2, "xp_required": 250 }
+          ],
+          "free_rewards": [],
+          "premium_rewards": [],
+          "start_date": "2020-01-01T00:00:00+00:00",
+          "end_date": "2085-06-11T16:59:59+00:00"
       }
     ]
   }

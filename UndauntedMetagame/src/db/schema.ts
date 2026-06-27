@@ -25,7 +25,8 @@ export const inventory = sqliteTable("inventories", {
 export const loadouts = sqliteTable("loadouts", {
     characterId: text("characterId").notNull().primaryKey(),
     userId: text("userId").notNull(),
-    loadouts: text("loadouts").notNull()
+    loadouts: text("loadouts").notNull(),
+    persistent: text("persistent").notNull()
 });
 
 export const gameserverapikeys = sqliteTable("gameserverapikeys", {
@@ -36,3 +37,10 @@ export const gameserverapikeys = sqliteTable("gameserverapikeys", {
 export const gameserverapikeystoregister = sqliteTable("gameserverapikeystoregister", {
     key: text("key").primaryKey()
 });
+
+export const breadcrumbs = sqliteTable("breadcrumbs", {
+    characterId: text("characterId").notNull().primaryKey(),
+    userId: text("userId").notNull(),
+    breadcrumbs: text("breadcrumbs").notNull(),
+    updateVersion: integer("updateVersion").notNull()
+})

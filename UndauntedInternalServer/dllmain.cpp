@@ -14,6 +14,7 @@
 
 #include "SDK/GameplayAbilities_parameters.hpp"
 #include "SDK/Archon_parameters.hpp"
+#include "SDK/lantern_equipped_ab_parameters.hpp"
 
 #include <cwchar>
 
@@ -68,7 +69,7 @@ FString* GetGameDefaultMap(FString* a1) {
     FString* Ret = reinterpret_cast<FString*(*)(FString*)>(OrigGetDefaultMap)(a1);
 
     //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
-    //*Ret = L"/Game/Maps/islands/1705/dia_snow_big?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
+    //*Ret = L"/Game/Maps/islands/1705/dia_snow_big?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C?HuntId=CR19_MatchmakerHunt_Beaver?PlayerHuntIds=GWOG-UID-1:CR19_PlayerHunt_Expedition_Island04,GWOG-UID-2:CR19_PlayerHunt_Expedition_Island04,GWOG-UID-3:CR19_PlayerHunt_Expedition_Island04?ZonePreset=0";
     //*Ret = L"/Game/Maps/ramsgate/ramsgate_01_persistent";
     *Ret = L"/Game/Maps/islands/dojo/training_dojo_persistent";
     //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
@@ -79,7 +80,7 @@ FString* GetGameDefaultMap(FString* a1) {
 void* OrigGetCommandLine = nullptr;
 
 const wchar_t* GetCommandLineHook() {
-    return L"Dauntless-Win64-Shipping.exe -server -unattended -nosound -nullrhi -EpicPortal -RepDriverDisable";
+    return L"Dauntless-Win64-Shipping.exe -server -unattended -nullrhi -EpicPortal -RepDriverDisable";
 }
 
 void* OrigServerBootCrash = nullptr;
@@ -94,10 +95,24 @@ void EncounterableSetupHook() {
     return;
 }
 
+float RestartPlayerTimer = 0.0f;
+
 void* OrigGameEngineTick = nullptr;
 
 void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender) {
     reinterpret_cast<void(*)(UGameEngine*, float, char)>(OrigGameEngineTick)(GameEngine, DeltaTime, CanRender);
+
+    if (RestartPlayerTimer > 0.0f) {
+        RestartPlayerTimer -= DeltaTime;
+
+        if (RestartPlayerTimer <= 0.0f) {
+            for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
+                if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
+                    Conn->PlayerController->ClientTravel(L"127.0.0.1:7777", ETravelType::TRAVEL_Absolute, true, FGuid());
+                }
+            }
+        }
+    }
 
     if (Globals::Listening) {
         Networking::TickNetworking();
@@ -110,22 +125,20 @@ void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender
         Globals::Listening = true;
     }
 
+    if (Globals::Listening && Networking::NetDriver) {
+        for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
+            if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
+                ((ABP_PlayerCharacter_C*)Conn->PlayerController->Pawn)->TickStamina(ECityExecFilter::Both, ERemoteExecFilter::All);
+            }
+        }
+    }
+
     if (GetAsyncKeyState(VK_F7)) {
-        for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
-        {
-            SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
-
-            if (!Obj)
-                continue;
-
-            if (Obj->IsDefaultObject())
-                continue;
-
-            if (Obj->IsA(SDK::Aisland_arrival_cinematic_trigger_bp_C::StaticClass()))
-            {
-                Aisland_arrival_cinematic_trigger_bp_C* Actor = (Aisland_arrival_cinematic_trigger_bp_C*)Obj;
-
-                Actor->SkipCinematic();
+        if (Globals::Listening && Networking::NetDriver) {
+            for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
+                if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
+                    Conn->PlayerController->ClientTravel(L"127.0.0.1:7777", ETravelType::TRAVEL_Absolute, true, FGuid());
+                }
             }
         }
 
@@ -284,6 +297,15 @@ bool MakeDoDamageHook(void* a1, void* a2, void* a3) {
     return true;
 }
 
+void* OrigProcessEventClient = nullptr;
+
+void ProcessEventClientHook(UObject* Object, UFunction* Function, void* Parms) {
+    reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEventClient)(Object, Function, Parms);
+}
+
+static int NumTimesOnAirshipUpdated = 0;
+bool DidDoTravelReset = false;
+
 void* OrigProcessEvent = nullptr;
 
 void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
@@ -298,8 +320,36 @@ void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
         ServerTryActivateAbilityInternal((UAbilitySystemComponent*)Object, ActivateAbilityParams->AbilityToActivate, ActivateAbilityParams->InputPressed, ActivateAbilityParams->PredictionKey, nullptr);
     }
 
-    if (Function->GetFullName().contains("Sprint")) {
-        std::cout << Function->GetFullName() << std::endl;
+    if (Function->GetFullName().contains("OnAirshipUpdated")) {
+        NumTimesOnAirshipUpdated++;
+
+        if (NumTimesOnAirshipUpdated >= 2 && !DidDoTravelReset) {
+            DidDoTravelReset = true;
+
+            RestartPlayerTimer = 10.0f;
+        }
+    }
+
+    if (Function->GetFullName().contains("OnPostMitDealtAnyDamage")) {
+        //OnPostMitDamage
+        Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage* LanternParms = (Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage*)Parms;
+
+        UGameplayAbility* Obj = (UGameplayAbility*)Object;
+
+        ABP_PlayerCharacter_C* PlayerCharacter = (ABP_PlayerCharacter_C*)Obj->GetAvatarActorFromActorInfo();
+
+        if (PlayerCharacter) {
+            AArchonWeapon* Weapon = PlayerCharacter->GetWeapon();
+
+            if (Weapon && Weapon->IsA(ABP_EB_Weapon_C::StaticClass())) {
+                UFunction* PostMitFunc = Weapon->Class->GetFunction("BP_EB_Weapon_C", "OnPostMitDamage");
+
+                if (PostMitFunc) {
+                    //std::cout << "Proc'ing Post-mit callback on compat weapon!" << std::endl;
+                    reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEvent)(Weapon, PostMitFunc, Parms);
+                }
+            }
+        }
     }
 
     reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEvent)(Object, Function, Parms);
@@ -315,14 +365,24 @@ void InitClientHooks() {
     //MH_CreateHook((void*)(Globals::BaseAddress + 0x347E110), IsNetReadyHook, &OrigIsNetReady);
 
     //MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
 }
 
 void* OrigSprint = nullptr;
 
-char SprintHook(void* a1, bool a2, bool a3) {
-    char Ret = reinterpret_cast<char(*)(void*, bool, bool)>(OrigSprint)(a1, a2, a3);
+bool SprintHook(uintptr_t a1, uintptr_t a2) { //char __fastcall UArchonStaminaComponent_TryConsumeStamina_Native(__int64 a1, __int64 a2, char a3, char a4)    
+    return true;
+}
 
-    std::cout << "[Sprint] Ret: " << (int)Ret << " a2: " << (int)a2 << " a3: " << (int)a3 << std::endl;
+void* OrigWeaponHook = nullptr;
+
+AActor* WeaponHook(UActorComponent* a1) { //char __fastcall UArchonStaminaComponent_TryConsumeStamina_Native(__int64 a1, __int64 a2, char a3, char a4)        
+    std::cout << "WEE WOO CALLED!" << std::endl;
+    
+    AActor* Ret = reinterpret_cast<AActor* (*)(UActorComponent * a1)>(OrigWeaponHook)(a1);
 
     return Ret;
 }
@@ -402,9 +462,17 @@ void InitServerHooks() {
 
     MH_EnableHook((void*)(Globals::BaseAddress + 0x11107D0));
 
-    //MH_CreateHook((void*)(Globals::BaseAddress + 0x13CA280), SprintHook, &OrigSprint);
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x137A800), SprintHook, &OrigSprint);
 
-    //MH_EnableHook((void*)(Globals::BaseAddress + 0x13CA280));
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x137A800));
+
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1496590), WeaponHook, &OrigWeaponHook);
+
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1496590));
+
+    
+
+    //
 
     //13CA280
 
@@ -449,8 +517,10 @@ void Init() {
     Globals::AmServer = std::string(GetCommandLineA()).contains("-server");
     Globals::BaseAddress = (uintptr_t)GetModuleHandleA(nullptr);
 
-    *(uint8_t*)(Globals::BaseAddress + 0x5E4BC3A) = 0x1; // GIsServer
-    *(uint8_t*)(Globals::BaseAddress + 0x5E4BC39) = 0x0; // GIsClient
+    if (Globals::AmServer) {
+        *(uint8_t*)(Globals::BaseAddress + 0x5E4BC3A) = 0x1; // GIsServer
+        *(uint8_t*)(Globals::BaseAddress + 0x5E4BC39) = 0x0; // GIsClient
+    }
 
     UC::FMemory::Init((void*)(Globals::BaseAddress + 0x1C8EE00));
 
@@ -476,8 +546,8 @@ void Init() {
         InitClientHooks();
     }
 
-    std::thread t(MainThread);
-    t.detach();
+    DWORD threadId;
+    CreateThread(nullptr, 0x1000, (LPTHREAD_START_ROUTINE)MainThread, nullptr, 0, &threadId);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

@@ -1,0 +1,1 @@
+ALTER TABLE `loadouts` ADD `persistent` text NOT NULL default '{}';
