@@ -1,0 +1,31 @@
+{
+  "name": "undaunteddeployserver",
+  "version": "0.0.1",
+  "description": "The deploy server for Undaunted",
+  "license": "AGPL-3.0-only",
+  "author": "gwog :3",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --env-file=.env src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.11.1",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "0.45.2",
+    "express": "5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "26.0.0",
+    "drizzle-kit": "0.31.10",
+    "tsx": "4.22.4",
+    "typescript": "6.0.3"
+  }
+}

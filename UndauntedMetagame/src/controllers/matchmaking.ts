@@ -2,7 +2,7 @@ import { logger } from "../logger";
 
 const MATCHMAKING_MODE = process.env.MATCHMAKING_MODE;
 
-export async function HandlePlayerMatchmaking(GameMode: string, GameArgs: string, HuntId: string){
+export async function HandlePlayerMatchmaking(GameMode: string, GameType: string, GameArgs: string, HuntId: string){
     if(MATCHMAKING_MODE === "DISABLED"){
         logger.warn("Matchmaking is disabled, refusing MM!");
 

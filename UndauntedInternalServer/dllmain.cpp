@@ -26,6 +26,12 @@ namespace Globals {
     bool Listening = false;
     bool DoListen = false;
     const wchar_t* ServerAPIKey = nullptr;
+    const wchar_t* MapPath = nullptr;
+    const wchar_t* BehemothPath = nullptr;
+    const wchar_t* MatchmakerHuntId = nullptr;
+    const wchar_t* ExpectedPlayerString = nullptr;
+    int Port = 0;
+    const wchar_t* MyIpAndPort = nullptr;
 }
 
 __declspec(dllexport) const char* DummyLinkFunc() {
@@ -68,9 +74,34 @@ void* OrigGetDefaultMap = nullptr;
 FString* GetGameDefaultMap(FString* a1) {
     FString* Ret = reinterpret_cast<FString*(*)(FString*)>(OrigGetDefaultMap)(a1);
 
+    std::wstring FinalURL(Globals::MapPath);
+
+    std::wstring BehemothPath(Globals::BehemothPath);
+
+    if (!BehemothPath.contains(L"NO_BEHEMOTH")) {
+        FinalURL += std::wstring(L"?MonsterClass=");
+        FinalURL += std::wstring(BehemothPath);
+    }
+
+    std::wstring MatchmakerHuntId(Globals::MatchmakerHuntId);
+
+    if (!MatchmakerHuntId.contains(L"NO_MM_HUNTID")) {
+        FinalURL += std::wstring(L"?HuntId=");
+        FinalURL += std::wstring(MatchmakerHuntId);
+    }
+
+    std::wstring ExpectedPlayers(Globals::ExpectedPlayerString);
+
+    if (!ExpectedPlayers.contains(L"NO_EXPECTED_PLAYERS")) {
+        FinalURL += std::wstring(L"?PlayerHuntIds=");
+        FinalURL += std::wstring(ExpectedPlayers);
+    }
+
+    *Ret = FinalURL.c_str();
+
     //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
     //*Ret = L"/Game/Maps/islands/1705/dia_snow_big?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C?HuntId=CR19_MatchmakerHunt_Beaver?PlayerHuntIds=GWOG-UID-1:CR19_PlayerHunt_Expedition_Island04,GWOG-UID-2:CR19_PlayerHunt_Expedition_Island04,GWOG-UID-3:CR19_PlayerHunt_Expedition_Island04?ZonePreset=0";
-    *Ret = L"/Game/Maps/ramsgate/ramsgate_01_persistent";
+    //*Ret = L"/Game/Maps/ramsgate/ramsgate_01_persistent";
     //*Ret = L"/Game/Maps/islands/dojo/training_dojo_persistent";
     //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
 
@@ -108,7 +139,7 @@ void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender
         if (RestartPlayerTimer <= 0.0f) {
             for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
                 if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
-                    Conn->PlayerController->ClientTravel(L"127.0.0.1:7777", ETravelType::TRAVEL_Absolute, true, FGuid());
+                    Conn->PlayerController->ClientTravel(Globals::MyIpAndPort, ETravelType::TRAVEL_Absolute, true, FGuid());
                 }
             }
         }
@@ -120,7 +151,7 @@ void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender
 
     if (Globals::DoListen) {
         Globals::DoListen = false;
-        Networking::Listen(UEngine::GetEngine());
+        Networking::Listen(UEngine::GetEngine(), Globals::Port);
 
         Globals::Listening = true;
     }
@@ -137,7 +168,7 @@ void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender
         if (Globals::Listening && Networking::NetDriver) {
             for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
                 if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
-                    Conn->PlayerController->ClientTravel(L"127.0.0.1:7777", ETravelType::TRAVEL_Absolute, true, FGuid());
+                    Conn->PlayerController->ClientTravel(Globals::MyIpAndPort, ETravelType::TRAVEL_Absolute, true, FGuid());
                 }
             }
         }
@@ -366,9 +397,9 @@ void InitClientHooks() {
 
     //MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
 
-    MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
 
-    MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
 }
 
 void* OrigSprint = nullptr;
@@ -531,11 +562,19 @@ void Init() {
 
         wchar_t** Args = CommandLineToArgvW(GetCommandLineW(), &NumArgs);
 
-        if (NumArgs > 1) {
+        if (NumArgs > 8) {
             Globals::ServerAPIKey = Args[1];
+            Globals::Port = std::stoi(std::wstring(Args[2]));
+            Globals::MapPath = Args[3];
+            Globals::BehemothPath = Args[4];
+            Globals::MatchmakerHuntId = Args[5];
+            Globals::ExpectedPlayerString = Args[6];
+            Globals::MyIpAndPort = Args[7];
         }
         else {
-            Globals::ServerAPIKey = L"IFORGOTTOSETMYAPIKEY";
+            MessageBoxA(nullptr, "INVALID GAMESERVER ARGS", "INVALID GAMESERVER ARGS", 0);
+            exit(0);
+            return;
         }
 
         InitServerHooks();

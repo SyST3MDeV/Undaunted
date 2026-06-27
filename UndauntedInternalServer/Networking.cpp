@@ -73,7 +73,7 @@ namespace Networking {
         return nullptr;
     }
 
-    void Listen(UEngine* Engine) {
+    void Listen(UEngine* Engine, int Port) {
         BaseAddress = (uintptr_t)GetModuleHandleA(nullptr);
 
         FName GameNetDriver = UKismetStringLibrary::Conv_StringToName(L"GameNetDriver");
@@ -103,7 +103,7 @@ namespace Networking {
 
         FURL url = FURL();
 
-        url.Port = 7777;
+        url.Port = Port;
 
         FString empy = FString();
 

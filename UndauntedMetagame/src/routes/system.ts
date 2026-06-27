@@ -68,16 +68,20 @@ systemRouter.get("/entitlementsv2", HasUndauntedMetagameAuth, (req, res) => {
 
 	res.status(200);
 	res.json({
-		entitlements: []
+		code: null,
+		message: "OK",
+		payload: []
 	});
 });
 
-systemRouter.get("/entitlement\v2/:userId", HasUndauntedMetagameAuth, (req, res) => {
+systemRouter.post("/entitlementv2/:userId", HasUndauntedMetagameAuth, (req, res) => {
 	logger.info("Entitlements (stubbed)");
 
 	res.status(200);
 	res.json({
-		entitlements: []
+		code: null,
+		message: "OK",
+		payload: []
 	});
 });
 

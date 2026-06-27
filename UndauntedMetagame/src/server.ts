@@ -9,7 +9,7 @@ GetDb(); // This runs migrations TODO make this more explicit
 
 DrainAndRegisterAPIKeys().then(() => {
   app.listen(PORT, () => {
-    logger.info(`Undaunted on http://localhost:${PORT}`);
+    logger.info(`Undaunted Metagame on port ${PORT}`);
     logger.info(`Clear Skies, Slayer.`);
   });
 });

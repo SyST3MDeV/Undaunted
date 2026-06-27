@@ -50,16 +50,17 @@ matchmakingRouter.get("/candidate/status", HasUndauntedMetagameAuth, async (req:
 matchmakingRouter.post("/candidate/join", HasUndauntedMetagameAuth, async (req: any, res) => {
     const UserId = req.AuthData.userId;
     const GameMode = req.body.gameMode;
+    const GameType = req.body.gameType;
     const GameArgs = req.body.gameArgs;
     const HuntId = req.body.playerHuntId;
 
-    logger.info(`UserId ${UserId} wants to join a game with GameMode ${GameMode} & GameArgs ${GameArgs} & HuntId ${HuntId}`);
+    logger.info(`UserId ${UserId} wants to join a game with GameMode ${GameMode} & GameType ${GameType} & GameArgs ${GameArgs} & HuntId ${HuntId}`);
 
     // TODO: We put a LOT of faith in our authenticated users not abusing the matchmaking system right now
     // A reasonable addition would be checks on frequency of MM/server spinup
     // Best scenario is 1-1 for server session<->player and a new server cooldown
 
-    const MatchmakingResult = await HandlePlayerMatchmaking(GameMode, GameArgs, HuntId);
+    const MatchmakingResult = await HandlePlayerMatchmaking(GameMode, GameType, GameArgs, HuntId);
 
     if(!MatchmakingResult.succeeded){
         res.status(400);
