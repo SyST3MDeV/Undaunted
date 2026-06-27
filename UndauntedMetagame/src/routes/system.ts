@@ -72,7 +72,7 @@ systemRouter.get("/entitlementsv2", HasUndauntedMetagameAuth, (req, res) => {
 	});
 });
 
-systemRouter.get("/entitlementsv2/:userId", HasUndauntedMetagameAuth, (req, res) => {
+systemRouter.get("/entitlement\v2/:userId", HasUndauntedMetagameAuth, (req, res) => {
 	logger.info("Entitlements (stubbed)");
 
 	res.status(200);

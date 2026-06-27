@@ -43,4 +43,10 @@ export const breadcrumbs = sqliteTable("breadcrumbs", {
     userId: text("userId").notNull(),
     breadcrumbs: text("breadcrumbs").notNull(),
     updateVersion: integer("updateVersion").notNull()
-})
+});
+
+export const encounteredcontent = sqliteTable("encounteredcontent", {
+    characterId: text("characterId").notNull().primaryKey(),
+    userId: text("userId").notNull(),
+    encounteredcontent: text("encounteredcontent").notNull()
+});

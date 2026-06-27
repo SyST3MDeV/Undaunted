@@ -70,8 +70,8 @@ FString* GetGameDefaultMap(FString* a1) {
 
     //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
     //*Ret = L"/Game/Maps/islands/1705/dia_snow_big?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C?HuntId=CR19_MatchmakerHunt_Beaver?PlayerHuntIds=GWOG-UID-1:CR19_PlayerHunt_Expedition_Island04,GWOG-UID-2:CR19_PlayerHunt_Expedition_Island04,GWOG-UID-3:CR19_PlayerHunt_Expedition_Island04?ZonePreset=0";
-    //*Ret = L"/Game/Maps/ramsgate/ramsgate_01_persistent";
-    *Ret = L"/Game/Maps/islands/dojo/training_dojo_persistent";
+    *Ret = L"/Game/Maps/ramsgate/ramsgate_01_persistent";
+    //*Ret = L"/Game/Maps/islands/dojo/training_dojo_persistent";
     //*Ret = L"/Game/Maps/islands/1705/dia_moss_triforce?MonsterClass=/Game/Monsters/mcrollin/mcbeaver_tutorial_bp.mcbeaver_tutorial_bp_C";
 
     return Ret;
