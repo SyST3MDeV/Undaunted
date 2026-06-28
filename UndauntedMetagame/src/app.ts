@@ -1,5 +1,5 @@
 import express from "express";
-import { loginRouter } from "./routes/Login.js";
+import { loginRouter } from "./routes/login.js";
 import { logger } from "./logger.js";
 import { eosRouter } from "./routes/eos.js";
 import { systemRouter } from "./routes/system.js";

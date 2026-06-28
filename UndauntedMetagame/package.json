@@ -4,11 +4,10 @@
   "description": "A private server for the defunct monster-hunting action RPG",
   "license": "AGPL-3.0-only",
   "author": "gwog :3",
-  "type": "module",
   "scripts": {
     "dev": "tsx watch --env-file=.env src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node --env-file=.env dist/server.js",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {

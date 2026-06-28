@@ -4,12 +4,10 @@
   "description": "The deploy server for Undaunted",
   "license": "AGPL-3.0-only",
   "author": "gwog :3",
-  "type": "module",
   "scripts": {
     "dev": "tsx --env-file=.env src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "db:generate": "drizzle-kit generate"
+    "start": "node --env-file=.env dist/server.js"
   },
   "dependencies": {
     "better-sqlite3": "^12.11.1",
