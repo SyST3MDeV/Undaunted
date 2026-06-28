@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process"
+import { setTimeout } from "node:timers/promises";
 
 const RAMSGATE_MAP_PATH = "/Game/Maps/ramsgate/ramsgate_01_persistent";
 const TRAINING_DOJO_MAP_PATH = "/Game/Maps/islands/dojo/training_dojo_persistent";
@@ -99,11 +100,14 @@ export function GetTrainingDojoConnectionDetails(){
     };
 }
 
-export function Startup(){
+export async function Startup(){
     for(let i = PORT_RANGE_BEGIN; i <= PORT_RANGE_END; i++){
         FreePorts.push(i);
     }
 
     RamsgateServer = StartServer(RAMSGATE_MAP_PATH, undefined, undefined, undefined, true, false);
-    TrainingDojoServer = StartServer(TRAINING_DOJO_MAP_PATH, undefined, undefined, undefined, false, true);
+
+    setTimeout(10 * 1000).then(() => { // TODO: HACK: Too many servers at once makes my 10 year old server sad. In the future ping for reachability, then spin up the second on the first listening successfully
+        TrainingDojoServer = StartServer(TRAINING_DOJO_MAP_PATH, undefined, undefined, undefined, false, true);
+    });
 }
