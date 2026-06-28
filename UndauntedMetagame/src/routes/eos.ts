@@ -7,7 +7,7 @@ import { GetUsernameForUserId } from "../controllers/login";
 export const eosRouter = Router();
 
 eosRouter.post("/account/api/oauth/token", (req, res) => {
-    if(process.env.AUTH_MODE === "NONE" && process.env.NODE_ENV !== "production"){
+    if(process.env.AUTH_MODE === "NONE"){
         const UserId = req.body.exchange_code;
 
         logger.info(`Logging in ${UserId}!`);
