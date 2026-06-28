@@ -1,13 +1,13 @@
 import { Router } from "express";
 import { logger } from "../logger";
-import { SignMetagameJWTForUid } from "../controllers/auth";
+import { GetUserIDForAPIKey, SignMetagameJWTForUid } from "../controllers/auth";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
 import { GetUsernameForUserId } from "../controllers/login";
 
 export const eosRouter = Router();
 
-eosRouter.post("/account/api/oauth/token", (req, res) => {
-    if(process.env.AUTH_MODE === "NONE"){
+eosRouter.post("/account/api/oauth/token", async (req, res) => {
+    if(process.env.AUTH_MODE === "NONE" && process.env.NODE_ENV !== "production"){
         const UserId = req.body.exchange_code;
 
         logger.info(`Logging in ${UserId}!`);
@@ -28,6 +28,38 @@ eosRouter.post("/account/api/oauth/token", (req, res) => {
             "refresh_expires_at": "2085-09-09T01:01:01.703Z",
             "account_id": UserId
         });
+    }
+    else if(process.env.AUTH_MODE === "APIKEY"){
+        const ApiKey = req.body.exchange_code;
+
+        const UserId = await GetUserIDForAPIKey(ApiKey);
+
+        if(UserId != undefined){
+            logger.info(`Logging in ${UserId}!`);
+
+            const AuthToken = SignMetagameJWTForUid(UserId);
+
+            res.json({
+                "access_token": AuthToken,
+                "token_type": "bearer",
+                "expires_at": "2085-09-09T01:01:01.703Z", // TODO: We sign 24hr JWTs so we're unlikely to hit this, but just in case (tm)
+                "features": ["Achievements", "AntiCheat", "Ecom", "Voice"],
+                "organization_id": "o-krlzxj88qrtb69fredeuaf887bl5az",
+                "product_id": "prod-jackal",
+                "sandbox_id": "jackal",
+                "deployment_id": "53565ba467df4edbb6f5a3d939a8b4f2",
+                "expires_in": 86400,
+                "refresh_token": "refresh.token.lol", // TODO: IDK if we need to support this considering our intended flow, but flagged regardless
+                "refresh_expires_at": "2085-09-09T01:01:01.703Z",
+                "account_id": UserId
+            });
+        }
+        else{
+            logger.error(`Invalid API key auth!`);
+
+            res.status(400);
+            res.send();
+        }
     }
     else{
         logger.fatal("No login method configured!");

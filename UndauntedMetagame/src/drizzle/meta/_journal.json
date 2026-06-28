@@ -43,6 +43,13 @@
       "when": 1782586138792,
       "tag": "0005_mighty_zeigeist",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1782664386398,
+      "tag": "0006_woozy_slipstream",
+      "breakpoints": true
     }
   ]
 }

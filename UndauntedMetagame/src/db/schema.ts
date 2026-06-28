@@ -34,6 +34,16 @@ export const gameserverapikeys = sqliteTable("gameserverapikeys", {
     keyHash: text("keyHash")
 });
 
+export const userapikeys = sqliteTable("userapikeys", {
+    userId: text("userId").notNull().primaryKey(),
+    keyHash: text("keyHash").notNull()
+});
+
+export const userapikeystoregister = sqliteTable("userapikeystoregister", {
+    userId: text("userId").notNull().primaryKey(),
+    key: text("key").notNull()
+});
+
 export const gameserverapikeystoregister = sqliteTable("gameserverapikeystoregister", {
     key: text("key").primaryKey()
 });
