@@ -36,6 +36,22 @@ function Pad(Target: number){
     return String(Target).padStart(2, "0");
 }
 
+function ProcessTriggers(CharacterDataToUpdateWith: string){
+    const CharacterData = JSON.parse(CharacterDataToUpdateWith);
+
+    if(CharacterData.SERIE_cr19_series_1_ftue != undefined){
+        const FTUESerieData = JSON.parse(CharacterData.SERIE_cr19_series_1_ftue);
+
+        if(FTUESerieData["929A333B40E413C41E47B0A425EC3349"].Status === 3 && CharacterData["SERIE_dojo"] == undefined){
+            logger.info(`Injecting SERIE_dojo!`);
+
+            CharacterData["SERIE_dojo"] = "{\"ID\":\"Dojo\",\"Status\":0,\"62B91BD94558409B4F7352B5B96F3ED7\":{\"Status\":0,\"6CA2C43B46334BC06F73DEB5F2BFFEC1\":{\"Status\":0,\"CurrentAmount\":0,\"LastUpdateAmount\":0},\"3A7241AA43743647D3C1E39E8976E4F3\":{\"Status\":0,\"CurrentAmount\":0,\"LastUpdateAmount\":0}},\"816CBFD94D16EDA252BD1D8461209568\":{\"Status\":1},\"B152371947599B3C2D55BE9B91439C37\":{\"Status\":0,\"D3F19E2248AECEF5C5C3C8B9E2AC2C67\":{\"Status\":0,\"CurrentAmount\":0,\"LastUpdateAmount\":0},\"0407C2134FE0BEFE3EC791999632D2BC\":{\"Status\":0,\"CurrentAmount\":0,\"LastUpdateAmount\":0}},\"DFE54F884C6FC60688B6C494D79ADD29\":{\"Status\":0,\"9D1B0D754DBC896034F942AD625F9D93\":{\"Status\":0,\"CurrentAmount\":0,\"LastUpdateAmount\":0}}}";
+        }
+    }
+
+    return JSON.stringify(CharacterData);
+}
+
 export async function CreateCharacterForUid(userId: string, characterName: string){
     let CharacterUUID = crypto.randomUUID();
 
@@ -66,6 +82,8 @@ export async function UpdateCharacterForUid(CharacterId: string, UserId: string,
     if(CurrentData!.updateVersion >= UpdateVersion){
         return false;
     }
+
+    CharacterDataToUpdateWith = ProcessTriggers(CharacterDataToUpdateWith);
 
     await GetDb().update(characters).set({
         data: CharacterDataToUpdateWith,
