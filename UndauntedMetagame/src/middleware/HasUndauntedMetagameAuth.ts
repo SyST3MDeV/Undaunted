@@ -34,6 +34,7 @@ export async function HasUndauntedMetagameAuth(req: Request, res: Response, next
             return;
         }
         else{
+            res.status(401);
             logger.error(`Invalid Gameserver API Key Auth`);
             return;
         }

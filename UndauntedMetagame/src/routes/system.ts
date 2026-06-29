@@ -22,9 +22,7 @@ systemRouter.get("/dauntless-status", (req, res) => {
 });
 
 systemRouter.post("/heartbeat", (req, res) => {
-    // TODO: Maybe playercount here?
-    res.status(200);
-    res.json({});
+    res.status(200).type("text/plain").send("20000");
 });
 
 systemRouter.post("/event", (req, res) => {
