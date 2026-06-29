@@ -112,6 +112,19 @@ progressionRouter.post("/breadcrumbs/:characterId", HasUndauntedMetagameAuth, as
     });
 });
 
+progressionRouter.post("/progression/:userId", HasUndauntedMetagameAuth, (req: any, res) => {
+    const RequestorAccountId = req.AuthData.userId;
+    
+    logger.info(`Progression set for userId ${RequestorAccountId} (stubbed)`);
+    
+    res.status(200);
+    res.json({
+        code: null,
+        message: "OK",
+        payload: {}
+    });
+});
+
 progressionRouter.get("/progression/:userId", HasUndauntedMetagameAuth, (req: any, res) => {
     const RequestorAccountId = req.AuthData.userId;
 

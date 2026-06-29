@@ -90,7 +90,9 @@ systemRouter.get("/playertreatments/:userId", HasUndauntedMetagameAuth, (req, re
 
 	res.status(200);
 	res.json({
-		treatments: []
+		treatments: [
+			"CohortTreatment.Dojo.B"
+		]
 	});
 });
 

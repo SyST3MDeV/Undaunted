@@ -1,6 +1,11 @@
 import { spawn } from "node:child_process"
 import { setTimeout } from "node:timers/promises";
 
+import crypto from "node:crypto";
+
+import PlayerHuntTable from "../vendor/player_hunts_table.json";
+import MatchmakerHuntTable from "../vendor/matchmaker_hunts_table.json";
+
 const RAMSGATE_MAP_PATH = "/Game/Maps/ramsgate/ramsgate_01_persistent";
 const TRAINING_DOJO_MAP_PATH = "/Game/Maps/islands/dojo/training_dojo_persistent";
 
@@ -98,6 +103,58 @@ export function GetTrainingDojoConnectionDetails(){
         host: MY_IP,
         port: TrainingDojoServer.port
     };
+}
+
+export async function StartupGameserverWithArgs(GameArgs: string){
+    const Map = GameArgs.split("?")[0];
+    const Behemoth = GameArgs.split("?")[2].split("=")[1];
+
+    const GameServerToReturn = await StartServer(Map, Behemoth, undefined, undefined, false, false);
+
+    return {
+        host: MY_IP,
+        port: GameServerToReturn.port
+    };
+}
+
+function GetMatchmakerHuntIdFromPlayerHuntId(PlayerHuntId: string): string{
+    const MatchmakerHuntIDs = (PlayerHuntTable[0].Rows as any)[PlayerHuntId].MatchmakerHuntIDs;
+
+    const MatchmakerHuntObject = MatchmakerHuntIDs[crypto.randomInt(0, MatchmakerHuntIDs.length)];
+
+    return MatchmakerHuntObject.RowName;
+}
+
+function GetBehemothPathFromMatchmakerHuntId(MatchmakerHuntId: string): string{
+    const MatchmakerHuntObject = (MatchmakerHuntTable[0].Rows as any)[MatchmakerHuntId];
+
+    return MatchmakerHuntObject.SpecificBehemoth.BehemothAsset.AssetPathName;
+}
+
+function GetMapPathFromMatchmakerHuntId(MatchmakerHuntId: string): string{
+    const MatchmakerHuntObject = (MatchmakerHuntTable[0].Rows as any)[MatchmakerHuntId];
+
+    const MapList = MatchmakerHuntObject.MapList;
+
+    return MapList[crypto.randomInt(0, MapList.length)].MapAssetName.split(".")[0];
+}
+
+export async function StartupGameserverWithHuntIdAndPlayers(HuntId: string, ExpectedPlayers: string[]){
+    const MatchmakerHuntId = GetMatchmakerHuntIdFromPlayerHuntId(HuntId);
+    const BehemothPath = GetBehemothPathFromMatchmakerHuntId(MatchmakerHuntId);
+    const MapPath = GetMapPathFromMatchmakerHuntId(MatchmakerHuntId);
+
+    const GameServerToReturn = await StartServer(MapPath, BehemothPath, MatchmakerHuntId, ExpectedPlayers.map((PlayerId) => {
+        return {
+            playerUid: PlayerId,
+            playerHuntId: HuntId
+        };
+    }), false, false);
+
+    return {
+        host: MY_IP,
+        port: GameServerToReturn.port
+    }
 }
 
 export async function Startup(){

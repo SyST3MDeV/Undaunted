@@ -7,9 +7,11 @@ import express from "express";
 export const characterRouter = Router();
 
 characterRouter.get("/character", HasUndauntedMetagameAuth, async (req: any, res) => {
-    const CharactersForUid = await GetCharactersForUid(req.AuthData.userId);
+    const UserId = req.AuthData.userId;
 
-    logger.info(`Retrieved ${CharactersForUid.length} characters for ${req.AuthData.userId}`);
+    const CharactersForUid = await GetCharactersForUid(UserId);
+
+    logger.info(`Retrieved ${CharactersForUid.length} characters for ${UserId}`);
 
     res.status(200);
     res.json(CharactersForUid);
@@ -34,7 +36,15 @@ characterRouter.post("/character", HasUndauntedMetagameAuth, async (req: any, re
 
     logger.info(`Updating characterId ${CharacterIdToUpdate} for userId ${UserId} with updateVersion ${UpdateVersion}`);
 
-    await UpdateCharacterForUid(CharacterIdToUpdate, UserId, DataToUpdateWith, UpdateVersion);
+    const DidSucceed = await UpdateCharacterForUid(CharacterIdToUpdate, UserId, DataToUpdateWith, UpdateVersion);
+
+    if(!DidSucceed){
+        logger.warn(`Failed to update characterId ${CharacterIdToUpdate} for userId ${UserId} due to conflict`);
+
+        res.status(409);
+        res.send();
+        return;
+    }
 
     const UpdatedCharacter = await GetCharacterWithUid(CharacterIdToUpdate, UserId);
 

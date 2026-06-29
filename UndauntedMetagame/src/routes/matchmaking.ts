@@ -1,14 +1,12 @@
 import { Router } from "express";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
 import { logger } from "../logger";
-import { HandlePlayerMatchmaking } from "../controllers/matchmaking";
+import { CheckAndUpdateQueueStatus, HandlePlayerMatchmaking } from "../controllers/matchmaking";
 
 export const matchmakingRouter = Router();
 
 const QOS_TARGET_URL = process.env.QOS_TARGET_URL;
 const TARGET_CHANGELIST = process.env.TARGET_CHANGELIST;
-
-let MatchmakingMap: any = {}; // TODO: Move this to the controller
 
 matchmakingRouter.post("/candidate/player/register", HasUndauntedMetagameAuth, (req: any, res) => {
     logger.info(`userId ${req.AuthData.userId} is registering for matchmaking!`);
@@ -50,17 +48,17 @@ matchmakingRouter.post("/key/generate", HasUndauntedMetagameAuth, async (req: an
 matchmakingRouter.get("/candidate/status", HasUndauntedMetagameAuth, async (req: any, res) => {
     const UserId = req.AuthData.userId;
 
-    const MatchmakingResult = MatchmakingMap[UserId];
+    const MatchmakingResult = await CheckAndUpdateQueueStatus(UserId);
 
     if(MatchmakingResult != undefined){
-        if(MatchmakingResult.Result.readyNow){
-            logger.info(`Telling client to travel to ${MatchmakingResult.Result.host}:${MatchmakingResult.Result.port}`);
+        if(MatchmakingResult.Ready){
+            logger.info(`Telling client to travel to ${MatchmakingResult.Host}:${MatchmakingResult.Port}`);
 
             res.status(200);
             res.json({
                 candidateId: MatchmakingResult.CandidateId,
                 candidateStatusPeriodMillis: 10000,
-                gameMode: MatchmakingResult.GameMode,
+                gameMode: "ISLAND",
                 huntId: MatchmakingResult.HuntId,
                 playerStates: {
                   UserId: {}
@@ -68,8 +66,8 @@ matchmakingRouter.get("/candidate/status", HasUndauntedMetagameAuth, async (req:
                 serverInfo: {
                     buildId: TARGET_CHANGELIST + "_1.4.4_shipping", // TODO: pull the end of the buildstring from somewhere nonstatic
                     gameSessionId: MatchmakingResult.CandidateId,
-                    host: MatchmakingResult.Result.host,
-                    port: MatchmakingResult.Result.port
+                    host: MatchmakingResult.Host,
+                    port: MatchmakingResult.Port
                 },
                 status: "IN_PROGRESS",
                 statusDuration: 0.0,
@@ -77,10 +75,21 @@ matchmakingRouter.get("/candidate/status", HasUndauntedMetagameAuth, async (req:
             });
         }
         else{
-            logger.error(`Delayed ready not supported, failing matchmaking!`);
+            logger.info(`MM not ready yet!`);
 
-            res.status(404);
-            res.send();
+            res.status(200);
+            res.json({
+                candidateId: MatchmakingResult.CandidateId,
+                candidateStatusPeriodMillis: 10000,
+                gameMode: "ISLAND",
+                huntId: MatchmakingResult.HuntId,
+                playerStates: {
+                  UserId : {}
+                },
+                status : "MATCHING",
+                statusDuration : 0.0,
+                statusReason : null
+            })
         }
     }
     else{
@@ -103,26 +112,19 @@ matchmakingRouter.post("/candidate/join", HasUndauntedMetagameAuth, async (req: 
     // A reasonable addition would be checks on frequency of MM/server spinup
     // Best scenario is 1-1 for server session<->player and a new server cooldown
 
-    const MatchmakingResult = await HandlePlayerMatchmaking(GameMode, GameArgs, HuntId);
+    const MatchmakingResult = await HandlePlayerMatchmaking(GameMode, GameArgs, HuntId, UserId);
 
-    if(!MatchmakingResult.succeeded){
+    if(!MatchmakingResult){
         res.status(400);
         res.send();
         return;
     }
 
-    const CandidateId = crypto.randomUUID();
-
-    MatchmakingMap[UserId] = {
-        GameMode: GameMode,
-        CandidateId: CandidateId,
-        HuntId: HuntId,
-        Result: MatchmakingResult
-    };
+    const MatchmakingEntry = await CheckAndUpdateQueueStatus(UserId);
 
     res.status(200);
     res.json({
-        candidateId: CandidateId,
+        candidateId: MatchmakingEntry!.CandidateId,
         gameMode: GameMode,
         huntId: HuntId,
         status: "MATCHING",

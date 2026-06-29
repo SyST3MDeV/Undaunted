@@ -1,6 +1,8 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, lt } from "drizzle-orm";
 import { GetDb } from "../db";
 import { characters } from "../db/schema";
+import { GetUsernameForUserId } from "./login";
+import { logger } from "../logger";
 
 const TARGET_CHANGELIST = process.env.TARGET_CHANGELIST;
 
@@ -18,6 +20,14 @@ function TransformDbCharacterToWireCharacter(DbCharacter: any){
 
 export async function GetCharactersForUid(userId: string){
     let CharactersFromDb = await GetDb().query.characters.findMany({where: eq(characters.userId, userId)});
+
+    if(CharactersFromDb.length === 0){
+        const Username = await GetUsernameForUserId(userId);
+
+        await CreateCharacterForUid(userId, Username);
+
+        CharactersFromDb = await GetDb().query.characters.findMany({where: eq(characters.userId, userId)});
+    }
 
     return CharactersFromDb.map((DbCharacter) => TransformDbCharacterToWireCharacter(DbCharacter));
 }
@@ -37,47 +47,6 @@ export async function CreateCharacterForUid(userId: string, characterName: strin
         year: "numeric"
     });
 
-    let InnerFormattedCurrentDate = [
-        CurrentDate.getFullYear(),
-        Pad(CurrentDate.getMonth() + 1),
-        Pad(CurrentDate.getDate()),
-    ].join(".") + "-" + [
-        Pad(CurrentDate.getHours()),
-        Pad(CurrentDate.getMinutes()),
-        Pad(CurrentDate.getSeconds()),
-    ].join(".");
-
-    let RecentPlayers = JSON.stringify({
-       RecentPlayers: [],
-       Version: 0 
-    });
-    
-    let AppearanceData = JSON.stringify({
-        CreationState: "EArchonCharacterCreationState::NewCharacter",
-        Data: [],
-        AssetReferences: [],
-        StringData: []
-    });
-
-    let PlayerDataRepair = JSON.stringify({
-        Data: []
-    });
-
-    let CharacterFlagData = JSON.stringify({
-        Flags: []
-    });
-
-    let CharacterData = JSON.stringify({
-        RecentPlayers: RecentPlayers,
-        AppearanceData: AppearanceData,
-        PlayerAccountProgressStep: "New",
-        PlayerDataRepair: PlayerDataRepair,
-        CharacterFlagData: CharacterFlagData,
-        LastChangelist: TARGET_CHANGELIST,
-        LoginTime: InnerFormattedCurrentDate,
-        LastLoginTime: InnerFormattedCurrentDate
-    });
-
     let NewCharacter = await GetDb().insert(characters).values({
         characterId: CharacterUUID,
         userId: userId,
@@ -85,17 +54,25 @@ export async function CreateCharacterForUid(userId: string, characterName: strin
         createdDate: FormattedCurrentDate,
         lastModifiedDate: FormattedCurrentDate,
         updateVersion: 0,
-        data: CharacterData
+        data: "{}"
     }).returning();
 
     return TransformDbCharacterToWireCharacter(NewCharacter[0]);
 }
 
 export async function UpdateCharacterForUid(CharacterId: string, UserId: string, CharacterDataToUpdateWith: string, UpdateVersion: number){
+    const CurrentData = await GetCharacterWithUid(CharacterId, UserId);
+
+    if(CurrentData!.updateVersion >= UpdateVersion){
+        return false;
+    }
+
     await GetDb().update(characters).set({
         data: CharacterDataToUpdateWith,
         updateVersion: UpdateVersion
-    }).where(and(eq(characters.userId, UserId), eq(characters.characterId, CharacterId)));
+    }).where(and(and(eq(characters.userId, UserId), eq(characters.characterId, CharacterId)), lt(characters.updateVersion, UpdateVersion)));
+
+    return true;
 }
 
 export async function GetCharacterWithUid(CharacterId: string, UserId: string){

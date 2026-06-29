@@ -111,7 +111,7 @@ FString* GetGameDefaultMap(FString* a1) {
 void* OrigGetCommandLine = nullptr;
 
 const wchar_t* GetCommandLineHook() {
-    return L"Dauntless-Win64-Shipping.exe -server -unattended -nullrhi -EpicPortal -RepDriverDisable";
+    return L"Dauntless-Win64-Shipping.exe -server -unattended -nullrhi -EpicPortal -RepDriverDisable -fulllog";
 }
 
 void* OrigServerBootCrash = nullptr;
@@ -165,12 +165,32 @@ void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender
     }
 
     if (GetAsyncKeyState(VK_F7)) {
-        if (Globals::Listening && Networking::NetDriver) {
-            for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
-                if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
-                    Conn->PlayerController->ClientTravel(Globals::MyIpAndPort, ETravelType::TRAVEL_Absolute, true, FGuid());
-                }
+
+        for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
+        {
+            SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
+
+            if (!Obj)
+                continue;
+
+            if (Obj->IsDefaultObject())
+                continue;
+
+            if (Obj->IsA(UQuestSystemComponent::StaticClass())) {
+                UQuestSystemComponent* QSC = (UQuestSystemComponent*)Obj;
+
+                if (!QSC->GetOwner())
+                    continue;
+
+                if (QSC->GetOwner()->IsDefaultObject())
+                    continue;
+
+                std::cout << QSC->GetOwner()->GetFullName() << std::endl;
+                std::cout << QSC->GetQuest(UKismetStringLibrary::Conv_StringToName(L"Dojo_Quest_Start_00"))->GetFullName() << std::endl;
+
+                QSC->ServerStartQuest(QSC->GetQuest(UKismetStringLibrary::Conv_StringToName(L"Dojo_Quest_Start_00")), QSC->GetQuest(UKismetStringLibrary::Conv_StringToName(L"Dojo_Quest_Start_00"))->GetRedeemer());
             }
+
         }
 
         while (GetAsyncKeyState(VK_F7)) {
@@ -328,9 +348,35 @@ bool MakeDoDamageHook(void* a1, void* a2, void* a3) {
     return true;
 }
 
+#include <fstream>
+
 void* OrigProcessEventClient = nullptr;
 
 void ProcessEventClientHook(UObject* Object, UFunction* Function, void* Parms) {
+    if (GetAsyncKeyState(VK_F9)) {
+        std::ofstream file("quests.txt");
+
+        for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
+        {
+            SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
+
+            if (!Obj)
+                continue;
+
+            if (Obj->IsA(SDK::UQuest::StaticClass()))
+            {
+                UQuest* Quest = (UQuest*)Obj;
+                file << Quest->GetId().ToString() << std::endl;
+                file << Quest->GetTitle().ToString() << std::endl;
+                file << "===========================" << std::endl;
+            }
+        }
+        
+        while (GetAsyncKeyState(VK_F9)) {
+
+        }
+    }
+
     reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEventClient)(Object, Function, Parms);
 }
 
@@ -397,9 +443,9 @@ void InitClientHooks() {
 
     //MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
 
-    //MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
 
-    //MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
 }
 
 void* OrigSprint = nullptr;
