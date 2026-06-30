@@ -71,7 +71,11 @@ async function LaunchGameOnDeployserver(GameMode: string, GameArgs: string, Hunt
 async function PopQueue(HuntId: string){
     const MatchmakingQueue = MatchmakingQueueMap.get(HuntId);
 
-    logger.info(MatchmakingQueue);
+    if(MatchmakingQueue!.Resolved){
+        return;
+    }
+
+    MatchmakingQueue!.Resolved = true;
     
     const GameOnDeployServer = await LaunchGameOnDeployserver("ISLAND", "", HuntId, MatchmakingQueue!.Players);
 
@@ -106,8 +110,11 @@ export async function CheckAndUpdateQueueStatus(PlayerId: string){
     return PlayerMatchmakingResult;
 }
 
+// TODO: This can fail if the previous party is waiting for the deployserver, and a new party is joining in.
+// Right now we handle this by failing all new players until the old party is cleared out
+// This can be MUCH better in the future
 async function QueuePlayer(HuntId: string, PlayerId: string){
-    if(MatchmakingQueueMap.get(HuntId) != undefined){
+    if(MatchmakingQueueMap.get(HuntId) != undefined && !MatchmakingQueueMap.get(HuntId)?.Resolved){
         const CurrentMMEntry = MatchmakingQueueMap.get(HuntId);
 
         CurrentMMEntry!.Players.push(PlayerId);
@@ -116,6 +123,9 @@ async function QueuePlayer(HuntId: string, PlayerId: string){
         if(CurrentMMEntry!.Players.length >= 4){
             await PopQueue(HuntId);
         }
+    }
+    else if(MatchmakingQueueMap.get(HuntId) != undefined){
+        return false;
     }
     else{
         MatchmakingQueueMap.set(HuntId, {
@@ -132,6 +142,8 @@ async function QueuePlayer(HuntId: string, PlayerId: string){
         Host: "",
         Port: 0
     });
+
+    return true;
 }
 
 export async function HandlePlayerMatchmaking(GameMode: string, GameArgs: string, HuntId: string, PlayerId: string){
@@ -155,9 +167,7 @@ export async function HandlePlayerMatchmaking(GameMode: string, GameArgs: string
             return true;
         }
         else{
-            QueuePlayer(HuntId, PlayerId);
-
-            return true;
+            return await QueuePlayer(HuntId, PlayerId);
         }
     }
     else{
