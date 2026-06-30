@@ -32,6 +32,8 @@ namespace Globals {
     const wchar_t* ExpectedPlayerString = nullptr;
     int Port = 0;
     const wchar_t* MyIpAndPort = nullptr;
+
+    bool EnableLogging = false;
 }
 
 __declspec(dllexport) const char* DummyLinkFunc() {
@@ -60,9 +62,11 @@ void MainThread() {
 
         Engine->GameViewport->ViewportConsole = static_cast<UConsole*>(NewObject);
 
+        if (Globals::EnableLogging)
         std::cout << "Spawned UConsole!" << std::endl;
     }
     else {
+        if (Globals::EnableLogging)
         std::cout << "UWorld is live!" << std::endl;
 
         Globals::DoListen = true;
@@ -248,6 +252,7 @@ bool HasFinishedLoadingHook(UObject* a1) {
     bool Ret = reinterpret_cast<bool(*)(UObject*)>(OrigHasFinishedLoading)(a1);
 
     if (!Ret) {
+        if (Globals::EnableLogging)
         std::cout << "[FORCEREADY] " << a1->GetFullName() << std::endl;
         return true;
     }
@@ -310,12 +315,14 @@ APlayerStart* GetStartSpotHook(void* a1, void* a2, void* a3) {
         }
     }
 
+    if (Globals::EnableLogging)
     std::cout << "No startspot found!" << std::endl;
 
     return nullptr;
 }
 
 bool ServerTryActivateAbilityInternal(UAbilitySystemComponent* Component, FGameplayAbilitySpecHandle& AbilityHandle, bool InputPressed, FPredictionKey& PredictionKey, FGameplayEventData* TriggerEventData) {
+    if (Globals::EnableLogging)
     std::cout << "Activated ability!" << std::endl;
 
     if(InputPressed)
@@ -458,9 +465,7 @@ bool SprintHook(uintptr_t a1, uintptr_t a2) { //char __fastcall UArchonStaminaCo
 
 void* OrigWeaponHook = nullptr;
 
-AActor* WeaponHook(UActorComponent* a1) { //char __fastcall UArchonStaminaComponent_TryConsumeStamina_Native(__int64 a1, __int64 a2, char a3, char a4)        
-    std::cout << "WEE WOO CALLED!" << std::endl;
-    
+AActor* WeaponHook(UActorComponent* a1) { //char __fastcall UArchonStaminaComponent_TryConsumeStamina_Native(__int64 a1, __int64 a2, char a3, char a4)            
     AActor* Ret = reinterpret_cast<AActor* (*)(UActorComponent * a1)>(OrigWeaponHook)(a1);
 
     return Ret;
@@ -584,14 +589,6 @@ void InitServerHooks() {
 }
 
 void Init() {
-    AllocConsole();
-    FILE* Dummy;
-    freopen_s(&Dummy, "CONOUT$", "w", stdout);
-    freopen_s(&Dummy, "CONIN$", "r", stdin);
-
-    std::cout << "Welcome to Undaunted v" << UNDAUNTED_INTERNAL_VERSION << "!" << std::endl;
-    std::cout << "prod. gwog :3" << std::endl;
-    std::cout << "thanks to all who contributed in any way, you know who you are, dm me on discord if you want a named shoutout here :3" << std::endl;
 
     Globals::AmServer = std::string(GetCommandLineA()).contains("-server");
     Globals::BaseAddress = (uintptr_t)GetModuleHandleA(nullptr);
@@ -604,8 +601,6 @@ void Init() {
     UC::FMemory::Init((void*)(Globals::BaseAddress + 0x1C8EE00));
 
     if (Globals::AmServer) {
-        std::cout << "Running as a server!" << std::endl;
-
         int NumArgs = 0;
 
         wchar_t** Args = CommandLineToArgvW(GetCommandLineW(), &NumArgs);
@@ -621,6 +616,7 @@ void Init() {
 
             if (Globals::Port >= 8776) {
                 EnableWatchdog = false;
+                Globals::EnableLogging = true;
             }
         }
         else {
@@ -629,10 +625,36 @@ void Init() {
             return;
         }
 
+        if (Globals::EnableLogging) {
+            AllocConsole();
+            FILE* Dummy;
+            freopen_s(&Dummy, "CONOUT$", "w", stdout);
+            freopen_s(&Dummy, "CONIN$", "r", stdin);
+
+            std::cout << "Welcome to Undaunted v" << UNDAUNTED_INTERNAL_VERSION << "!" << std::endl;
+            std::cout << "prod. gwog :3" << std::endl;
+            std::cout << "thanks to all who contributed in any way, you know who you are, dm me on discord if you want a named shoutout here :3" << std::endl;
+
+            std::cout << "Running as a server!" << std::endl;
+        }
+
         InitServerHooks();
     }
     else {
-        std::cout << "Running as a debug-enabled client!" << std::endl;
+        Globals::EnableLogging = true;
+
+        if (Globals::EnableLogging) {
+            AllocConsole();
+            FILE* Dummy;
+            freopen_s(&Dummy, "CONOUT$", "w", stdout);
+            freopen_s(&Dummy, "CONIN$", "r", stdin);
+
+            std::cout << "Welcome to Undaunted v" << UNDAUNTED_INTERNAL_VERSION << "!" << std::endl;
+            std::cout << "prod. gwog :3" << std::endl;
+            std::cout << "thanks to all who contributed in any way, you know who you are, dm me on discord if you want a named shoutout here :3" << std::endl;
+
+            std::cout << "Running as a debug-enabled client!" << std::endl;
+        }
 
         InitClientHooks();
     }
