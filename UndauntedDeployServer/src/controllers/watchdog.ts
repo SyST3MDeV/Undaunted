@@ -1,5 +1,6 @@
+import { kill } from "node:process";
 import { logger } from "../logger";
-import { Gameservers, ShutdownServer } from "./gameservers";
+import { Gameserver, Gameservers, CleanupServer } from "./gameservers";
 
 /**
  * TODO:
@@ -8,14 +9,24 @@ import { Gameservers, ShutdownServer } from "./gameservers";
  * If the server gets bogged down, we'll add more checks here.
  */
 
+function IsGameserverStillAlive(GameserverToCheck: Gameserver){
+    try{
+        kill(GameserverToCheck.processId, 0);
+
+        return true;
+    } catch(err) {
+        return false;
+    }
+}
+
 export async function RunWatchdog(){
     logger.info(`Running Gameserver Watchdog!`);
 
     for(const Gameserver of Gameservers){
-        if((new Date()).getTime() - Gameserver.startTime.getTime() > 40 * 60 * 1000){ // Was this server launched more that 40 minutes ago?
-            logger.info(`Shutting down gameserver w/ PID ${Gameserver.processId} & Port ${Gameserver.port}`);
-            
-            ShutdownServer(Gameserver);
+        if(!IsGameserverStillAlive(Gameserver)){
+            console.log(`Cleaning up Gameserver on port ${Gameserver.port}`);
+
+            CleanupServer(Gameserver);
         }
     }
 }

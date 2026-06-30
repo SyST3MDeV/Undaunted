@@ -10,7 +10,7 @@ import { kill } from "node:process";
 const RAMSGATE_MAP_PATH = "/Game/Maps/ramsgate/ramsgate_01_persistent";
 const TRAINING_DOJO_MAP_PATH = "/Game/Maps/islands/dojo/training_dojo_persistent";
 
-type Gameserver = {
+export type Gameserver = {
     id: string,
     port: number,
     map: string,
@@ -55,10 +55,8 @@ function TransformExpectedPlayerArgs(ExpectedPlayers: ExpectedPlayer[]){
     return ToReturn;
 }
 
-export async function ShutdownServer(ServerToShutdown: Gameserver){
+export async function CleanupServer(ServerToShutdown: Gameserver){
     FreePorts.push(ServerToShutdown.port);
-
-    kill(ServerToShutdown.processId);
 
     Gameservers = Gameservers.filter(Server => Server !== ServerToShutdown);
 }
