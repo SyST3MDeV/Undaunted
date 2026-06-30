@@ -63,7 +63,15 @@ export async function ShutdownServer(ServerToShutdown: Gameserver){
     Gameservers = Gameservers.filter(Server => Server !== ServerToShutdown);
 }
 
-function StartServer(Map: string, Behemoth: string | undefined, MatchmakerHuntId: string | undefined, ExpectedPlayers: ExpectedPlayer[] | undefined, IsRamsgate: boolean, IsTrainingDojo: boolean){
+let ServerLaunchQueue: Promise<void> = Promise.resolve();
+
+async function StartServer(Map: string, Behemoth: string | undefined, MatchmakerHuntId: string | undefined, ExpectedPlayers: ExpectedPlayer[] | undefined, IsRamsgate: boolean, IsTrainingDojo: boolean){
+    const LaunchProc = ServerLaunchQueue;
+
+    ServerLaunchQueue = ServerLaunchQueue.catch(() => {}).then(async () => await setTimeout(10 * 1000));
+
+    await LaunchProc;
+    
     const Port = FreePorts.pop();
     const Id = crypto.randomUUID();
 
@@ -173,9 +181,7 @@ export async function Startup(){
         FreePorts.push(i);
     }
 
-    RamsgateServer = StartServer(RAMSGATE_MAP_PATH, undefined, undefined, undefined, true, false);
+    RamsgateServer = await StartServer(RAMSGATE_MAP_PATH, undefined, undefined, undefined, true, false);
 
-    setTimeout(10 * 1000).then(() => { // TODO: HACK: Too many servers at once makes my 10 year old server sad. In the future ping for reachability, then spin up the second on the first listening successfully
-        TrainingDojoServer = StartServer(TRAINING_DOJO_MAP_PATH, undefined, undefined, undefined, false, true);
-    });
+    TrainingDojoServer = await StartServer(TRAINING_DOJO_MAP_PATH, undefined, undefined, undefined, false, true);
 }
