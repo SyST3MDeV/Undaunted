@@ -4,9 +4,7 @@ import { Gameserver, Gameservers, CleanupServer } from "./gameservers";
 
 /**
  * TODO:
- * This watchdog is SUPER basic rn, and will result in zombie processes as players will often finish hunts in quicker than the allotted time.
- * We err on the side of killing too late than too early
- * If the server gets bogged down, we'll add more checks here.
+ * This watchdog is SUPER basic rn, only releases resources, the server itself handles cleaning itself up
  */
 
 function IsGameserverStillAlive(GameserverToCheck: Gameserver){
