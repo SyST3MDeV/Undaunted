@@ -5,6 +5,7 @@ import crypto from "node:crypto";
 
 import PlayerHuntTable from "../vendor/player_hunts_table.json";
 import MatchmakerHuntTable from "../vendor/matchmaker_hunts_table.json";
+import { kill } from "node:process";
 
 const RAMSGATE_MAP_PATH = "/Game/Maps/ramsgate/ramsgate_01_persistent";
 const TRAINING_DOJO_MAP_PATH = "/Game/Maps/islands/dojo/training_dojo_persistent";
@@ -18,7 +19,8 @@ type Gameserver = {
     expectedPlayers: ExpectedPlayer[] | undefined,
     isRamsgate: boolean,
     isTrainingDojo: boolean,
-    processId: number
+    processId: number,
+    startTime: Date
 };
 
 type ExpectedPlayer = {
@@ -26,7 +28,7 @@ type ExpectedPlayer = {
     playerHuntId: string
 };
 
-let Gameservers: Gameserver[] = [];
+export let Gameservers: Gameserver[] = [];
 let FreePorts: number[] = [];
 
 let RamsgateServer : Gameserver;
@@ -51,6 +53,14 @@ function TransformExpectedPlayerArgs(ExpectedPlayers: ExpectedPlayer[]){
     }
 
     return ToReturn;
+}
+
+export async function ShutdownServer(ServerToShutdown: Gameserver){
+    FreePorts.push(ServerToShutdown.port);
+
+    kill(ServerToShutdown.processId);
+
+    Gameservers = Gameservers.filter(Server => Server !== ServerToShutdown);
 }
 
 function StartServer(Map: string, Behemoth: string | undefined, MatchmakerHuntId: string | undefined, ExpectedPlayers: ExpectedPlayer[] | undefined, IsRamsgate: boolean, IsTrainingDojo: boolean){
@@ -83,7 +93,8 @@ function StartServer(Map: string, Behemoth: string | undefined, MatchmakerHuntId
         expectedPlayers: ExpectedPlayers,
         isRamsgate: IsRamsgate,
         isTrainingDojo: IsTrainingDojo,
-        processId: Child.pid!
+        processId: Child.pid!,
+        startTime: new Date()
     };
 
     Gameservers.push(NewGameserver);
