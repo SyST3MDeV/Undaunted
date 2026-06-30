@@ -111,7 +111,7 @@ FString* GetGameDefaultMap(FString* a1) {
 void* OrigGetCommandLine = nullptr;
 
 const wchar_t* GetCommandLineHook() {
-    return L"Dauntless-Win64-Shipping.exe -server -unattended -nullrhi -EpicPortal -RepDriverDisable -fulllog";
+    return L"Dauntless-Win64-Shipping.exe -server -unattended -nullrhi -nosound -EpicPortal -RepDriverDisable";
 }
 
 void* OrigServerBootCrash = nullptr;
@@ -127,6 +127,10 @@ void EncounterableSetupHook() {
 }
 
 float RestartPlayerTimer = 0.0f;
+
+float TotalNoPlayersTime = 0.0f;
+
+bool EnableWatchdog = true;
 
 void* OrigGameEngineTick = nullptr;
 
@@ -157,44 +161,29 @@ void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender
     }
 
     if (Globals::Listening && Networking::NetDriver) {
+        bool HasConnection = false;
+
+        for (UNetConnection* Connection : Networking::NetDriver->ClientConnections) {
+            if (!Connection->OwningActor || *(uint32_t*)((uintptr_t)Connection + 0x134) != 3)
+                continue;
+
+            HasConnection = true;
+        }
+
+        if (EnableWatchdog) {
+            if (!HasConnection) {
+                TotalNoPlayersTime += DeltaTime;
+
+                if (TotalNoPlayersTime >= 50.0f) {
+                    exit(0);
+                }
+            }
+        }
+
         for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
             if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
                 ((ABP_PlayerCharacter_C*)Conn->PlayerController->Pawn)->TickStamina(ECityExecFilter::Both, ERemoteExecFilter::All);
             }
-        }
-    }
-
-    if (GetAsyncKeyState(VK_F7)) {
-
-        for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
-        {
-            SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
-
-            if (!Obj)
-                continue;
-
-            if (Obj->IsDefaultObject())
-                continue;
-
-            if (Obj->IsA(UQuestSystemComponent::StaticClass())) {
-                UQuestSystemComponent* QSC = (UQuestSystemComponent*)Obj;
-
-                if (!QSC->GetOwner())
-                    continue;
-
-                if (QSC->GetOwner()->IsDefaultObject())
-                    continue;
-
-                std::cout << QSC->GetOwner()->GetFullName() << std::endl;
-                std::cout << QSC->GetQuest(UKismetStringLibrary::Conv_StringToName(L"Dojo_Quest_Start_00"))->GetFullName() << std::endl;
-
-                QSC->ServerStartQuest(QSC->GetQuest(UKismetStringLibrary::Conv_StringToName(L"Dojo_Quest_Start_00")), QSC->GetQuest(UKismetStringLibrary::Conv_StringToName(L"Dojo_Quest_Start_00"))->GetRedeemer());
-            }
-
-        }
-
-        while (GetAsyncKeyState(VK_F7)) {
-
         }
     }
 }
@@ -386,18 +375,29 @@ bool DidDoTravelReset = false;
 void* OrigProcessEvent = nullptr;
 
 void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
-    if (Function->GetFullName().contains("ServerTryActivateAbilityWithEventData")) {
+    static UFunction* ServerTryActivateAbilityWithEventData = nullptr;
+    static UFunction* ServerTryActivateAbility = nullptr;
+    static UFunction* OnAirshipUpdated = nullptr;
+    static UFunction* OnPostMitDealtAnyDamage = nullptr;
+
+    if (Function == ServerTryActivateAbilityWithEventData || (!ServerTryActivateAbilityWithEventData && Function->GetFullName().contains("ServerTryActivateAbilityWithEventData"))) {
+        ServerTryActivateAbilityWithEventData = Function;
+
         Params::AbilitySystemComponent_ServerTryActivateAbilityWithEventData* ActivateAbilityParams = (Params::AbilitySystemComponent_ServerTryActivateAbilityWithEventData*)Parms;
 
         ServerTryActivateAbilityInternal((UAbilitySystemComponent*)Object, ActivateAbilityParams->AbilityToActivate, ActivateAbilityParams->InputPressed, ActivateAbilityParams->PredictionKey, &ActivateAbilityParams->TriggerEventData);
     }
-    else if (Function->GetFullName().contains("ServerTryActivateAbility")) {
+    else if (Function == ServerTryActivateAbility || (!ServerTryActivateAbility && Function->GetFullName().contains("ServerTryActivateAbility"))) {
+        ServerTryActivateAbility = Function;
+
         Params::AbilitySystemComponent_ServerTryActivateAbility* ActivateAbilityParams = (Params::AbilitySystemComponent_ServerTryActivateAbility*)Parms;
 
         ServerTryActivateAbilityInternal((UAbilitySystemComponent*)Object, ActivateAbilityParams->AbilityToActivate, ActivateAbilityParams->InputPressed, ActivateAbilityParams->PredictionKey, nullptr);
     }
 
-    if (Function->GetFullName().contains("OnAirshipUpdated")) {
+    if (Function == OnAirshipUpdated || (!OnAirshipUpdated && Function->GetFullName().contains("OnAirshipUpdated"))) {
+        OnAirshipUpdated = Function;
+
         NumTimesOnAirshipUpdated++;
 
         if (NumTimesOnAirshipUpdated >= 2 && !DidDoTravelReset) {
@@ -407,7 +407,9 @@ void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
         }
     }
 
-    if (Function->GetFullName().contains("OnPostMitDealtAnyDamage")) {
+    if (Function == OnPostMitDealtAnyDamage || (!OnPostMitDealtAnyDamage && Function->GetFullName().contains("OnPostMitDealtAnyDamage"))) {
+        OnPostMitDealtAnyDamage = Function;
+
         //OnPostMitDamage
         Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage* LanternParms = (Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage*)Parms;
 
@@ -443,9 +445,9 @@ void InitClientHooks() {
 
     //MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
 
-    MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
 
-    MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
 }
 
 void* OrigSprint = nullptr;
@@ -616,6 +618,10 @@ void Init() {
             Globals::MatchmakerHuntId = Args[5];
             Globals::ExpectedPlayerString = Args[6];
             Globals::MyIpAndPort = Args[7];
+
+            if (Globals::Port >= 8776) {
+                EnableWatchdog = false;
+            }
         }
         else {
             MessageBoxA(nullptr, "INVALID GAMESERVER ARGS", "INVALID GAMESERVER ARGS", 0);

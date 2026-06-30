@@ -11,7 +11,6 @@ namespace Networking {
     static std::vector<AActor*> BuildConsiderList(UWorld* World, UNetDriver* Driver) {
         std::vector<AActor*> Actors = std::vector<AActor*>();
 
-        /*
         for (ULevel* Level : World->Levels) {
             for (AActor* Actor : Level->Actors) {
                 if (!Actor)
@@ -20,16 +19,20 @@ namespace Networking {
                 if (Actor->RemoteRole == ENetRole::ROLE_None)
                     continue;
 
-                //if (!Actor->bReplicates)
-                    //continue;
+                if (Actor->bActorIsBeingDestroyed)
+                    continue;
+
+                if (!reinterpret_cast<UWorld * (*)(AActor*)>(*(void**)((uintptr_t)Actor->VTable + 0x150))(Actor)) {
+                    continue;
+                }
 
                 reinterpret_cast<void(*)(AActor*, UNetDriver*)>(BaseAddress + 0x306B150)(Actor, Driver);
 
                 Actors.push_back(Actor);
             }
         }
-        */
 
+        /*
         for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
         {
             SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
@@ -59,6 +62,7 @@ namespace Networking {
                 Actors.push_back(Actor);
             }
         }
+        */
 
         return Actors;
     }
@@ -136,7 +140,7 @@ namespace Networking {
                 continue;
 
             for (AActor* Actor : Actors) {
-                if (Actor->IsA(APlayerController::StaticClass())) {
+                if ((Actor->Class->CastFlags & EClassCastFlags::PlayerController) == (uint32_t)EClassCastFlags::PlayerController) {
                     if (Actor != Connection->OwningActor) {
                         continue;
                     }
