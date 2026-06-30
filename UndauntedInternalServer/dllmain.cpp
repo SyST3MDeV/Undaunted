@@ -33,7 +33,7 @@ namespace Globals {
     int Port = 0;
     const wchar_t* MyIpAndPort = nullptr;
 
-    bool EnableLogging = false;
+    bool EnableLogging = true;
 }
 
 __declspec(dllexport) const char* DummyLinkFunc() {
@@ -43,8 +43,7 @@ __declspec(dllexport) const char* DummyLinkFunc() {
 void MainThread() {
     while (!UWorld::GetWorld()) {
         if (Globals::AmServer) {
-            *(uint8_t*)(Globals::BaseAddress + 0x5E4BC3A) = 0x1; // GIsServer
-            *(uint8_t*)(Globals::BaseAddress + 0x5E4BC39) = 0x0; // GIsClient
+            Sleep(1000);
         }
         else {
             Sleep(1);
@@ -586,6 +585,59 @@ void InitServerHooks() {
     *(uint8_t*)(Globals::BaseAddress + 0x1346A98 + 0x6) = 0x90;
 
     VirtualProtect((void*)(Globals::BaseAddress + 0x1346A98), 0x7, oldProtect, &oldProtect);
+
+    //GIsServer and GIsClient
+    VirtualProtect((void*)(Globals::BaseAddress + 0x7961AE), 0x9, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x0) = 0xC6;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x1) = 0x05;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x2) = 0x84;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x3) = 0x5A;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x4) = 0x6B;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x5) = 0x05;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x6) = 0x00;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x7) = 0x90;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961AE + 0x8) = 0x90;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x7961AE), 0x9, oldProtect, &oldProtect);
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x7961BB), 0x9, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x0) = 0xC6;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x1) = 0x05;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x2) = 0x78;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x3) = 0x5A;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x4) = 0x6B;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x5) = 0x05;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x6) = 0x01;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x7) = 0x90;
+    *(uint8_t*)(Globals::BaseAddress + 0x7961BB + 0x8) = 0x90;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x7961BB), 0x9, oldProtect, &oldProtect);
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x79A81B), 0x7, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x0) = 0xC6;
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x1) = 0x05;
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x2) = 0x17;
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x3) = 0x14;
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x4) = 0x6B;
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x5) = 0x05;
+    *(uint8_t*)(Globals::BaseAddress + 0x79A81B + 0x6) = 0x00;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x79A81B), 0x7, oldProtect, &oldProtect);
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x79A680), 0x1, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x79A680 + 0x0) = 0x00;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x79A680), 0x1, oldProtect, &oldProtect);
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x79A815), 0x1, PAGE_READWRITE, &oldProtect);
+
+    *(uint8_t*)(Globals::BaseAddress + 0x79A815 + 0x0) = 0x01;
+
+    VirtualProtect((void*)(Globals::BaseAddress + 0x79A815), 0x1, oldProtect, &oldProtect);
 }
 
 void Init() {

@@ -140,7 +140,7 @@ namespace Networking {
                 continue;
 
             for (AActor* Actor : Actors) {
-                if ((Actor->Class->CastFlags & EClassCastFlags::PlayerController) == (uint32_t)EClassCastFlags::PlayerController) {
+                if ((Actor->IsA(APlayerController::StaticClass()))) {
                     if (Actor != Connection->OwningActor) {
                         continue;
                     }
