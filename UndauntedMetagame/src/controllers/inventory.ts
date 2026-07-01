@@ -43,7 +43,7 @@ export async function RunInventoryTransaction(UserId: string, CharacterId: strin
 
         for(let CmpStackedItem of StackedItems){
             if(CmpStackedItem.catalogId === NewStackedItem.catalogId){
-                CmpStackedItem.quantity = CmpStackedItem.quantity + NewStackedItem.quantity; // TODO: this mutates StackedItems right? Am I a javascript fraud?
+                CmpStackedItem.quantity = CmpStackedItem.quantity + NewStackedItem.quantity;
                 found = true;
                 break;
             }
