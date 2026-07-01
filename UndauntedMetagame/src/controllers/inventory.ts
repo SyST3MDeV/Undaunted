@@ -15,7 +15,7 @@ export async function RunInventoryTransaction(UserId: string, CharacterId: strin
         logger.error(`Specified characterId ${CharacterId} does not belong to user ${UserId}`);
         return false;
     }
-    
+    // TODO: Rewrites full JSON blobs, losing concurrent updates. Can consider versioning or DB transactions.
     let CurrentInventory = await GetDb().query.inventory.findFirst({where: eq(inventory.characterId, CharacterId)});
 
     if(CurrentInventory == undefined){
@@ -30,6 +30,7 @@ export async function RunInventoryTransaction(UserId: string, CharacterId: strin
         await GetDb().insert(inventory).values(CurrentInventory);
     }
 
+    // TODO: Large inventories may need normalized item rows instead of raw blob stringify
     let InstancedItems: any[] = JSON.parse(CurrentInventory!.instancedItems);
 
     let StackedItems: any[] = JSON.parse(CurrentInventory!.stackedItems);
@@ -38,19 +39,21 @@ export async function RunInventoryTransaction(UserId: string, CharacterId: strin
         InstancedItems.push(NewInstancedItem);
     }
 
+    const StackedItemsByCatalogId = new Map<string, any>();
+
+    for(let StackedItem of StackedItems){
+        StackedItemsByCatalogId.set(StackedItem.catalogId, StackedItem);
+    }
+
     for(let NewStackedItem of StackedItemsToAdd){
-        let found = false;
+        const ExistingStackedItem = StackedItemsByCatalogId.get(NewStackedItem.catalogId);
 
-        for(let CmpStackedItem of StackedItems){
-            if(CmpStackedItem.catalogId === NewStackedItem.catalogId){
-                CmpStackedItem.quantity = CmpStackedItem.quantity + NewStackedItem.quantity;
-                found = true;
-                break;
-            }
+        if(ExistingStackedItem != undefined){
+            ExistingStackedItem.quantity = ExistingStackedItem.quantity + NewStackedItem.quantity;
         }
-
-        if(!found){
+        else{
             StackedItems.push(NewStackedItem);
+            StackedItemsByCatalogId.set(NewStackedItem.catalogId, NewStackedItem);
         }
     }
 
