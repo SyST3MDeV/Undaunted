@@ -128,7 +128,9 @@ progressionRouter.post("/progression/:userId", HasUndauntedMetagameAuth, (req: a
 progressionRouter.get("/progression/:userId", HasUndauntedMetagameAuth, (req: any, res) => {
     const RequestorAccountId = req.AuthData.userId;
 
-    logger.info(`Progression fetched for userId ${RequestorAccountId}`);
+    // TODO: Impl proper progression. Right now this is the minimum to not block the Boreal crafting reqs
+
+    logger.info(`Progression fetched for userId ${RequestorAccountId} (stubbed)`);
     
     res.status(200);
     res.json({
@@ -136,26 +138,12 @@ progressionRouter.get("/progression/:userId", HasUndauntedMetagameAuth, (req: an
         message: "OK",
         payload: [
             {
-                "trackId": "ExperienceTrack_Player",
-                "rank": 1,
-                "confirmedRank": 1,
-                "premiumRank": 0,
-                "confirmedPremiumRank": 0,
-                "rankPoints": 0,
-                "totalPoints": 0,
-                "unclaimedRewards": [],
-                "bHasPremium": false
-            },
-            {
-                "trackId": "ExperienceTrack_Weapon_Sword",
-                "rank": 1,
-                "confirmedRank": 1,
-                "premiumRank": 0,
-                "confirmedPremiumRank": 0,
-                "rankPoints": 0,
-                "totalPoints": 0,
-                "unclaimedRewards": [],
-                "bHasPremium": false
+                phx_account_id: RequestorAccountId,
+                progression_id: "MasteryTrack_PlayerLevel",
+                progress: 9999,
+                confirmed_fremium_rank: 99,
+                confirmed_premium_rank: 99,
+                confirmed_date: new Date().toISOString(),
             }
         ]
     })

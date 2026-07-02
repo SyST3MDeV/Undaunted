@@ -448,6 +448,13 @@ void InitClientHooks() {
 
     MH_EnableHook((void*)(Globals::BaseAddress + 0x1528000));
 
+    //1469E00
+
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x1469E00), GetTrackProgress, &OrigGetTrackProgress);
+
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x1469E00));
+
+
     //MH_CreateHook((void*)(Globals::BaseAddress + 0x347E110), IsNetReadyHook, &OrigIsNetReady);
 
     //MH_EnableHook((void*)(Globals::BaseAddress + 0x347E110));
@@ -555,6 +562,10 @@ void InitServerHooks() {
     MH_CreateHook((void*)(Globals::BaseAddress + 0x378BDA0), NetModeHook, &OrigNetModeHook);
 
     MH_EnableHook((void*)(Globals::BaseAddress + 0x378BDA0));
+
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x1469E00), GetTrackProgress, &OrigGetTrackProgress);
+
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x1469E00));
 
     
 
