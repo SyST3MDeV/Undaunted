@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
 import { logger } from "../logger";
-import { GetInventoryForUserIdAndCharacterId, RunInventoryTransaction } from "../controllers/inventory";
+import { GetInventoryForUserIdAndCharacterId, RunInventoryTransaction, UpdateInstancedItem } from "../controllers/inventory";
 
 export const inventoryRouter = Router();
 
@@ -61,4 +61,18 @@ inventoryRouter.post("/inventory", HasUndauntedMetagameAuth, async (req: any, re
         res.send();
         return;
     }
+});
+
+inventoryRouter.post("/inventory/instanceditem", HasUndauntedMetagameAuth, async (req: any, res) => {
+    const CharacterId = req.body.characterId;
+    const UserId = req.AuthData.IsGameserver ? req.body.accountId : req.AuthData.UserId;
+    const InstanceId = req.body.instanceId;
+    const CatalogId = req.body.catalogId;
+    const ItemData = req.body.itemData;
+    const UpdateVersion = req.body.updateVersion;
+
+    const Item = await UpdateInstancedItem(CharacterId, UserId, InstanceId, CatalogId, ItemData, UpdateVersion);
+
+    res.status(200);
+    res.json(Item);
 });

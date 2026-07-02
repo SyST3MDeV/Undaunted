@@ -10,6 +10,31 @@ async function DoesInventoryBelongToUserId(UserId: string, CharacterId: string){
     return CharacterFromDb != undefined;
 }
 
+export async function UpdateInstancedItem(CharacterId: string, UserId: string, InstanceId: string, CatalogId: string, ItemData: string, UpdateVersion: number){
+    const Inventory = await GetInventoryForUserIdAndCharacterId(UserId, CharacterId);
+
+    if(Inventory == undefined){
+        return undefined;
+    }
+
+    const InstancedItems = Inventory!.instancedItems;
+
+    for(const Item of InstancedItems){
+        if(Item.catalogId === CatalogId && Item.instanceId == InstanceId){
+            Item.itemData = ItemData;
+            Item.updateVersion = UpdateVersion;
+
+            logger.info(`Updating Instanced Item ${CatalogId} for CharacterId ${CharacterId} and UserId ${UserId}`);
+
+            await GetDb().update(inventory).set({
+                instancedItems: JSON.stringify(InstancedItems)
+            }).where(eq(inventory.characterId, CharacterId));
+
+            return Item;
+        }
+    }
+}
+
 export async function RunInventoryTransaction(UserId: string, CharacterId: string, TransactionId: string, InstancedItemsToAdd: any[], StackedItemsToAdd: any[], InstancedItemsToRemove: any[], StackedItemsToRemove: any[], InstancedItemsToSave: any[]){
     if(!await DoesInventoryBelongToUserId(UserId, CharacterId)){
         logger.error(`Specified characterId ${CharacterId} does not belong to user ${UserId}`);
