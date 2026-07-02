@@ -48,10 +48,14 @@ inventoryRouter.post("/inventory", HasUndauntedMetagameAuth, async (req: any, re
     if(await RunInventoryTransaction(UserId, CharacterId, TransactionId, InstancedItemsToAdd, StackedItemsToAdd, InstancedItemsToRemove, StackedItemsToRemove, InstancedItemsToSave)){
         logger.info(`Ran transactionId ${TransactionId} for userId ${UserId} and characterId ${CharacterId}`);
 
-        const Inventory = await GetInventoryForUserIdAndCharacterId(UserId, CharacterId);
-
         res.status(200);
-        res.json(Inventory); // TODO: This response shape is kinda a guess, ground this in real RE
+        res.json({
+            createdInstancedItems: InstancedItemsToAdd,
+            updatedInstancedItems: InstancedItemsToAdd, // TODO: Actually properly diff & merge the JSON blobs
+            updatedStackedItems: StackedItemsToAdd,
+            removedInstancedItems: InstancedItemsToRemove
+        });
+
         return;
     }
     else{
