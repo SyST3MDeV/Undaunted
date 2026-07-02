@@ -6,6 +6,7 @@ import crypto from "node:crypto";
 import PlayerHuntTable from "../vendor/player_hunts_table.json";
 import MatchmakerHuntTable from "../vendor/matchmaker_hunts_table.json";
 import { kill } from "node:process";
+import { logger } from "../logger";
 
 const RAMSGATE_MAP_PATH = "/Game/Maps/ramsgate/ramsgate_01_persistent";
 const TRAINING_DOJO_MAP_PATH = "/Game/Maps/islands/dojo/training_dojo_persistent";
@@ -36,6 +37,8 @@ let TrainingDojoServer : Gameserver;
 
 const PORT_RANGE_BEGIN = Number(process.env.PORT_RANGE_BEGIN!);
 const PORT_RANGE_END = Number(process.env.PORT_RANGE_END!);
+const RAMSGATE_PORT = PORT_RANGE_END;
+const TRAINING_DOJO_PORT = PORT_RANGE_END - 1;
 const GAMESERVER_BINARY_PATH = process.env.GAMESERVER_BINARY_PATH!;
 const STANDARD_GAMESERVER_ARGS = ["-EpicPortal", "-server", "-nullrhi"];
 const METAGAME_API_KEY = process.env.METAGAME_API_KEY!;
@@ -56,9 +59,21 @@ function TransformExpectedPlayerArgs(ExpectedPlayers: ExpectedPlayer[]){
 }
 
 export async function CleanupServer(ServerToShutdown: Gameserver){
-    FreePorts.push(ServerToShutdown.port);
-
     Gameservers = Gameservers.filter(Server => Server !== ServerToShutdown);
+
+    if(ServerToShutdown.isRamsgate){
+        logger.warn("RAMSGATE HAS FALLEN! Restarting!");
+
+        await StartServer(RAMSGATE_MAP_PATH, undefined, undefined, undefined, true, false);
+    }
+    else if(ServerToShutdown.isTrainingDojo){
+        logger.warn("Training Dojo Crashed! Restarting!");
+
+        await StartServer(TRAINING_DOJO_MAP_PATH, undefined, undefined, undefined, false, true);
+    }
+    else{
+        FreePorts.push(ServerToShutdown.port);
+    }
 }
 
 let ServerLaunchQueue: Promise<void> = Promise.resolve();
@@ -70,7 +85,17 @@ async function StartServer(Map: string, Behemoth: string | undefined, Matchmaker
 
     await LaunchProc;
     
-    const Port = FreePorts.pop();
+    let Port;
+
+    if(IsRamsgate){
+        Port = RAMSGATE_PORT;
+    }
+    else if(IsTrainingDojo){
+        Port = TRAINING_DOJO_PORT;
+    }
+    else{
+        FreePorts.pop();
+    }
     const Id = crypto.randomUUID();
 
     if(Port == undefined){
@@ -175,7 +200,7 @@ export async function StartupGameserverWithHuntIdAndPlayers(HuntId: string, Expe
 }
 
 export async function Startup(){
-    for(let i = PORT_RANGE_BEGIN; i <= PORT_RANGE_END; i++){
+    for(let i = PORT_RANGE_BEGIN; i <= PORT_RANGE_END - 2; i++){
         FreePorts.push(i);
     }
 
