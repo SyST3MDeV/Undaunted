@@ -129,8 +129,6 @@ void EncounterableSetupHook() {
     return;
 }
 
-float RestartPlayerTimer = 0.0f;
-
 float TotalNoPlayersTime = 0.0f;
 
 bool EnableWatchdog = true;
@@ -140,15 +138,28 @@ void* OrigGameEngineTick = nullptr;
 void GameEngineTickHook(UGameEngine* GameEngine, float DeltaTime, char CanRender) {
     reinterpret_cast<void(*)(UGameEngine*, float, char)>(OrigGameEngineTick)(GameEngine, DeltaTime, CanRender);
 
-    if (RestartPlayerTimer > 0.0f) {
-        RestartPlayerTimer -= DeltaTime;
+    if (GetAsyncKeyState(VK_F7)) {
+        for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
+        {
+            SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
 
-        if (RestartPlayerTimer <= 0.0f) {
-            for (UNetConnection* Conn : Networking::NetDriver->ClientConnections) {
-                if (Conn->PlayerController && Conn->PlayerController->Pawn && Conn->PlayerController->Pawn->IsA(ABP_PlayerCharacter_C::StaticClass())) {
-                    Conn->PlayerController->ClientTravel(Globals::MyIpAndPort, ETravelType::TRAVEL_Absolute, true, FGuid());
+            if (!Obj)
+                continue;
+
+            if (Obj->IsA(SDK::AActor::StaticClass()))
+            {
+                AActor* Quest = (AActor*)Obj;
+                
+                if (Quest->Role != ENetRole::ROLE_Authority) {
+                    std::cout << (int)(uint8_t)Quest->Role << std::endl;
+
+                    std::cout << Quest->GetFullName() << std::endl;
                 }
             }
+        }
+
+        while (GetAsyncKeyState(VK_F7)) {
+
         }
     }
 
@@ -224,16 +235,8 @@ enum EFunctionCallspace : uint32_t
 void* OrigGetActorCallspace = nullptr;
 
 EFunctionCallspace GetActorCallspace(AActor* Actor, UFunction* Function, void* Stack) {
-    return (EFunctionCallspace)3;
-
-    if ((Function->FunctionFlags & (uint32_t)EFunctionFlags::NetMulticast) == (uint32_t)EFunctionFlags::NetMulticast) {
-        return (EFunctionCallspace)3;
-        //return EFunctionCallspace::Remote;
-    }
-
-    if ((Function->FunctionFlags & (uint32_t)EFunctionFlags::NetClient) == (uint32_t)EFunctionFlags::NetClient) {
-        return (EFunctionCallspace)1;
-        //return EFunctionCallspace::Remote;
+    if (Function->GetFullName().contains("Ammo")) {
+        std::cout << Actor->GetFullName() << " - " << Function->GetFullName() << std::endl;
     }
 
     return reinterpret_cast<EFunctionCallspace(*)(AActor*, UFunction*, void*)>(OrigGetActorCallspace)(Actor, Function, Stack);
@@ -340,6 +343,8 @@ bool ServerTryActivateAbilityInternal(UAbilitySystemComponent* Component, FGamep
 void* OrigMakeDoDamage = nullptr;
 
 bool MakeDoDamageHook(void* a1, void* a2, void* a3) {
+    *(uint8_t*)((uintptr_t)a1 + 0x57C) = 1;
+
     return true;
 }
 
@@ -348,9 +353,8 @@ bool MakeDoDamageHook(void* a1, void* a2, void* a3) {
 void* OrigProcessEventClient = nullptr;
 
 void ProcessEventClientHook(UObject* Object, UFunction* Function, void* Parms) {
+    /*
     if (GetAsyncKeyState(VK_F9)) {
-        std::ofstream file("quests.txt");
-
         for (int i = 0; i < SDK::UObject::GObjects->Num(); i++)
         {
             SDK::UObject* Obj = SDK::UObject::GObjects->GetByIndex(i);
@@ -358,12 +362,11 @@ void ProcessEventClientHook(UObject* Object, UFunction* Function, void* Parms) {
             if (!Obj)
                 continue;
 
-            if (Obj->IsA(SDK::UQuest::StaticClass()))
+            if (Obj->IsA(SDK::AActor::StaticClass()))
             {
-                UQuest* Quest = (UQuest*)Obj;
-                file << Quest->GetId().ToString() << std::endl;
-                file << Quest->GetTitle().ToString() << std::endl;
-                file << "===========================" << std::endl;
+                if (((AActor*)Obj)->Role == ENetRole::ROLE_Authority) {
+                    std::cout << Obj->GetFullName() << std::endl;
+                }
             }
         }
         
@@ -371,6 +374,7 @@ void ProcessEventClientHook(UObject* Object, UFunction* Function, void* Parms) {
 
         }
     }
+    */
 
     reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEventClient)(Object, Function, Parms);
 }
@@ -401,18 +405,7 @@ void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
         ServerTryActivateAbilityInternal((UAbilitySystemComponent*)Object, ActivateAbilityParams->AbilityToActivate, ActivateAbilityParams->InputPressed, ActivateAbilityParams->PredictionKey, nullptr);
     }
 
-    if (Function == OnAirshipUpdated || (!OnAirshipUpdated && Function->GetFullName().contains("OnAirshipUpdated"))) {
-        OnAirshipUpdated = Function;
-
-        NumTimesOnAirshipUpdated++;
-
-        if (NumTimesOnAirshipUpdated >= 2 && !DidDoTravelReset) {
-            DidDoTravelReset = true;
-
-            RestartPlayerTimer = 10.0f;
-        }
-    }
-
+    /*
     if (Function == OnPostMitDealtAnyDamage || (!OnPostMitDealtAnyDamage && Function->GetFullName().contains("OnPostMitDealtAnyDamage"))) {
         OnPostMitDealtAnyDamage = Function;
 
@@ -431,11 +424,19 @@ void ProcessEventHook(UObject* Object, UFunction* Function, void* Parms) {
 
                 if (PostMitFunc) {
                     //std::cout << "Proc'ing Post-mit callback on compat weapon!" << std::endl;
-                    reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEvent)(Weapon, PostMitFunc, Parms);
+
+                    void* NewLanternParms = malloc(sizeof(Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage));
+
+                    memcpy_s(NewLanternParms, sizeof(Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage), LanternParms, sizeof(Params::lantern_equipped_ab_C_OnPostMitDealtAnyDamage));
+
+                    reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEvent)(Weapon, PostMitFunc, NewLanternParms);
+
+                    free(NewLanternParms);
                 }
             }
         }
     }
+    */
 
     reinterpret_cast<void(*)(UObject*, UFunction*, void*)>(OrigProcessEvent)(Object, Function, Parms);
 }
@@ -454,6 +455,10 @@ void InitClientHooks() {
     //MH_CreateHook((void*)(Globals::BaseAddress + 0x1F61820), ProcessEventClientHook, &OrigProcessEventClient);
 
     //MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
+
+   // MH_CreateHook((void*)(Globals::BaseAddress + 0x3077710), GetActorCallspace, &OrigGetActorCallspace);
+
+   // MH_EnableHook((void*)(Globals::BaseAddress + 0x3077710));
 }
 
 void* OrigSprint = nullptr;
@@ -462,12 +467,10 @@ bool SprintHook(uintptr_t a1, uintptr_t a2) { //char __fastcall UArchonStaminaCo
     return true;
 }
 
-void* OrigWeaponHook = nullptr;
+void* OrigNetModeHook = nullptr;
 
-AActor* WeaponHook(UActorComponent* a1) { //char __fastcall UArchonStaminaComponent_TryConsumeStamina_Native(__int64 a1, __int64 a2, char a3, char a4)            
-    AActor* Ret = reinterpret_cast<AActor* (*)(UActorComponent * a1)>(OrigWeaponHook)(a1);
-
-    return Ret;
+int NetModeHook(void* a1) { //char __fastcall UArchonStaminaComponent_TryConsumeStamina_Native(__int64 a1, __int64 a2, char a3, char a4)   
+    return 1;
 }
 
 void InitServerHooks() {
@@ -541,17 +544,17 @@ void InitServerHooks() {
 
     MH_EnableHook((void*)(Globals::BaseAddress + 0x1F61820));
 
-    MH_CreateHook((void*)(Globals::BaseAddress + 0x11107D0), MakeDoDamageHook, &OrigMakeDoDamage);
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x35996D0), MakeDoDamageHook, &OrigMakeDoDamage);
 
-    MH_EnableHook((void*)(Globals::BaseAddress + 0x11107D0));
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x35996D0));
 
-    MH_CreateHook((void*)(Globals::BaseAddress + 0x137A800), SprintHook, &OrigSprint);
+    //MH_CreateHook((void*)(Globals::BaseAddress + 0x137A800), SprintHook, &OrigSprint);
 
-    MH_EnableHook((void*)(Globals::BaseAddress + 0x137A800));
+    //MH_EnableHook((void*)(Globals::BaseAddress + 0x137A800));
 
-    MH_CreateHook((void*)(Globals::BaseAddress + 0x1496590), WeaponHook, &OrigWeaponHook);
+    MH_CreateHook((void*)(Globals::BaseAddress + 0x378BDA0), NetModeHook, &OrigNetModeHook);
 
-    MH_EnableHook((void*)(Globals::BaseAddress + 0x1496590));
+    MH_EnableHook((void*)(Globals::BaseAddress + 0x378BDA0));
 
     
 
