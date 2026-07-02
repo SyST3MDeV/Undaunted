@@ -1,6 +1,6 @@
 {
   "name": "undaunteddeployserver",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "The deploy server for Undaunted",
   "license": "AGPL-3.0-only",
   "author": "gwog :3",
