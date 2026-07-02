@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { logger } from "../logger";
-import { GetUserIDForAPIKey, SignMetagameJWTForUid } from "../controllers/auth";
+import { GetUserIDForAPIKey, SignMetagameJWTForUid } from "../controllers/authuser";
 import { HasUndauntedMetagameAuth } from "../middleware/HasUndauntedMetagameAuth";
 import { GetUsernameForUserId } from "../controllers/login";
 

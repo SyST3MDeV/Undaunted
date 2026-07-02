@@ -1,6 +1,6 @@
 import { app } from "./app";
-import { DrainAndRegisterAPIKeys } from "./controllers/apikeys";
-import { DrainAndRegisterUserAPIKeys } from "./controllers/auth";
+import { DrainAndRegisterAPIKeys } from "./controllers/authgameserver";
+import { DrainAndRegisterUserAPIKeys } from "./controllers/authuser";
 import { GetDb } from "./db";
 import { logger } from "./logger";
 

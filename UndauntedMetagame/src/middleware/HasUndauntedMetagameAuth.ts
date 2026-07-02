@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { logger } from "../logger";
-import { ValidateMetagameJWTAndGetPayload } from "../controllers/auth";
-import { IsValidGameserverAPIKey } from "../controllers/apikeys";
+import { ValidateMetagameJWTAndGetPayload } from "../controllers/authuser";
+import { IsValidGameserverAPIKey } from "../controllers/authgameserver";
 import { JwtPayload } from "jsonwebtoken";
 
 export async function HasUndauntedMetagameAuth(req: Request, res: Response, next: NextFunction){
