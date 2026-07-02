@@ -43,6 +43,7 @@ const GAMESERVER_BINARY_PATH = process.env.GAMESERVER_BINARY_PATH!;
 const STANDARD_GAMESERVER_ARGS = ["-EpicPortal", "-server", "-nullrhi"];
 const METAGAME_API_KEY = process.env.METAGAME_API_KEY!;
 const MY_IP = process.env.MY_IP!;
+const SECONDS_TO_WAIT_BETWEEN_GAMESERVER_STARTUP = Number(process.env.SECONDS_TO_WAIT_BETWEEN_GAMESERVER_STARTUP!);
 
 function TransformExpectedPlayerArgs(ExpectedPlayers: ExpectedPlayer[]){
     let ToReturn = "";
@@ -81,7 +82,7 @@ let ServerLaunchQueue: Promise<void> = Promise.resolve();
 async function StartServer(Map: string, Behemoth: string | undefined, MatchmakerHuntId: string | undefined, ExpectedPlayers: ExpectedPlayer[] | undefined, IsRamsgate: boolean, IsTrainingDojo: boolean){
     const LaunchProc = ServerLaunchQueue;
 
-    ServerLaunchQueue = ServerLaunchQueue.catch(() => {}).then(async () => await setTimeout(10 * 1000));
+    ServerLaunchQueue = ServerLaunchQueue.catch(() => {}).then(async () => await setTimeout(SECONDS_TO_WAIT_BETWEEN_GAMESERVER_STARTUP * 1000));
 
     await LaunchProc;
     
