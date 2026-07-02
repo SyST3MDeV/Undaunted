@@ -36,6 +36,7 @@ loginRouter.get("/account/link/epic/:AccId", (req, res) => {
 loginRouter.post("/login", HasUndauntedMetagameAuth, async (req: any, res) => {
     if(req.AuthData.userId !== req.body.email){
         res.status(400);
+        res.send();
 
         logger.error(`UserID from Undaunted Auth ${req.AuthData.userId} didn't match UserID from token ${req.AuthData.email}`);
 
@@ -46,6 +47,7 @@ loginRouter.post("/login", HasUndauntedMetagameAuth, async (req: any, res) => {
 
     if(UserRecord == undefined){
         res.status(400);
+        res.send();
 
         logger.error(`UserID from Undaunted Auth ${req.AuthData.userId} had no database entry!`);
 

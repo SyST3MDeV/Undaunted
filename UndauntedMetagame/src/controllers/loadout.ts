@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { GetDb } from "../db";
 import { loadouts } from "../db/schema";
 import { logger } from "../logger";
@@ -132,18 +132,11 @@ export async function SetLoadoutDataForUserIdAndCharacterId(UserId: string, Char
     logger.info(`Attempting to update loadout data Index ${Index}`);
 
     if(Index === "0"){
-        // TODO: (?) We two-db-query this as sqlite (our current db driver) dosen't support advanced JSON merging + such. If/when we ever switch to postgres which supports JSONB, this should change
-
-        const LoadoutDbRow = await GetDb().query.loadouts.findFirst({where: and(eq(loadouts.characterId, CharacterId), eq(loadouts.userId, UserId))});
-
-        let ParsedLoadoutData = JSON.parse(LoadoutDbRow!.loadouts);
-
-        ParsedLoadoutData[0] = JSON.parse(Data); // Loadout index 0
-
-        const PackedLoadoutData = JSON.stringify(ParsedLoadoutData);
-
         await GetDb().update(loadouts).set({
-            loadouts: PackedLoadoutData
+            // TODO: For multi-loadouts, validate the loadout index first. SQLite json_set
+            // appends at array length and no-ops past it: https://www.sqlite.org/json1.html#jins
+            // sql`json_set(${loadouts.loadouts}, ${`$[${LoadoutIndex}]`}, json(${Data}))`
+            loadouts: sql`json_set(${loadouts.loadouts}, '$[0]', json(${Data}))`
         }).where(and(eq(loadouts.characterId, CharacterId), eq(loadouts.userId, UserId)));
 
         return true;
@@ -155,8 +148,7 @@ export async function SetLoadoutDataForUserIdAndCharacterId(UserId: string, Char
 
         return true;
     }
-    else{
-        logger.error(`Unsupported Loadout Data Index ${Index}`);
-        return false;
-    }
+
+    logger.error(`Unsupported Loadout Data Index ${Index}`);
+    return false;
 }

@@ -35,6 +35,7 @@ export async function HasUndauntedMetagameAuth(req: Request, res: Response, next
         }
         else{
             res.status(401);
+            res.send();
             logger.error(`Invalid Gameserver API Key Auth`);
             return;
         }
@@ -42,6 +43,7 @@ export async function HasUndauntedMetagameAuth(req: Request, res: Response, next
 
     if(AuthHeader == undefined || (!AuthHeader?.startsWith("bearer ") && !AuthHeader?.startsWith("Bearer ") && !AuthHeader?.startsWith("BEARER "))){
         res.status(401);
+        res.send();
 
         logger.error(`Unauthenticated ${req.method} to ${req.path} which needs Undaunted Metagame auth!`);
 
@@ -58,6 +60,7 @@ export async function HasUndauntedMetagameAuth(req: Request, res: Response, next
         next();
     } catch {
         res.status(401);
+        res.send();
 
         logger.warn("Request with bad Undaunted Metagame auth!");
 

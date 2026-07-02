@@ -36,4 +36,5 @@ app.use((req, res) => {
     logger.warn(`Unstubbed route ${req.method} ${req.path}`)
 
     res.status(404);
+    res.send();
 });
