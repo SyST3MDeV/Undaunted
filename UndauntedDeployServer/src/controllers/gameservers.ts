@@ -94,8 +94,9 @@ async function StartServer(Map: string, Behemoth: string | undefined, Matchmaker
         Port = TRAINING_DOJO_PORT;
     }
     else{
-        FreePorts.pop();
+        Port = FreePorts.pop();
     }
+
     const Id = crypto.randomUUID();
 
     if(Port == undefined){
