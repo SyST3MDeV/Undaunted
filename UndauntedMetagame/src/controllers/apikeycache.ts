@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import { logger } from "../logger";
 
-type KeyRow = { keyHash?: string | null }
+type KeyRow = { keyHash: string | null }
 type APIKeyLookup<T> = {
     find: (apiKey: string) => Promise<T | undefined>,
     has: (apiKey: string) => Promise<boolean>,
@@ -12,11 +12,15 @@ export function HashAPIKey(apiKeyToHash: string){
     return crypto.createHash("sha256").update(apiKeyToHash, "utf8").digest("hex");
 }
 
-function normalizeHash(cacheName: string, keyHash: string){
-    const hash = Buffer.from(keyHash, "hex");
+function normalizeHash(cacheName: string, keyHash: string | null){
+    if(keyHash === null){
+        return undefined;
+    }
 
-    if(hash.length !== 32){
-        logger.warn(`Ignoring invalid ${cacheName} API Key hash with ${hash.length} bytes`);
+    const hashBytes = Buffer.from(keyHash, "hex").length;
+
+    if(hashBytes !== 32){
+        logger.warn(`Ignoring invalid ${cacheName} API Key hash with ${hashBytes} bytes`);
         return undefined;
     }
 
@@ -49,19 +53,12 @@ export function CreateAPIKeyCache<TRow extends KeyRow, TValue = boolean>(
     loadRows: () => Promise<TRow[]>,
     select: (row: TRow) => TValue = () => true as TValue
 ): APIKeyLookup<TValue> {
-    const keys = cached(async () => {
-        const fresh = new Map<string, TValue>();
-
-        for(const row of await loadRows()){
-            const hash = row.keyHash == null ? undefined : normalizeHash(cacheName, row.keyHash);
-
-            if(hash !== undefined){
-                fresh.set(hash, select(row));
-            }
-        }
-
-        return fresh;
-    });
+    const keys = cached(async () => new Map(
+        (await loadRows()).flatMap((row): [string, TValue][] => {
+            const hash = normalizeHash(cacheName, row.keyHash);
+            return hash === undefined ? [] : [[hash, select(row)]];
+        })
+    ));
 
     return {
         async find(apiKey: string){
