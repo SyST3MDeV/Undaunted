@@ -172,6 +172,22 @@ progressionRouter.get("/progression/objectives/:userId", HasUndauntedMetagameAut
                     confirmed_fremium_rank: 99999999,
                     confirmed_premium_rank: 99999999,
                     confirmed_date: new Date().toISOString(),
+                },
+                {
+                    phx_account_id: RequestorAccountId,
+                    progression_id: "MasteryTrack_Weapon_Warpike",
+                    progress: 99999999,
+                    confirmed_fremium_rank: 99999999,
+                    confirmed_premium_rank: 99999999,
+                    confirmed_date: new Date().toISOString(),
+                },
+                {
+                    phx_account_id: RequestorAccountId,
+                    progression_id: "MasteryTrack_Weapon_Spear",
+                    progress: 99999999,
+                    confirmed_fremium_rank: 99999999,
+                    confirmed_premium_rank: 99999999,
+                    confirmed_date: new Date().toISOString(),
                 }
             ]
         }
@@ -332,6 +348,14 @@ progressionRouter.get("/progression/:userId", HasUndauntedMetagameAuth, (req: an
             {
                 phx_account_id: RequestorAccountId,
                 progression_id: "MasteryTrack_Weapon_Sword",
+                progress: 99999999,
+                confirmed_fremium_rank: 99999999,
+                confirmed_premium_rank: 99999999,
+                confirmed_date: new Date().toISOString(),
+            },
+            {
+                phx_account_id: RequestorAccountId,
+                progression_id: "MasteryTrack_Weapon_Warpike",
                 progress: 99999999,
                 confirmed_fremium_rank: 99999999,
                 confirmed_premium_rank: 99999999,

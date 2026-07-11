@@ -1,12 +1,14 @@
-import { randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { GetDb } from "../db";
 import { GetUserIDForAPIKey, HashUserAPIKey } from "./auth";
-import { GetUsernameForUserId } from "./login";
 import { invitecodes, userapikeys, users } from "../db/schema";
-import { eq } from "drizzle-orm";
+import { and, eq, gt, or, sql } from "drizzle-orm";
 
 const AUTH_MODE = process.env.AUTH_MODE;
 const NODE_ENV = process.env.NODE_ENV;
+
+export const VALID_REGISTRATION_MODES = ["NONE", "INVITECODE", "OPEN"] as const;
+export type RegistrationMode = typeof VALID_REGISTRATION_MODES[number];
 
 export let REGISTRATION_MODE = process.env.REGISTRATION_MODE!; // In memory only for now, might wanna move to DB at some point
 
@@ -36,8 +38,17 @@ export type PlayerData = {
 let PlayerActivityMap: Map<string, PlayerActivity> = new Map<string, PlayerActivity>();
 let PlayerLocationMap: Map<string, PlayerLocation> = new Map<string, PlayerLocation>();
 
-export function SetRegistrationMode(RegistrationMode: string){
-    REGISTRATION_MODE = RegistrationMode;
+export function IsRegistrationMode(Value: unknown): Value is RegistrationMode {
+    return typeof Value === "string" && VALID_REGISTRATION_MODES.includes(Value as RegistrationMode);
+}
+
+export function SetRegistrationMode(Value: unknown){
+    if(!IsRegistrationMode(Value)){
+        return false;
+    }
+
+    REGISTRATION_MODE = Value;
+    return true;
 }
 
 export async function GetInviteCodes(){
@@ -47,20 +58,29 @@ export async function GetInviteCodes(){
 export async function GetAllUserIds(){
     const UsersFromDb = await GetDb().query.users.findMany();
 
-    return UsersFromDb.map((user) => {
-        Username: user.name;
-        UserId: user.userId;
-    });
+    return UsersFromDb.map((user) => ({
+        Username: user.name,
+        UserId: user.userId
+    }));
 }
 
-export async function RegisterInviteCode(NewInviteCode: string, Uses: number, InfiniteUses: boolean){
-    if(NewInviteCode.trim().length > 0){
-        await GetDb().insert(invitecodes).values({
-            inviteCode: NewInviteCode,
-            usesRemaining: Uses,
-            infiniteUses: InfiniteUses
-        });
+export async function RegisterInviteCode(NewInviteCode: unknown, Uses: unknown, InfiniteUses: boolean){
+    if(typeof NewInviteCode !== "string" || NewInviteCode.trim().length === 0){
+        return false;
     }
+
+    const ParsedUses = Number(Uses);
+    if(!InfiniteUses && (!Number.isInteger(ParsedUses) || ParsedUses < 1)){
+        return false;
+    }
+
+    await GetDb().insert(invitecodes).values({
+        inviteCode: NewInviteCode.trim(),
+        usesRemaining: InfiniteUses ? 0 : ParsedUses,
+        infiniteUses: InfiniteUses
+    });
+
+    return true;
 }
 
 export async function DeleteInviteCode(InviteCodeToDelete: string){
@@ -95,25 +115,30 @@ export async function RegisterUser(Username: string){
     return UUK;
 }
 
-export async function ValidateAndConsumeInviteCode(InviteCode: string){ // TODO: Might have some TOCTOU, review when not sleepy
-    const InviteCodes: any[] = await GetDb().query.invitecodes.findMany();
-
-    for(const CmpInviteCode of InviteCodes){
-        if(CmpInviteCode.inviteCode.length === InviteCode.length && timingSafeEqual(Buffer.from(CmpInviteCode.inviteCode), Buffer.from(InviteCode))){
-            if(CmpInviteCode.usesRemaining > 0 || CmpInviteCode.infiniteUses){
-                if(!CmpInviteCode.infiniteUses){
-                    await GetDb().update(invitecodes).set({usesRemaining: CmpInviteCode.usesRemaining - 1}).where(eq(invitecodes.inviteCode, InviteCode));
-                }
-
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+export async function ValidateAndConsumeInviteCode(InviteCode: unknown){
+    if(typeof InviteCode !== "string" || InviteCode.length === 0){
+        return false;
     }
 
-    return false;
+    const NormalizedInviteCode = InviteCode.trim();
+    if(NormalizedInviteCode.length === 0){
+        return false;
+    }
+
+    // Avoid TOCTOU by decrement in DB statement
+    const UsableInviteCode = await GetDb().update(invitecodes).set({
+        usesRemaining: sql`case when ${invitecodes.infiniteUses} then ${invitecodes.usesRemaining} else ${invitecodes.usesRemaining} - 1 end`
+    }).where(and(
+        eq(invitecodes.inviteCode, NormalizedInviteCode),
+        or(
+            eq(invitecodes.infiniteUses, true),
+            gt(invitecodes.usesRemaining, 0)
+        )
+    )).returning({
+        inviteCode: invitecodes.inviteCode
+    });
+
+    return UsableInviteCode.length === 1;
 }
 
 export async function UpdatePlayerActivity(UserId: string, Map: string){
@@ -134,7 +159,7 @@ export async function GetRecentPlayerData(){
     let PlayerDataToReturn: PlayerData[] = [];
 
     PlayerActivityMap.forEach((value, key, map) => {
-        if(Date.now() - value.LastUpdatedTime <= 90 * 60){ // If entry is < 90s old
+        if(Date.now() - value.LastUpdatedTime <= 90 * 1000){ // If entry is < 90s old
             const PlayerLocationData: PlayerLocation | undefined = PlayerLocationMap.get(key);
 
             PlayerDataToReturn.push({
@@ -165,12 +190,14 @@ export async function GetUserInfoForApiKey(UserApiKey: string): Promise<UserInfo
         return undefined;
     }
 
-    const Username = await GetUsernameForUserId(UserId);
-    const IsAdmin = await IsUserIdAdmin(UserId);
+    const UserFromDb = await GetDb().query.users.findFirst({where: eq(users.userId, UserId)});
+    if(UserFromDb == undefined){
+        return undefined;
+    }
 
     return {
         UserId: UserId,
-        Username: Username,
-        IsAdmin: IsAdmin
+        Username: UserFromDb.name,
+        IsAdmin: UserFromDb.isAdmin
     };
 }

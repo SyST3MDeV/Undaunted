@@ -550,7 +550,10 @@
           },
           {
             "entitlements": [
-              { "duration": 0, "entitlement": "ent_hp09b_elite_50" }
+              {
+                "duration": 0,
+                "entitlement": "ent_hp09b_elite_50"
+              }
             ],
             "instanced_items": [],
             "rank_id": 50,
@@ -681,7 +684,10 @@
           },
           {
             "entitlements": [
-              { "duration": 0, "entitlement": "ent_cchd_hp09b_commando_00" }
+              {
+                "duration": 0,
+                "entitlement": "ent_cchd_hp09b_commando_00"
+              }
             ],
             "rank_id": 6,
             "stacked_items": []
@@ -714,7 +720,10 @@
           },
           {
             "entitlements": [
-              { "duration": 0, "entitlement": "ent_ccfp_hp09b_commando_00" }
+              {
+                "duration": 0,
+                "entitlement": "ent_ccfp_hp09b_commando_00"
+              }
             ],
             "rank_id": 9,
             "stacked_items": []
@@ -956,7 +965,10 @@
           },
           {
             "entitlements": [
-              { "duration": 0, "entitlement": "ent_ccfp_hp09b_commando_01" }
+              {
+                "duration": 0,
+                "entitlement": "ent_ccfp_hp09b_commando_01"
+              }
             ],
             "instanced_items": [],
             "rank_id": 29,
@@ -1213,7 +1225,10 @@
           },
           {
             "entitlements": [
-              { "duration": 0, "entitlement": "ent_hp09b_elite_50" }
+              {
+                "duration": 0,
+                "entitlement": "ent_hp09b_elite_50"
+              }
             ],
             "rank_id": 50,
             "stacked_items": [
@@ -1268,493 +1283,5205 @@
         "progression_id": "season09b",
         "progression_multiplier": 1,
         "requirements": [
-          { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 21,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 22,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 23,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 24,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 25,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 26,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 27,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 28,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 29,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 30,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 31,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 32,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 33,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 34,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 35,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 36,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 37,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 38,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 39,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 40,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 41,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 42,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 43,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 44,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 45,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 46,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 47,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 48,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 49,
+            "xp_required": 100
+          },
+          {
+            "rank_id": 50,
+            "xp_required": 100
+          }
         ],
         "start_date": "2020-04-30T17:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_PlayerLevel",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_Behemoth",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 21,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 22,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 23,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 24,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 25,
+            "xp_required": 9
+          },
+          {
+            "rank_id": 26,
+            "xp_required": 9
+          },
+          {
+            "rank_id": 27,
+            "xp_required": 9
+          },
+          {
+            "rank_id": 28,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 29,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 30,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 31,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 32,
+            "xp_required": 11
+          },
+          {
+            "rank_id": 33,
+            "xp_required": 11
+          },
+          {
+            "rank_id": 34,
+            "xp_required": 11
+          },
+          {
+            "rank_id": 35,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 36,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 37,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 38,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 39,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 40,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 41,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 42,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 43,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 44,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 45,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 46,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 47,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 48,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 49,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 50,
+            "xp_required": 12
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "7E7DCF9B49F18772156E93A4AF737535",
+              "source_string": "Max Stamina Tonic +1",
+              "localized_string": "Max Stamina Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "FAB6D84043BCA14CE9CF4B93B0081DB9",
+              "source_string": "Max Bulwark Potion +1",
+              "localized_string": "Max Bulwark Potion +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "66368A284C4209C67A8CC7AB2D4266CC",
+              "source_string": "Double Behemoth Break Parts +5% Chance",
+              "localized_string": "Double Behemoth Break Parts +5% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_breakpart_chance_buff.mastery_bonus_breakpart_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "D1A272E249CA2DC116A84EB85F42C6C7",
+              "source_string": "Max Frenzy Tonic +1",
+              "localized_string": "Max Frenzy Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "65FEF75D44630E147A8FA08AF10EFA1F",
+              "source_string": "Max Ironhide Pylon +1",
+              "localized_string": "Max Ironhide Pylon +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "4B12AAEA452C8A1F0E64D6AD1E1DF21A",
+              "source_string": "Double Behemoth Break Parts +10% Chance",
+              "localized_string": "Double Behemoth Break Parts +10% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_breakpart_chance_buff.mastery_bonus_breakpart_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 21,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 22,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "881E7E384F5C5B060792D495C5F72229",
+              "source_string": "Max Blitz Tonic +1",
+              "localized_string": "Max Blitz Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 23,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "36496FCC4B6AD916F800E994EF59C849",
+              "source_string": "Max Assault Tonic +1",
+              "localized_string": "Max Assault Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 24,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "687B80CF43F8F43DE538B39F84184726",
+              "source_string": "Max Insight Tonic +1",
+              "localized_string": "Max Insight Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 25,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "A4E8EAEE4EFA403AFB24158EDA74878F",
+              "source_string": "Max Armor Level +11",
+              "localized_string": "Max Armor Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 26,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "2010C1EE401DC8DABE7019A5B487F1B4",
+              "source_string": "Max Aetherdrive Tonic +1",
+              "localized_string": "Max Aetherdrive Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 27,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "926DD0194C5AB8089202CDB49E2D1796",
+              "source_string": "Max Airstrike Beacon +1",
+              "localized_string": "Max Airstrike Beacon +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 28,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "281701814A41BE99BAB691BFEC47195A",
+              "source_string": "Max Armor Level +12",
+              "localized_string": "Max Armor Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 29,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "1DBFB6A54FB60DD55EEA4B85CDA0FA0E",
+              "source_string": "Bonus Fire Resist 10%",
+              "localized_string": "Bonus Fire Resist 10%"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_fire_resistance_buff.mastery_fire_resistance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 30,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "3ADA49D34273A169BE7E88BD39DF15D0",
+              "source_string": "Max Inspiring Pylon +1",
+              "localized_string": "Max Inspiring Pylon +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 31,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "DC0F295548C5F0CA8102189B49F7E4DD",
+              "source_string": "Double Behemoth Break Parts +15% Chance",
+              "localized_string": "Double Behemoth Break Parts +15% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_breakpart_chance_buff.mastery_bonus_breakpart_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 32,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "F29A1C1747E7DBB873B04298907AF669",
+              "source_string": "Max Lifedrain Tonic +1",
+              "localized_string": "Max Lifedrain Tonic +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 33,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "66AE3D03411D0DA5754F73BE2937DF29",
+              "source_string": "Bonus Ice Resist 10%",
+              "localized_string": "Bonus Ice Resist 10%"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_frost_resistance_buff.mastery_frost_resistance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 34,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 35,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "0395CB1E4FBB2C0228B33D91CF9CA9E1",
+              "source_string": "Maximum Armor Level +13",
+              "localized_string": "Maximum Armor Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 36,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "2876F11D452D462712F2E883F41D85FD",
+              "source_string": "Max Lifespring Pylon +1",
+              "localized_string": "Max Lifespring Pylon +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 37,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "F093EE2245F56018DBCA24A349EED753",
+              "source_string": "Bonus Behemoth Break Parts +20% Chance",
+              "localized_string": "Bonus Behemoth Break Parts +20% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_breakpart_chance_buff.mastery_bonus_breakpart_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 38,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "AD30A35A4FF9E7C66E86C69CC51021ED",
+              "source_string": "Bonus Shock Resist 10%",
+              "localized_string": "Bonus Shock Resist 10%"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_shock_resistance_buff.mastery_shock_resistance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 39,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "8BC3A78A414DC00B8727B485E6145AAC",
+              "source_string": "Max Barrage Grenade +1",
+              "localized_string": "Max Barrage Grenade +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 40,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "8746D0A742D5769D7C98479887834AA3",
+              "source_string": "Max Armor Level +14",
+              "localized_string": "Max Armor Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 41,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "F53AEBE84CD9DCB1E680528D9D069B8A",
+              "source_string": "Max Coldsnap Grenade +1",
+              "localized_string": "Max Coldsnap Grenade +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 42,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 43,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "15FA1F7F4D81D45DF9A0B28EEF793977",
+              "source_string": "Bonus Shadow Resist 10%",
+              "localized_string": "Bonus Shadow Resist 10%"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_umbral_resistance_buff.mastery_umbral_resistance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 44,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Bosun_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 45,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "E0F4B4BD437F000F101597AD44B36FA5",
+              "source_string": "Max Inferno Grenade +1",
+              "localized_string": "Max Inferno Grenade +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 46,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "29BF6A184F6A788DDCFD7898F53C985E",
+              "source_string": "Max Armor Level +15",
+              "localized_string": "Max Armor Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 47,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "0B06F60C432861616F463BB256F75AEC",
+              "source_string": "Bonus Radiant Resist 10%",
+              "localized_string": "Bonus Radiant Resist 10%"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_radiant_resistance_buff.mastery_radiant_resistance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 48,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "48E1CEA0449E952D335827A95AFA2BE7",
+              "source_string": "Max Transfusion Grenade +1",
+              "localized_string": "Max Transfusion Grenade +1"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 49,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "FCFA595C4063743D182443B4D827AAF7",
+              "source_string": "Double Behemoth Break Parts +25% Chance",
+              "localized_string": "Double Behemoth Break Parts +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_breakpart_chance_buff.mastery_bonus_breakpart_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 50,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Armoursmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 5
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_Weapon_Strikers",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_PlayerLevel",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 1
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 9
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 9
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 9
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 11
+          },
+          {
+            "rank_id": 21,
+            "xp_required": 12
+          },
+          {
+            "rank_id": 22,
+            "xp_required": 13
+          },
+          {
+            "rank_id": 23,
+            "xp_required": 14
+          },
+          {
+            "rank_id": 24,
+            "xp_required": 15
+          },
+          {
+            "rank_id": 25,
+            "xp_required": 16
+          },
+          {
+            "rank_id": 26,
+            "xp_required": 17
+          },
+          {
+            "rank_id": 27,
+            "xp_required": 18
+          },
+          {
+            "rank_id": 28,
+            "xp_required": 19
+          },
+          {
+            "rank_id": 29,
+            "xp_required": 20
+          },
+          {
+            "rank_id": 30,
+            "xp_required": 21
+          },
+          {
+            "rank_id": 31,
+            "xp_required": 22
+          },
+          {
+            "rank_id": 32,
+            "xp_required": 24
+          },
+          {
+            "rank_id": 33,
+            "xp_required": 26
+          },
+          {
+            "rank_id": 34,
+            "xp_required": 28
+          },
+          {
+            "rank_id": 35,
+            "xp_required": 30
+          },
+          {
+            "rank_id": 36,
+            "xp_required": 32
+          },
+          {
+            "rank_id": 37,
+            "xp_required": 34
+          },
+          {
+            "rank_id": 38,
+            "xp_required": 36
+          },
+          {
+            "rank_id": 39,
+            "xp_required": 38
+          },
+          {
+            "rank_id": 40,
+            "xp_required": 40
+          },
+          {
+            "rank_id": 41,
+            "xp_required": 42
+          },
+          {
+            "rank_id": 42,
+            "xp_required": 44
+          },
+          {
+            "rank_id": 43,
+            "xp_required": 46
+          },
+          {
+            "rank_id": 44,
+            "xp_required": 48
+          },
+          {
+            "rank_id": 45,
+            "xp_required": 50
+          },
+          {
+            "rank_id": 46,
+            "xp_required": 52
+          },
+          {
+            "rank_id": 47,
+            "xp_required": 54
+          },
+          {
+            "rank_id": 48,
+            "xp_required": 56
+          },
+          {
+            "rank_id": 49,
+            "xp_required": 58
+          },
+          {
+            "rank_id": 50,
+            "xp_required": 60
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "AA1B48AC44439C4A512806B220A1C45E",
+              "source_string": "Unlock consumable slot 2",
+              "localized_string": "Unlock consumable slot 2"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "17BB1EE442CE52536A7A70BBB4680DD0",
+              "source_string": "Unlock consumable slot 3",
+              "localized_string": "Unlock consumable slot 3"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 0
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "121C884D4E20FE26917CEA8B131223AB",
+              "source_string": "Unlock consumable slot 4",
+              "localized_string": "Unlock consumable slot 4"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 0
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_SLAYER_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 0
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_SLAYER_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 21,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "2117E6154D4D05700E8535A35BE5E1EF",
+              "source_string": "Max Health +20",
+              "localized_string": "Max Health +20"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_health_buff.mastery_max_health_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 22,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "124587244B72AEAF156E45AD0051F01A",
+              "source_string": "Max Stamina +2",
+              "localized_string": "Max Stamina +2"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_stamina_buff.mastery_max_stamina_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 23,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "153F2E0943818520A4533DB9836ACB09",
+              "source_string": "Double Behemoth Kill Loot +10% Chance",
+              "localized_string": "Double Behemoth Kill Loot +10% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_eoh_loot_chance_buff.mastery_bonus_eoh_loot_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 24,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 25,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "57B4E2F047112161C99A4E8051A91802",
+              "source_string": "Gather Bonus Skybloom +25% Chance",
+              "localized_string": "Gather Bonus Skybloom +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_skybloom_buff.mastery_bonus_gatherable_chance_skybloom_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 26,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "7459ACC448891D7CE3BE9DA1D459A83B",
+              "source_string": "Max Health +40",
+              "localized_string": "Max Health +40"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_health_buff.mastery_max_health_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 27,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "1176F5584D9D35DBBA76B28A7B035C22",
+              "source_string": "Max Stamina +4",
+              "localized_string": "Max Stamina +4"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_stamina_buff.mastery_max_stamina_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 28,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "904EFA564CDEF524B3CBE1B833CEF504",
+              "source_string": "Gather Bonus Ironthistle +25% Chance",
+              "localized_string": "Gather Bonus Ironthistle +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_ironthistle_buff.mastery_bonus_gatherable_chance_ironthistle_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 29,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "A50CAB5D4360250CC02E53A570A36E56",
+              "source_string": "Gather Bonus Dashleaf +25% Chance",
+              "localized_string": "Gather Bonus Dashleaf +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_dashleaf_buff.mastery_bonus_gatherable_chance_dashleaf_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 30,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_SLAYER_03",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 31,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "B0A4FD1D43EFA67AAA8B9FB401B5EB50",
+              "source_string": "Max Health +60",
+              "localized_string": "Max Health +60"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_health_buff.mastery_max_health_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 32,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "20BEEFC64EBC7D73D0D31DAAF8D7ED43",
+              "source_string": "Max Stamina +6",
+              "localized_string": "Max Stamina +6"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_stamina_buff.mastery_max_stamina_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 33,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "6AF1AA394C17306A5926028FAE3051C8",
+              "source_string": "Double Behemoth Kill Loot +20% Chance",
+              "localized_string": "Double Behemoth Kill Loot +20% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_eoh_loot_chance_buff.mastery_bonus_eoh_loot_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 34,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "92331DE2486A5499344FE7BA4EDB6288",
+              "source_string": "+1 Loadout Slot",
+              "localized_string": "+1 Loadout Slot"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 35,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "535AB8B645E1B0B8DD2D598825F148E4",
+              "source_string": "Gather Bonus Slayer's Boon +25% Chance",
+              "localized_string": "Gather Bonus Slayer's Boon +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_slayersboon_buff.mastery_bonus_gatherable_chance_slayersboon_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 36,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "DA31449C432A635FFE47B29EFC8F398A",
+              "source_string": "Max Health +80",
+              "localized_string": "Max Health +80"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_health_buff.mastery_max_health_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 37,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "B4C0DBF34256F0F7B038BFAA459BE95C",
+              "source_string": "Max Stamina +8",
+              "localized_string": "Max Stamina +8"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_stamina_buff.mastery_max_stamina_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 38,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "B7ED7E414C083AF15F292BB6F00C8137",
+              "source_string": "+1 Loadout Slot",
+              "localized_string": "+1 Loadout Slot"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 39,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_SLAYER_04",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 40,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "8E9F5376450C40E1338C83B822842367",
+              "source_string": "Gather Bonus Wrathwort +25% Chance",
+              "localized_string": "Gather Bonus Wrathwort +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_wrathwort_buff.mastery_bonus_gatherable_chance_wrathwort_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 41,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "487AEFBD4A71C05125855E8CD961516F",
+              "source_string": "Max Health +100",
+              "localized_string": "Max Health +100"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_health_buff.mastery_max_health_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 42,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "53C36C2E45BE8006294EA0A1DA2E443C",
+              "source_string": "Max Stamina +10",
+              "localized_string": "Max Stamina +10"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_max_stamina_buff.mastery_max_stamina_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 43,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "A288FF7441289FF3C8E5F1A422C2101E",
+              "source_string": "Double Behemoth Kill Loot +30% Chance",
+              "localized_string": "Double Behemoth Kill Loot +30% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_eoh_loot_chance_buff.mastery_bonus_eoh_loot_chance_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 44,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "4909C6CE4049D0ABFA4013A2DFA7E5CB",
+              "source_string": "Gather Bonus Heart Lily +25% Chance",
+              "localized_string": "Gather Bonus Heart Lily +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_heartlily_buff.mastery_bonus_gatherable_chance_heartlily_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 45,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "F3E5360345D1CD416FF9BF8E0F7C16B3",
+              "source_string": "+1 Loadout Slot",
+              "localized_string": "+1 Loadout Slot"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 46,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "1AE7D8E54DD887654432FA8A7C27030F",
+              "source_string": "Gather Bonus Omnistone +25% Chance",
+              "localized_string": "Gather Bonus Omnistone +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_omnistone_buff.mastery_bonus_gatherable_chance_omnistone_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 47,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 48,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "DEF6BD3B4B056E6DDF0196AB1745E88A",
+              "source_string": "Gather Bonus Phoenix Opal +25% Chance",
+              "localized_string": "Gather Bonus Phoenix Opal +25% Chance"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": [
+              {
+                "asset_path_name": "/Game/Gameplay/Mastery/Buffs/mastery_bonus_gatherable_chance_phoenixopal_buff.mastery_bonus_gatherable_chance_phoenixopal_buff_C",
+                "sub_path_string": ""
+              }
+            ]
+          },
+          {
+            "rank_id": 49,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 50,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_SLAYER_05",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_Weapon_Hammer",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_Weapon_Axe",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_GA_PASSIVE_CHARGE_AOE"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_GA_SPECIAL_SKILLSHOT"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_GAXE_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_GA_PASSIVE_CHARGING_MOVESPEED"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "7D0148404233F196F2556689DBE29BF6",
+              "source_string": "Max Axe Level +11",
+              "localized_string": "Max Axe Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "EDABDAAF48A8CCC7CFD5238456A1D8FF",
+              "source_string": "Max Axe Level +12",
+              "localized_string": "Max Axe Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "14AF611042F53E8283FA6094C074FD10",
+              "source_string": "Max Axe Level +13",
+              "localized_string": "Max Axe Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_GA_PASSIVE_METER"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "8D803D5B44587F4D8CCC5F959B3A855E",
+              "source_string": "Max Axe Level +14",
+              "localized_string": "Max Axe Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "195A5D0F4642C126405AE294A5C5DE5E",
+              "source_string": "Max Axe Level +15",
+              "localized_string": "Max Axe Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_GAXE_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_Weapon_Repeaters",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_Weapon_ChainBlades",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_CB_PASSIVE_DASH_AGGRESSION"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_CB_SPECIAL_RIFTSTRIKE"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_CBLADE_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_CB_PASSIVE_BLENDER"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "B8EE06CB44D58210C464C7A5C447B96E",
+              "source_string": "Max Chainblade Level +11",
+              "localized_string": "Max Chainblade Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "648421CB4DE17C7FEF4BDE9A6A04F469",
+              "source_string": "Max Chainblade Level +12",
+              "localized_string": "Max Chainblade Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "BD445F8C451BA14C5F9577AA808BA74A",
+              "source_string": "Max Chainblade Level +13",
+              "localized_string": "Max Chainblade Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_CB_PASSIVE_SWINGING_CRIT"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "E8FC8BBA450DB0F57A735DB547348513",
+              "source_string": "Max Chainblade Level +14",
+              "localized_string": "Max Chainblade Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "C69BA98A4726F292E792B58CD070F420",
+              "source_string": "Max Chainblade Level +15",
+              "localized_string": "Max Chainblade Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_CBLADE_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_Weapon_ChainBlades",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_Weapon_Hammer",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_IH_PASSIVE_STAGGER_PASSTHROUGH"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_IH_SPECIAL_ISLANDCRACKER"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_IHAMMER_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_IH_PASSIVE_JUMP_ATTACK_BUFF"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "53FF919D44E48B702CE5FDBF33887A1A",
+              "source_string": "Max Hammer Level +11",
+              "localized_string": "Max Hammer Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "133E232246F2CB94DE2070BA3B74AB88",
+              "source_string": "Max Hammer Level +12",
+              "localized_string": "Max Hammer Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "534DF35844AA7AAD74A3008270A71133",
+              "source_string": "Max Hammer Level +13",
+              "localized_string": "Max Hammer Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_IH_PASSIVE_METER"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "F913367D4422CFCF0ECB7B8BB7B76061",
+              "source_string": "Max Hammer Level +14",
+              "localized_string": "Max Hammer Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "E8432951471DEE7147600FB62BE6FB2F",
+              "source_string": "Max Hammer Level +15",
+              "localized_string": "Max Hammer Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_IHAMMER_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_Weapon_Axe",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_Weapon_Repeaters",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_DP_PASSIVE_DOUBLE_SHOT_DAMAGE"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_DP_RECEIVER_PIERCING"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_DP_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_DP_PASSIVE_LONG_RANGE"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "BE8C5C5A440F55A0B4A6229FB1538778",
+              "source_string": "Max Repeater Level +11",
+              "localized_string": "Max Repeater Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "EA078223460CC75410816B9E20BDB8F7",
+              "source_string": "Max Repeater Level +12",
+              "localized_string": "Max Repeater Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "116819D945CE7E9550F4EFB882450647",
+              "source_string": "Max Repeater Level +13",
+              "localized_string": "Max Repeater Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_DP_PASSIVE_LOW_AMMO_CRIT"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "BD77276E4F3F81594AB666951CEA040D",
+              "source_string": "Max Repeater Level +14",
+              "localized_string": "Max Repeater Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "030C55D545E418F49595C589788A67F0",
+              "source_string": "Max Repeater Level +15",
+              "localized_string": "Max Repeater Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_DP_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       },
       {
-          "progression_id": "MasteryTrack_Weapon_Sword",
-          "premium_gating_entitlement": "",
-          "progression_multiplier": 1,
-          "requirements": [
-            { "rank_id": 0, "xp_required": 0 },
-          { "rank_id": 1, "xp_required": 100 },
-          { "rank_id": 2, "xp_required": 100 },
-          { "rank_id": 3, "xp_required": 100 },
-          { "rank_id": 4, "xp_required": 100 },
-          { "rank_id": 5, "xp_required": 100 },
-          { "rank_id": 6, "xp_required": 100 },
-          { "rank_id": 7, "xp_required": 100 },
-          { "rank_id": 8, "xp_required": 100 },
-          { "rank_id": 9, "xp_required": 100 },
-          { "rank_id": 10, "xp_required": 100 },
-          { "rank_id": 11, "xp_required": 100 },
-          { "rank_id": 12, "xp_required": 100 },
-          { "rank_id": 13, "xp_required": 100 },
-          { "rank_id": 14, "xp_required": 100 },
-          { "rank_id": 15, "xp_required": 100 },
-          { "rank_id": 16, "xp_required": 100 },
-          { "rank_id": 17, "xp_required": 100 },
-          { "rank_id": 18, "xp_required": 100 },
-          { "rank_id": 19, "xp_required": 100 },
-          { "rank_id": 20, "xp_required": 100 },
-          { "rank_id": 21, "xp_required": 100 },
-          { "rank_id": 22, "xp_required": 100 },
-          { "rank_id": 23, "xp_required": 100 },
-          { "rank_id": 24, "xp_required": 100 },
-          { "rank_id": 25, "xp_required": 100 },
-          { "rank_id": 26, "xp_required": 100 },
-          { "rank_id": 27, "xp_required": 100 },
-          { "rank_id": 28, "xp_required": 100 },
-          { "rank_id": 29, "xp_required": 100 },
-          { "rank_id": 30, "xp_required": 100 },
-          { "rank_id": 31, "xp_required": 100 },
-          { "rank_id": 32, "xp_required": 100 },
-          { "rank_id": 33, "xp_required": 100 },
-          { "rank_id": 34, "xp_required": 100 },
-          { "rank_id": 35, "xp_required": 100 },
-          { "rank_id": 36, "xp_required": 100 },
-          { "rank_id": 37, "xp_required": 100 },
-          { "rank_id": 38, "xp_required": 100 },
-          { "rank_id": 39, "xp_required": 100 },
-          { "rank_id": 40, "xp_required": 100 },
-          { "rank_id": 41, "xp_required": 100 },
-          { "rank_id": 42, "xp_required": 100 },
-          { "rank_id": 43, "xp_required": 100 },
-          { "rank_id": 44, "xp_required": 100 },
-          { "rank_id": 45, "xp_required": 100 },
-          { "rank_id": 46, "xp_required": 100 },
-          { "rank_id": 47, "xp_required": 100 },
-          { "rank_id": 48, "xp_required": 100 },
-          { "rank_id": 49, "xp_required": 100 },
-          { "rank_id": 50, "xp_required": 100 }
-          ],
-          "free_rewards": [],
-          "premium_rewards": [],
-          "start_date": "2020-01-01T00:00:00+00:00",
-          "end_date": "2085-06-11T16:59:59+00:00"
+        "progression_id": "MasteryTrack_Weapon_Spear",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_MS_PASSIVE_AMMO_GROWTH"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_MS_SPECIAL_ATTACK_SPEED_DAMAGE_BUFF"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_MSPEAR_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_MS_PASSIVE_CHARGE_SPEED"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "11C316F74B347F7CCBD221BA64808BC7",
+              "source_string": "Max Pike Level +11",
+              "localized_string": "Max Pike Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "259D37394382DD332F9E9CAEEC288ACC",
+              "source_string": "Max Pike Level +12",
+              "localized_string": "Max Pike Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "1FDD986C48118EB4B06218817812E075",
+              "source_string": "Max Pike Level +13",
+              "localized_string": "Max Pike Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_MS_PASSIVE_WEAVING"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "35EEE9BC476DDA3B2578E48EE47CA37D",
+              "source_string": "Max Pike Level +14",
+              "localized_string": "Max Pike Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "C1269D5B4FEF9A060D5FFF906270823A",
+              "source_string": "Max Pike Level +15",
+              "localized_string": "Max Pike Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_MSPEAR_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
+      },
+      {
+        "progression_id": "MasteryTrack_Weapon_Sword",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_EB_PASSIVE_STAGGERPROOF"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_EB_SPECIAL_SPIN"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_EBLADE_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_EB_PASSIVE_DODGE_ATTACK"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "E3850B4344CAC31555353EB6783B15F4",
+              "source_string": "Max Sword Level +11",
+              "localized_string": "Max Sword Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "E6B2FB3541C6A1AC861B25881ED8F67A",
+              "source_string": "Max Sword Level +12",
+              "localized_string": "Max Sword Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "80C1A86443F1B98622091998E6FE086A",
+              "source_string": "Max Sword Level +13",
+              "localized_string": "Max Sword Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_EB_PASSIVE_METER"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "608AEC4E407EB20DB72A83B6F3719D07",
+              "source_string": "Max Sword Level +14",
+              "localized_string": "Max Sword Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "212067AA440CC000C33ACBA267505BAA",
+              "source_string": "Max Sword Level +15",
+              "localized_string": "Max Sword Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_EBLADE_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
+      },
+      {
+        "progression_id": "MasteryTrack_Weapon_Strikers",
+        "premium_gating_entitlement": "",
+        "progression_multiplier": 1,
+        "requirements": [
+          {
+            "rank_id": 0,
+            "xp_required": 0
+          },
+          {
+            "rank_id": 1,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 2,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 3,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 4,
+            "xp_required": 2
+          },
+          {
+            "rank_id": 5,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 6,
+            "xp_required": 3
+          },
+          {
+            "rank_id": 7,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 8,
+            "xp_required": 4
+          },
+          {
+            "rank_id": 9,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 10,
+            "xp_required": 5
+          },
+          {
+            "rank_id": 11,
+            "xp_required": 6
+          },
+          {
+            "rank_id": 12,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 13,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 14,
+            "xp_required": 7
+          },
+          {
+            "rank_id": 15,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 16,
+            "xp_required": 8
+          },
+          {
+            "rank_id": 17,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 18,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 19,
+            "xp_required": 10
+          },
+          {
+            "rank_id": 20,
+            "xp_required": 10
+          }
+        ],
+        "free_rewards": [
+          {
+            "rank_id": 1,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 2,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "CURRENCY_NOTES",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 250
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 3,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 4,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Bronze",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 5,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 6,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_AC_PASSIVE_MASTERY_01"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 7,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Silver",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 8,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_AC_SPECIAL_MASTERY"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 9,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_AC_01",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 10,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_AC_PASSIVE_MASTERY_02"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 11,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "B45948624979EA5CFEC05EB8463C01A9",
+              "source_string": "Max Aether Striker Level +11",
+              "localized_string": "Max Aether Striker Level +11"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 12,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Slayer_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 13,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "77B43ABD4C5892C9BC45FCB5206277A1",
+              "source_string": "Max Aether Striker Level +12",
+              "localized_string": "Max Aether Striker Level +12"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 14,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 15,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "C69E35BF4E537F104099AA929195418C",
+              "source_string": "Max Aether Striker Level +13",
+              "localized_string": "Max Aether Striker Level +13"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 16,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [],
+            "instanced_items": ["PART_AC_PASSIVE_MASTERY_03"],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 17,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "D973FAD7454C7C218BE44AA185A19852",
+              "source_string": "Max Aether Striker Level +14",
+              "localized_string": "Max Aether Striker Level +14"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 18,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "Container_Core_Weaponsmith_Gold",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 19,
+            "custom_reward_string": {
+              "namespace": "",
+              "key": "E8B9B37040F9418AAE19B288A7E5E6F5",
+              "source_string": "Max Aether Striker Level +15",
+              "localized_string": "Max Aether Striker Level +15"
+            },
+            "stacked_items": [],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          },
+          {
+            "rank_id": 20,
+            "custom_reward_string": {
+              "culture_invariant_string": null
+            },
+            "stacked_items": [
+              {
+                "catalog_id": "TITLE_MASTERY_AC_02",
+                "hidden": false,
+                "priority": 0,
+                "quantity": 1
+              }
+            ],
+            "instanced_items": [],
+            "ordered_instanced_items": [],
+            "entitlements": [],
+            "buffs": []
+          }
+        ],
+        "premium_rewards": [],
+        "start_date": "2019-01-01T14:00:00+00:00",
+        "end_date": "2099-01-01T14:00:00+00:00"
       }
     ]
   }

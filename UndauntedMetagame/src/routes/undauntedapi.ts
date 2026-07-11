@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { DeleteInviteCode, GetAllUserIds, GetInviteCodes, GetRecentPlayerData, GetUserInfoForApiKey, RegisterInviteCode, RegisterUser, REGISTRATION_MODE, SetRegistrationMode, UserInfo, ValidateAndConsumeInviteCode } from "../controllers/undauntedapi";
+import { DeleteInviteCode, GetAllUserIds, GetInviteCodes, GetRecentPlayerData, IsRegistrationMode, RegisterInviteCode, RegisterUser, REGISTRATION_MODE, SetRegistrationMode, ValidateAndConsumeInviteCode } from "../controllers/undauntedapi";
 import { HasUndauntedUserApiKey } from "../middleware/HasUndauntedUserApiKey";
 import { HasUndauntedAdminApiKey } from "../middleware/HasUndauntedAdminApiKey";
 import { SignMetagameJWTForUid } from "../controllers/auth";
@@ -16,7 +16,11 @@ undauntedApiRouter.get("/RegistrationStatus", (req, res) => {
 undauntedApiRouter.post("/RegistrationStatus", HasUndauntedAdminApiKey, (req, res) => {
     const NewRegistrationStatus = req.body.RegistrationStatus;
 
-    SetRegistrationMode(NewRegistrationStatus);
+    if(!SetRegistrationMode(NewRegistrationStatus)){
+        res.status(400);
+        res.send();
+        return;
+    }
 
     res.status(200);
     res.send();
@@ -56,7 +60,11 @@ undauntedApiRouter.post("/RegisterInviteCode", HasUndauntedAdminApiKey, async (r
     const Uses = req.body.Uses;
     const InfiniteUses = !!req.body.InfiniteUses;
 
-    await RegisterInviteCode(NewInviteCode, Uses, InfiniteUses);
+    if(!await RegisterInviteCode(NewInviteCode, Uses, InfiniteUses)){
+        res.status(400);
+        res.send();
+        return;
+    }
 
     res.status(200);
     res.send();
@@ -72,6 +80,12 @@ undauntedApiRouter.delete("/InviteCode/:inviteCodeToDelete", HasUndauntedAdminAp
 });
 
 undauntedApiRouter.post("/Register", async (req, res) => {
+    if(!IsRegistrationMode(REGISTRATION_MODE)){
+        res.status(500);
+        res.send();
+        return;
+    }
+
     if(REGISTRATION_MODE === "NONE"){
         res.status(400);
         res.send();
@@ -79,6 +93,11 @@ undauntedApiRouter.post("/Register", async (req, res) => {
     }
 
     const Username = req.body.Username;
+    if(typeof Username !== "string" || Username.trim().length === 0){
+        res.status(400);
+        res.send();
+        return;
+    }
 
     if(REGISTRATION_MODE === "INVITECODE"){
         const InviteCode = req.body.InviteCode;
@@ -103,10 +122,6 @@ undauntedApiRouter.post("/Register", async (req, res) => {
         res.json({
             UUK: UUK
         });
-    }
-    else{
-        res.status(500);
-        res.send();
     }
 });
 
