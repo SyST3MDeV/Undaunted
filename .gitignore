@@ -1,0 +1,11 @@
+.vscode
+node_modules/
+**/node_modules/
+.pnpm-store/
+.pnp.*
+.yarn/
+yarn.lock
+*.tsbuildinfo
+*.db-shm
+*.db-wal
+.tmp

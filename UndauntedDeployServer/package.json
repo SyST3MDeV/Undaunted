@@ -6,7 +6,7 @@
   "author": "gwog :3",
   "scripts": {
     "dev": "tsx --env-file=.env src/server.ts",
-    "build": "tsc",
+    "build": "node build.cjs",
     "start": "node --env-file=.env dist/server.js"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "26.0.0",
     "drizzle-kit": "0.31.10",
+    "esbuild": "0.28.1",
     "tsx": "4.22.4",
     "typescript": "6.0.3"
   }

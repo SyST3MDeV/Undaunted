@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "packageManager": "pnpm@11.13.0",
+  "scripts": {
+    "build:metagame": "pnpm --dir UndauntedMetagame run build",
+    "build:deploy": "pnpm --dir UndauntedDeployServer run build",
+    "build:internal": "powershell -NoProfile -ExecutionPolicy Bypass -File .vscode/Build-DeployReleaseDll.ps1",
+    "build:servers": "pnpm --parallel --aggregate-output --dir UndauntedMetagame run build --dir UndauntedDeployServer run build",
+    "build:all": "powershell -NoProfile -Command \"$server = Start-Process pnpm -ArgumentList 'run','build:servers' -NoNewWindow -PassThru; $internal = Start-Process pnpm -ArgumentList 'run','build:internal' -NoNewWindow -PassThru; Wait-Process -InputObject $server,$internal; if ($server.ExitCode -ne 0 -or $internal.ExitCode -ne 0) { exit 1 }\""
+  },
+  "devDependencies": {}
+}
