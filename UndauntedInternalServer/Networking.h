@@ -8,7 +8,7 @@ using namespace SDK;
 namespace Networking {
 	extern UNetDriver* NetDriver;
 
-	void Listen(UEngine* Engine, int Port);
+	bool Listen(UEngine* Engine, int Port);
 
 	void TickNetworking();
 }

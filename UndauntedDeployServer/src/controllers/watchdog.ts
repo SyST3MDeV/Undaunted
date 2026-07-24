@@ -1,6 +1,6 @@
 import { kill } from "node:process";
 import { logger } from "../logger";
-import { Gameserver, Gameservers, CleanupServer } from "./gameservers";
+import { Gameserver, Gameservers, CleanupServer, CleanupStaleAssignments, GetGameserverIdleShutdownReason, ShutdownIdleGameserver, ShutdownIdleRamsgate } from "./gameservers";
 
 /**
  * TODO:
@@ -18,13 +18,29 @@ function IsGameserverStillAlive(GameserverToCheck: Gameserver){
 }
 
 export async function RunWatchdog(){
-    logger.info(`Running Gameserver Watchdog!`);
+    // logger.info(`Running Gameserver Watchdog!`);
 
-    for(const Gameserver of Gameservers){
+    CleanupStaleAssignments();
+    for(const Gameserver of [...Gameservers]){
         if(!IsGameserverStillAlive(Gameserver)){
-            console.log(`Cleaning up Gameserver on port ${Gameserver.port}`);
+            logger.info(`Cleaning up dead gameserver on port ${Gameserver.port}`);
 
-            CleanupServer(Gameserver);
+            await CleanupServer(Gameserver);
+
+            continue;
+        }
+
+        if(Gameserver.isRamsgate){
+            const IdleDecision = GetGameserverIdleShutdownReason(Gameserver);
+            if(IdleDecision != undefined){
+                await ShutdownIdleRamsgate(Gameserver, IdleDecision);
+            }
+            continue;
+        }
+
+        const IdleDecision = GetGameserverIdleShutdownReason(Gameserver);
+        if(IdleDecision != undefined){
+            await ShutdownIdleGameserver(Gameserver, IdleDecision);
         }
     }
 }

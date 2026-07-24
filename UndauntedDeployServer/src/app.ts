@@ -1,4 +1,5 @@
 import express from "express";
+import { gameserverRouter } from "./routes/gameservers.js";
 import { matchmakingRouter } from "./routes/matchmaker.js";
 import { logger } from "./logger.js";
 
@@ -8,4 +9,5 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/gameservers", gameserverRouter);
 app.use("/api/matchmaker", matchmakingRouter);

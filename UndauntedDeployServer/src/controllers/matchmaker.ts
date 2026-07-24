@@ -1,30 +1,38 @@
 import { logger } from "../logger";
-import { GetRamsgateConnectionDetails, GetTrainingDojoConnectionDetails, StartupGameserverWithArgs, StartupGameserverWithHuntIdAndPlayers } from "./gameservers";
+import { GetOrStartTrainingDojoConnectionDetails, GetRamsgateConnectionDetails, StartupGameserverWithArgs, StartupGameserverWithHuntIdAndPlayers } from "./gameservers";
 
-export async function HandleMatchmakingRequest(GameMode: string, GameArgs: string, HuntId: string, ExpectedPlayers: string[] | undefined){
-    logger.info(`Handling matchmaking with GameMode: ${GameMode} HuntId: ${HuntId} and GameArgs: ${GameArgs} and ExpectedPlayers ${ExpectedPlayers}`);
+export async function HandleMatchmakingRequest(GameMode: string, GameArgs: string, HuntId: string, ExpectedPlayers: string[] | undefined, FreshInstance = false){
+    const NormalizedHuntId = HuntId ?? "";
+    const NormalizedExpectedPlayers = ExpectedPlayers ?? [];
+
+    logger.info({
+        gameMode: GameMode,
+        huntId: NormalizedHuntId,
+        gameArgs: GameArgs,
+        expectedPlayers: NormalizedExpectedPlayers,
+        freshInstance: FreshInstance
+    }, "Handling matchmaking");
 
     if(GameMode === "CITY"){
-        return GetRamsgateConnectionDetails();
+        return await GetRamsgateConnectionDetails(NormalizedExpectedPlayers);
     }
     else if(GameMode === "SHARED"){
-        if (HuntId != undefined && HuntId.trim().length > 0){
-            if(HuntId == "ShatteredIsles_TrainingDojo"){
-                return GetTrainingDojoConnectionDetails();
-            }
+        if(NormalizedHuntId === "ShatteredIsles_TrainingDojo"){
+            return await GetOrStartTrainingDojoConnectionDetails(
+                "TRAINING_DOJO_LAZY", NormalizedExpectedPlayers);
         }
     }
     else if(GameMode === "ISLAND"){
         if(GameArgs != undefined && GameArgs.trim().length > 0){
-            return await StartupGameserverWithArgs(GameArgs);
+            return await StartupGameserverWithArgs(GameArgs, ExpectedPlayers);
         }
 
-        if(HuntId != undefined && HuntId.trim().length > 0 && ExpectedPlayers != undefined){
-            return await StartupGameserverWithHuntIdAndPlayers(HuntId, ExpectedPlayers!);
+        if(NormalizedHuntId.length > 0 && ExpectedPlayers != undefined){
+            return await StartupGameserverWithHuntIdAndPlayers(NormalizedHuntId, ExpectedPlayers, FreshInstance);
         }
     }
 
     logger.error("Matchmaking failed, sending you to Ramsgate!");
 
-    return GetRamsgateConnectionDetails();
+    return await GetRamsgateConnectionDetails(NormalizedExpectedPlayers);
 }

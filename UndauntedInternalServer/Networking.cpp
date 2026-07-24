@@ -77,7 +77,7 @@ namespace Networking {
         return nullptr;
     }
 
-    void Listen(UEngine* Engine, int Port) {
+    bool Listen(UEngine* Engine, int Port) {
         BaseAddress = (uintptr_t)GetModuleHandleA(nullptr);
 
         FName GameNetDriver = UKismetStringLibrary::Conv_StringToName(L"GameNetDriver");
@@ -111,7 +111,9 @@ namespace Networking {
 
         FString empy = FString();
 
-        std::cout << "Listen Status: " << (*(reinterpret_cast<bool(**)(UNetDriver*, void*, FURL*, bool, FString*)>(*(__int64*)NetDriver + 0x280)))(NetDriver, (void*)UWorld::GetWorld()->NetworkNotify, &url, false, &empy) << std::endl;
+        const bool Listening = (*(reinterpret_cast<bool(**)(UNetDriver*, void*, FURL*, bool, FString*)>(*(__int64*)NetDriver + 0x280)))(NetDriver, (void*)UWorld::GetWorld()->NetworkNotify, &url, false, &empy);
+        std::cout << "Listen Status: " << Listening << std::endl;
+        return Listening;
 
         reinterpret_cast<void(*)(UNetDriver*, UWorld*)>(BaseAddress + 0x3491890)(NetDriver, UWorld::GetWorld());
 
